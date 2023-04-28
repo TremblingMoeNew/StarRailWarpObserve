@@ -1,0 +1,11 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:DodocoTales.SR.Gui.Resources"
+                    xmlns:converter="clr-namespace:DodocoTales.SR.Gui.Converters">
+    <converter:DDCVVisibleByBooleanConverter x:Key="VisByBoolCon"/>
+    <converter:DDCVPercentageConverter x:Key="PercentageCon"/>
+    <converter:DDCVPoolTypeConverter x:Key="PoolTypeCon"/>
+    <converter:DDCVUidAnonymousConverter x:Key="UIDAnonyCon"/>
+    <converter:DDCVUidNormalConverter x:Key="UIDNormalCon"/>
+    <converter:DDCVVisibleByAvailableUIDConverter x:Key="VisByAvaliableUIDCon"/>
+</ResourceDictionary>

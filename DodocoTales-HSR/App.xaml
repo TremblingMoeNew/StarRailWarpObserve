@@ -1,0 +1,16 @@
+﻿<Application x:Class="DodocoTales_HSR.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:DodocoTales_HSR"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/Panuon.UI.Silver;component/Control.xaml" />
+
+                <ResourceDictionary Source="Gui/Resources/DDCVConverters.xaml"/>
+                <ResourceDictionary Source="Gui/Resources/Styles/DDCVListViewItemStyle.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
