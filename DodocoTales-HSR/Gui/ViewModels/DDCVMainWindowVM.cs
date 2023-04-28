@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using DodocoTales.SR.Gui.Models;
+using DodocoTales.SR.Loader;
 using Panuon.UI.Silver;
 using System;
 using System.Collections.Generic;
@@ -27,10 +28,10 @@ namespace DodocoTales.SR.Gui.ViewModels
             {
                 if (value)
                 {
-                //    if (DDCG.ProxyLoader.InitializeProxy())
-                 //   {
-                 //       Notice.Show("代理服务器初始化完毕", "代理模式", MessageBoxIcon.Info);
-                 //   }
+                    if (DDCG.ProxyLoader.InitializeProxy())
+                    {
+                        Notice.Show("代理服务器初始化完毕", "代理模式", MessageBoxIcon.Info);
+                    }
                 }
                 else
                 {
@@ -49,12 +50,12 @@ namespace DodocoTales.SR.Gui.ViewModels
                 if (value)
                 {
                     IsWaiting = value;
-                //    DDCG.ProxyLoader.StartProxy();
+                    DDCG.ProxyLoader.StartProxy();
                     Notice.Show("代理模式已启动，请在游戏中重新打开祈愿历史记录页面", "代理模式", MessageBoxIcon.Info);
                 }
                 else
                 {
-                 //   DDCG.ProxyLoader.EndProxy();
+                    DDCG.ProxyLoader.EndProxy();
                     IsWaiting = false;
                     IsInProxyUpdateAppended = false;
                     IsInProxyUpdateFull = false;
@@ -140,7 +141,7 @@ namespace DodocoTales.SR.Gui.ViewModels
 
         public async Task WishLogUpdateAppended()
         {
-            /*
+            
             if (IsProxyMode)
             {
                 if (DDCG.ProxyLoader.Authkey == null)
@@ -155,12 +156,12 @@ namespace DodocoTales.SR.Gui.ViewModels
             }
             else
                 await WishLogUpdateAppendedFromCache();
-            */
+            
         }
 
         public async Task WishLogUpdateFull()
         {
-            /*
+            
             if (IsProxyMode)
             {
                 if (DDCG.ProxyLoader.Authkey == null)
@@ -175,7 +176,7 @@ namespace DodocoTales.SR.Gui.ViewModels
             }
             else
                 await WishLogUpdateFullFromCache();
-            */
+            
         }
         public async Task WishLogUpdateAppendedFromCache()
         {
@@ -266,17 +267,19 @@ namespace DodocoTales.SR.Gui.ViewModels
 
         public async Task WishLogUpdateAppendedFromProxy()
         {
-            /*
+            
             if (IsProxyModeOn) IsProxyModeOn = false;
             var authkey = DDCG.ProxyLoader.Authkey;
             if (authkey == null)
             {
                 Notice.Show("更新失败，未能找到祈愿记录网址。\n请联系开发者。", "祈愿记录更新失败", MessageBoxIcon.Error);
-                DDCLog.Info(DCLN.Gui, "Wish log update failed: Authkey not found. (Append mode, Proxy mode)");
+                //DDCLog.Info(DCLN.Gui, "Wish log update failed: Authkey not found. (Append mode, Proxy mode)");
                 return;
             }
             var clientType = DDCG.ProxyLoader.CapturedClientType;
             IsInUpdate = true;
+            Console.WriteLine(authkey);
+            /*
             var uid = await DDCG.WebLogLoader.TryConnectAndGetUid(authkey, clientType);
             if (uid < 0)
             {

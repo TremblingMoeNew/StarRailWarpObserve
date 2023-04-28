@@ -1,5 +1,6 @@
 ﻿//using DodocoTales.Common;
 //using DodocoTales.Common.Enums;
+using DodocoTales.SR.Common;
 using DodocoTales.SR.Gui;
 using DodocoTales.SR.Gui.Models;
 using DodocoTales.SR.Gui.Views;
@@ -40,8 +41,8 @@ namespace DodocoTales
             DDCV.MainWindow = this;
             DDCV.MainNavigater = MainNavigator;
         //    DDCV.RegisterMainScreens();
-        //    DDCS.CurUserSwapCompleted += OnUIDSwapCompleted;
-        //    DDCS.ProxyCaptured += OnProxyCaptured;
+            DDCS.CurUserSwapCompleted += OnUIDSwapCompleted;
+            DDCS.ProxyCaptured += OnProxyCaptured;
         }
 
         private async void Button_Click(object sender, RoutedEventArgs e)

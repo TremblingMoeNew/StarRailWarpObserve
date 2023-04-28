@@ -9,5 +9,6 @@ namespace DodocoTales.SR.Loader
     public static partial class DDCG
     {
         public static DDCGGameClientLoader GameClientLoader = new DDCGGameClientLoader();
+        public static DDCGProxyLoader ProxyLoader = new DDCGProxyLoader();
     }
 }
