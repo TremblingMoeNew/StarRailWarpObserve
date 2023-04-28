@@ -10,21 +10,20 @@ namespace DodocoTales.SR.Library.UserDataLibrary.Models
 {
     public class DDCLGachaLogItem
     {
-        public ulong version_id { get; set; }
-        public ulong banner_id { get; set; }
+        public ulong VersionID { get; set; }
+        public ulong BannerID { get; set; }
         public ulong round_id { get; set; }
-        public ulong internal_id { get; set; }
 
-        public ulong id { get; set; }
-        public string name { get; set; }
-        public DateTime time { get; set; }
+        public ulong ID { get; set; }
+        public string Name { get; set; }
+        public DateTime Time { get; set; }
 
-        public DDCCPoolType pooltype { get; set; }
+        public DDCCPoolType PoolType { get; set; }
 
-        public ulong rank { get; set; }
-        public DDCCUnitType unittype { get; set; }
+        public ulong Rank { get; set; }
+        public DDCCUnitType UnitType { get; set; }
 
-        public DDCLGachaLogItemRawData raw { get; set; }
+        public DDCLGachaLogItemRawData Raw { get; set; }
 
     }
     public class DDCLGachaLogItemRawData

@@ -189,11 +189,18 @@
     <Compile Include="Gui\Views\DDCVSettingsWindow.xaml.cs">
       <DependentUpon>DDCVSettingsWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Library\BannerLibrary\DDCLBannerLibrary.cs" />
+    <Compile Include="Library\BannerLibrary\Models\DDCLBannerInfo.cs" />
+    <Compile Include="Library\BannerLibrary\Models\DDCLBannerLibModel.cs" />
+    <Compile Include="Library\BannerLibrary\Models\DDCLVersionInfo.cs" />
     <Compile Include="Library\DDCL.cs" />
+    <Compile Include="Library\Enums\DDCLActivateStatus.cs" />
     <Compile Include="Library\Enums\DDCLGameClientType.cs" />
     <Compile Include="Library\GameClient\DDCLGameClientLibrary.cs" />
     <Compile Include="Library\GameClient\Models\DDCLGameClientItem.cs" />
+    <Compile Include="Library\UserDataLibrary\DDCLUserDataLibrary.cs" />
     <Compile Include="Library\UserDataLibrary\Models\DDCLGachaLogItem.cs" />
+    <Compile Include="Library\UserDataLibrary\Models\DDCLUserGachaLog.cs" />
     <Compile Include="Loader\DDCG.cs" />
     <Compile Include="Loader\DDCGGameClientLoader.cs" />
     <Compile Include="Loader\DDCGProxyLoader.cs" />

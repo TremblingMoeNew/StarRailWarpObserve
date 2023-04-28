@@ -143,13 +143,13 @@ namespace DodocoTales.SR.Loader
         {
             return new DDCLGachaLogItem()
             {
-                id = DDCGItem.id,
-                name = DDCGItem.name,
-                rank = DDCGItem.rank_type,
-                time = DDCGItem.time,
-                unittype = DDCL.ConvertToUnitType(DDCGItem.item_type),
-                pooltype = pooltype,
-                raw = new DDCLGachaLogItemRawData
+                ID = DDCGItem.id,
+                Name = DDCGItem.name,
+                Rank = DDCGItem.rank_type,
+                Time = DDCGItem.time,
+                UnitType = DDCL.ConvertToUnitType(DDCGItem.item_type),
+                PoolType = pooltype,
+                Raw = new DDCLGachaLogItemRawData
                 {
                     count = DDCGItem.count,
                     gacha_id = DDCGItem.gacha_id,
