@@ -11,7 +11,8 @@ namespace DodocoTales.SR.Library.UserDataLibrary.Models
     public class DDCLGachaLogItem
     {
         public ulong VersionID { get; set; }
-        public ulong BannerID { get; set; }
+        [JsonProperty(PropertyName = "BannerID")]
+        public ulong BannerInternalID { get; set; }
         public ulong RoundID { get; set; }
 
         public ulong ID { get; set; }

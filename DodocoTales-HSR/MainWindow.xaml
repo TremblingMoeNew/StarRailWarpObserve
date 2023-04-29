@@ -47,7 +47,6 @@
         </TreeView>
         <StackPanel VerticalAlignment="Center" Grid.Column="0">
             <Button HorizontalAlignment="Center" VerticalAlignment="Center" Click="Button_Click">Initialize</Button>
-            <Button HorizontalAlignment="Center" VerticalAlignment="Center" Click="Button_Click_5">Get Authkey From Cache</Button>
         </StackPanel>
         <Grid VerticalAlignment="Bottom" x:Name="BottomMenu">
             <Grid.ColumnDefinitions>

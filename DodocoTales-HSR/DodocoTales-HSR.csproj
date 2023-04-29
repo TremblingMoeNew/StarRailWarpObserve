@@ -194,6 +194,8 @@
     <Compile Include="Library\BannerLibrary\Models\DDCLBannerLibModel.cs" />
     <Compile Include="Library\BannerLibrary\Models\DDCLVersionInfo.cs" />
     <Compile Include="Library\CurrentUser\DDCLCurrentUserLibrary.cs" />
+    <Compile Include="Library\CurrentUser\Models\DDCLBannerLogItem.cs" />
+    <Compile Include="Library\CurrentUser\Models\DDCLRoundLogItem.cs" />
     <Compile Include="Library\DDCL.cs" />
     <Compile Include="Library\Enums\DDCLActivateStatus.cs" />
     <Compile Include="Library\Enums\DDCLGameClientType.cs" />

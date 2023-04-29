@@ -98,7 +98,7 @@ namespace DodocoTales.SR.Loader
                         continue;
                     }
                     item.VersionID = version.ID;
-                    if (item.BannerID == 0)
+                    if (item.BannerInternalID == 0)
                     {
                         var bannercnt = version.Banners.Count;
                         var bidx = banneridx[item.PoolType];
@@ -111,7 +111,7 @@ namespace DodocoTales.SR.Loader
                             //DDCLog.Error(DCLN.Loader, String.Format("Log item classification failed. {0}", JsonConvert.SerializeObject(item)));
                             continue;
                         }
-                        item.BannerID = banner.InternalId;
+                        item.BannerInternalID = banner.InternalId;
 
                     }
                 }

@@ -42,13 +42,13 @@ namespace DodocoTales
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
         //    DDCLog.InitHint();
-        //    DDCG.Initialize();
             await DDCL.BannerLib.LoadLibraryAsync();
-       //     await DDCL.UnitLib.LoadLibraryAsync();
             await DDCL.UserDataLib.LoadLocalGachaLogsAsync();
             await DDCL.GameClientLib.LoadLibraryAsync();
-       //     DDCL.CurrentUser.SwapUser(0);
-       //     DDCV.RefreshAll();
+            DDCL.CurrentUser.SwapUser(0);
+            //     DDCV.RefreshAll();
+
+            Console.WriteLine(JsonConvert.SerializeObject(DDCL.CurrentUser.GreaterRounds, Formatting.Indented));
 
             //HomeScn.Refresh();
             //BanViewScn.SetBanner(201, 201101);
@@ -75,17 +75,6 @@ namespace DodocoTales
         //        DDCV.SwapMainScreen(item.Tag);
         }
 
-        private void Button_Click_5(object sender, RoutedEventArgs e)
-        {
-            var selected = DDCL.GameClientLib.GetSelectedClient();
-            if (selected == null)
-                if (!DDCV.ShowWindowDialog(new DDCVGameClientManagerWindow()))
-                    return;
-
-            selected = DDCL.GameClientLib.GetSelectedClient();
-            if (selected != null)
-                Console.WriteLine(DDCG.GameClientLoader.GetAuthkeyFromWebCache(selected));
-        }
 
         private void UpdatePanelButton_Click(object sender, RoutedEventArgs e)
         {
