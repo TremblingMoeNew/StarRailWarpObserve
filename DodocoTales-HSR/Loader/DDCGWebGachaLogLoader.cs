@@ -162,7 +162,6 @@ namespace DodocoTales.SR.Loader
 
         public async Task GetGachaLogsAsNormalMode(string authkey, DDCLGameClientType clientType)
         {
-            
             ClientType = clientType;
             var merger = new DDCGGachaLogMerger(DDCL.CurrentUser.OriginalLogs);
             var res = new SortedList<ulong, DDCLGachaLogItem>();
@@ -182,7 +181,7 @@ namespace DodocoTales.SR.Loader
             {
                 res.Add(item.id, ConvertToDDCLLogItem(item, DDCCPoolType.LCEvent));
             }
-            merger.Merge(res.Values.ToList(), true);
+            merger.Merge(res.Values.ToList(), false);
             
         }
 
@@ -191,7 +190,7 @@ namespace DodocoTales.SR.Loader
         {
             
             ClientType = clientType;
-            //var merger = new DDCGGachaLogMerger(DDCL.CurrentUser.OriginalLogs);
+            var merger = new DDCGGachaLogMerger(DDCL.CurrentUser.OriginalLogs);
             var res = new SortedList<ulong, DDCLGachaLogItem>();
             foreach (var item in await GetGachaLogsByTypeAsync(authkey, DDCCPoolType.Beginner, 0))
             {
@@ -209,7 +208,7 @@ namespace DodocoTales.SR.Loader
             {
                 res.Add(item.id, ConvertToDDCLLogItem(item, DDCCPoolType.LCEvent));
             }
-            //merger.Merge(res.Values.ToList());
+            merger.Merge(res.Values.ToList(), true);
             Console.WriteLine(JsonConvert.SerializeObject(res.Values.ToList(), Formatting.Indented));
 
 
