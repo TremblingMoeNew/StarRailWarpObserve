@@ -30,12 +30,12 @@ namespace DodocoTales.SR.Library.BannerLibrary.Models
         public bool EndTimeSync { get; set; }
 
         [JsonIgnore]
-        public ulong VersionId { get; set; }
+        public ulong VersionID { get; set; }
 
         [JsonIgnore]
-        public ulong InternalId
+        public ulong InternalID
         {
-            get { return VersionId * 1000 + ID; }
+            get { return VersionID * 1000 + ID; }
         }
 
         public DDCLBannerInfo Copy()
@@ -52,7 +52,7 @@ namespace DodocoTales.SR.Library.BannerLibrary.Models
                 EndTime = this.EndTime,
                 BeginTimeSync = this.BeginTimeSync,
                 EndTimeSync = this.EndTimeSync,
-                VersionId = this.VersionId,
+                VersionID = this.VersionID,
             };
         }
 

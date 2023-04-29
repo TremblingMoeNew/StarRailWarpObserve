@@ -34,7 +34,7 @@ namespace DodocoTales
             InitializeComponent();
             DDCV.MainWindow = this;
             DDCV.MainNavigater = MainNavigator;
-        //    DDCV.RegisterMainScreens();
+            DDCV.RegisterMainScreens();
             DDCS.CurUserSwapCompleted += OnUIDSwapCompleted;
             DDCS.ProxyCaptured += OnProxyCaptured;
         }
@@ -46,7 +46,7 @@ namespace DodocoTales
             await DDCL.UserDataLib.LoadLocalGachaLogsAsync();
             await DDCL.GameClientLib.LoadLibraryAsync();
             DDCL.CurrentUser.SwapUser(0);
-            //     DDCV.RefreshAll();
+            DDCV.RefreshAll();
 
             Console.WriteLine(JsonConvert.SerializeObject(DDCL.CurrentUser.GreaterRounds, Formatting.Indented));
 

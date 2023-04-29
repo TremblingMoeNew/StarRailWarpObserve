@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DodocoTales.SR.Gui.Views.Screens;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,8 +11,8 @@ namespace DodocoTales.SR.Gui
 {
     public static class DDCV
     {
-        //public static readonly Dictionary<string, DDCVSwapableScreen> MainScreens = new Dictionary<string, DDCVSwapableScreen>();
-        //public static readonly Stack<DDCVSwapableScreen> StackedScreens = new Stack<DDCVSwapableScreen>();
+        public static readonly Dictionary<string, DDCVSwapableScreen> MainScreens = new Dictionary<string, DDCVSwapableScreen>();
+        public static readonly Stack<DDCVSwapableScreen> StackedScreens = new Stack<DDCVSwapableScreen>();
 
         public static MainWindow MainWindow;
         public static Grid MainNavigater;
@@ -19,12 +20,12 @@ namespace DodocoTales.SR.Gui
 
         public static void RegisterMainScreens()
         {
-         //   RegisterMainScreen("Home", new DDCVHomeScreen());
+            RegisterMainScreen("Home", new DDCVHomeScreen());
          //   RegisterMainScreen("Version", new DDCVVersionViewScreen());
         }
 
 
-        /*
+        
         public static void RegisterMainScreen(string tag, DDCVSwapableScreen screen)
         {
             MainScreens.Add(tag, screen);
@@ -40,7 +41,7 @@ namespace DodocoTales.SR.Gui
 
         public static void PushScreen(DDCVSwapableScreen screen)
         {
-            DDCLog.Info(DCLN.Gui, String.Format("Push screen: {0}", screen.GetType().Name));
+            //DDCLog.Info(DCLN.Gui, String.Format("Push screen: {0}", screen.GetType().Name));
             if (screen.GetType() == StackedScreens.Peek().GetType())
                 return;
 
@@ -60,7 +61,7 @@ namespace DodocoTales.SR.Gui
 
         public static void SwapMainScreen(string tag)
         {
-            DDCLog.Info(DCLN.Gui, "Swap main page: " + tag);
+            //DDCLog.Info(DCLN.Gui, "Swap main page: " + tag);
             if (!MainScreens.TryGetValue(tag, out DDCVSwapableScreen ns))
             {
                 return;
@@ -85,12 +86,14 @@ namespace DodocoTales.SR.Gui
 
         public static void CreateBannerViewScreen(ulong versionid, ulong bannerid)
         {
+            /*
             var scn = new DDCVBannerViewScreen();
             scn.SetBanner(versionid, bannerid);
             PushScreen(scn);
             scn.Refresh();
+            */
         }
-        */
+        
         public static bool ShowWindowDialog(Window window)
         {
             window.Owner = MainWindow;

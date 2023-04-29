@@ -10,18 +10,26 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace DodocoTales.SR.Gui.Views
+namespace DodocoTales.SR.Gui.Views.Screens
 {
     /// <summary>
-    /// DDCVSettingsWindow.xaml 的交互逻辑
+    /// DDCVHomeScreen.xaml 的交互逻辑
     /// </summary>
-    public partial class DDCVSettingsWindow : Window
+    public partial class DDCVHomeScreen : DDCVSwapableScreen
     {
-        public DDCVSettingsWindow()
+        public DDCVHomeScreen()
         {
             InitializeComponent();
+        }
+
+        public override void Refresh()
+        {
+            CharEvent.Refresh();
+            LCEvent.Refresh();
+            Permanant.Refresh();
         }
     }
 }

@@ -1,0 +1,301 @@
+﻿<UserControl x:Class="DodocoTales.SR.Gui.Views.Cards.DDCVHomeSceneCharEventCard"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:pu="clr-namespace:Panuon.UI.Silver;assembly=Panuon.UI.Silver"
+             xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.WPF;assembly=LiveChartsCore.SkiaSharpView.WPF"
+             xmlns:local="clr-namespace:DodocoTales.SR.Gui.Views.Cards"
+             xmlns:vm="clr-namespace:DodocoTales.SR.Gui.ViewModels.Cards"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.DataContext>
+            <vm:DDCVHomeSceneCharEventCardVM x:Name="VM"/>
+        </Grid.DataContext>
+        <Border BorderThickness="1" BorderBrush="#CCCCCC" CornerRadius="5" VerticalAlignment="Top">
+            <Border.Style>
+                <Style TargetType="Border">
+                    <Setter Property="Margin" Value="20 20 20 5"/>
+                </Style>
+            </Border.Style>
+            <Grid Margin="5 5 10 5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="15"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Label FontSize="18" Grid.ColumnSpan="5" Grid.RowSpan="2">角色活动祈愿</Label>
+                <TextBlock Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="5" FontSize="13" >
+                    <TextBlock.Text>
+                        <MultiBinding StringFormat="{}{0} - {1}">
+                            <Binding Path="Version"/>
+                            <Binding Path="BannerTitle"/>
+                        </MultiBinding>
+                    </TextBlock.Text>
+                </TextBlock>
+                <TextBlock Grid.Row="1" Grid.Column="5" Grid.ColumnSpan="2" 
+                           VerticalAlignment="Bottom" 
+                           HorizontalAlignment="Right" FontSize="13" 
+                           Text="{Binding UpUnits}"
+                           Visibility="{Binding CurrentBannerExists,Converter={StaticResource VisByBoolCon}}"/>
+                <TextBlock Grid.Row="2" Grid.Column="5" Grid.ColumnSpan="2" 
+                           HorizontalAlignment="Right" FontSize="13"
+                           Visibility="{Binding CurrentBannerExists,Converter={StaticResource VisByBoolCon}}">
+                    <TextBlock.Text>
+                        <MultiBinding StringFormat="{}{0:yyyy-MM-dd HH:mm:ss} - {1:yyyy-MM-dd HH:mm:ss}">
+                            <Binding Path="BeginTime"/>
+                            <Binding Path="EndTime"/>
+                        </MultiBinding>
+                    </TextBlock.Text>
+                </TextBlock>
+
+                <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.ColumnSpan="5" Grid.Row="2" Grid.RowSpan="10" Name="Dashboard" >
+                    <StackPanel.Style>
+                        <Style TargetType="StackPanel">
+                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                        </Style>
+                    </StackPanel.Style>
+                    <Grid>
+                        <lvc:PieChart Series="{Binding SeriesGlobalR5}" Width="180" Height="180" Total="1.0" MaxAngle="270" InitialRotation="135"/>
+                        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" >
+                            <TextBlock  HorizontalAlignment="Center" FontSize="20">
+                                <TextBlock.Text>
+                                    <MultiBinding Converter="{StaticResource PercentageCon}" StringFormat="{}{0}">
+                                        <Binding Path="GlobalRank5"/>
+                                        <Binding Path="GlobalTotal"/>
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
+                            <TextBlock HorizontalAlignment="Center" >
+                                <TextBlock.Text>
+                                    <MultiBinding Converter="{StaticResource PercentageCon}" StringFormat="{}{0}">
+                                        <Binding Path="GlobalRank5Up"/>
+                                        <Binding Path="GlobalTotal"/>
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
+                        </StackPanel>
+                        <StackPanel VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,10">
+                            <Label  HorizontalAlignment="Center">
+                                <TextBlock FontSize="14">
+                                    <TextBlock.Text>
+                                        <MultiBinding StringFormat="{}五星：{0} / UP：{1}">
+                                            <Binding Path="GlobalRank5"/>
+                                            <Binding Path="GlobalRank5Up"/>
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                            </Label>
+                        </StackPanel>
+
+                    </Grid>
+                    <Grid>
+                        <lvc:PieChart Series="{Binding SeriesGlobalR4}" Width="180" Height="180" Total="1.0" MaxAngle="270" InitialRotation="135"/>
+                        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" >
+                            <TextBlock HorizontalAlignment="Center" FontSize="20">
+                                <TextBlock.Text>
+                                    <MultiBinding Converter="{StaticResource PercentageCon}" StringFormat="{}{0}">
+                                        <Binding Path="GlobalRank4"/>
+                                        <Binding Path="GlobalTotal"/>
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
+                            <TextBlock HorizontalAlignment="Center" >
+                                <TextBlock.Text>
+                                    <MultiBinding Converter="{StaticResource PercentageCon}" StringFormat="{}{0}">
+                                        <Binding Path="GlobalRank4Up"/>
+                                        <Binding Path="GlobalTotal"/>
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
+                        </StackPanel>
+                        <Label HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,10">
+                            <TextBlock FontSize="14">
+                                <TextBlock.Text>
+                                    <MultiBinding StringFormat="{}四星：{0} / UP：{1}">
+                                        <Binding Path="GlobalRank4"/>
+                                        <Binding Path="GlobalRank4Up"/>
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
+                        </Label>
+                    </Grid>
+                    <Grid>
+                        <lvc:PieChart Series="{Binding SeriesCurrentRound}" Width="180" Height="140" MaxAngle="270" InitialRotation="135" Total="{Binding CurrentRoundTotal}" Margin="0" Padding="0"/>
+                        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" >
+                            <TextBlock  HorizontalAlignment="Center" FontSize="20">
+                                <TextBlock.Text>
+                                    <MultiBinding StringFormat="{}{0}/{1}">
+                                        <Binding Path="CurrentRoundCurrent"/>
+                                        <Binding Path="CurrentRoundTotal"/>
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
+                            <TextBlock  HorizontalAlignment="Center" >
+                                <TextBlock.Text>
+                                    <MultiBinding StringFormat="{}第 {0} 轮">
+                                        <Binding Path="CurrentRoundIndex"/>
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
+                        </StackPanel>
+                        <Label HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,10">
+                            <TextBlock FontSize="14">
+                                <TextBlock.Text>
+                                    <MultiBinding StringFormat="{}总计：{0}">
+                                        <Binding Path="GlobalTotal"/>
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
+                        </Label>
+                    </Grid>
+                </StackPanel>
+                <Grid Margin="0 0 5 5" Grid.Column="1" Grid.Row="3" Grid.RowSpan="10" Grid.ColumnSpan="5" Name="Details" Visibility="Collapsed">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="15"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="30"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="50"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.ColumnSpan="20">
+                        <Rectangle Height="0.5" Fill="#999999" Margin="5 0"/>
+                    </Grid>
+                    <Label Grid.Row="1" Grid.ColumnSpan="2" Margin="10 0 0 0">抽数总计：</Label>
+                    <Label Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" HorizontalContentAlignment="Left" Margin="0 0 0 0" Content="{Binding GlobalTotal}"/>
+                    <Label Grid.Row="2" Grid.Column="1" HorizontalContentAlignment="Right">五星：</Label>
+                    <Label Grid.Row="2" Grid.Column="2" Content="{Binding GlobalRank5}"/>
+                    <Label Grid.Row="2" Grid.Column="3">
+                        <TextBlock>
+                            <TextBlock.Text>
+                                <MultiBinding Converter="{StaticResource PercentageCon}" StringFormat="{}[{0}]">
+                                    <Binding Path="GlobalRank5"/>
+                                    <Binding Path="GlobalTotal"/>
+                                </MultiBinding>
+                            </TextBlock.Text>
+                        </TextBlock>
+                    </Label>
+                    <Label Grid.Row="3" Grid.Column="1" HorizontalContentAlignment="Right" Padding="6 0 6 6">UP：</Label>
+                    <Label Grid.Row="3" Grid.Column="2" Padding="5 0 0 0" Content="{Binding GlobalRank5Up}"/>
+                    <Label Grid.Row="3" Grid.Column="3" Padding="5 0 0 0">
+                        <TextBlock>
+                            <TextBlock.Text>
+                                <MultiBinding Converter="{StaticResource PercentageCon}" StringFormat="{}[{0}]">
+                                    <Binding Path="GlobalRank5Up"/>
+                                    <Binding Path="GlobalTotal"/>
+                                </MultiBinding>
+                            </TextBlock.Text>
+                        </TextBlock>
+                    </Label>
+                    <Label Grid.Row="4" Grid.Column="1" HorizontalContentAlignment="Right">四星：</Label>
+                    <Label Grid.Row="4" Grid.Column="2" Content="{Binding GlobalRank4}"/>
+                    <Label Grid.Row="4" Grid.Column="3">
+                        <TextBlock>
+                            <TextBlock.Text>
+                                <MultiBinding Converter="{StaticResource PercentageCon}" StringFormat="{}[{0}]">
+                                    <Binding Path="GlobalRank4"/>
+                                    <Binding Path="GlobalTotal"/>
+                                </MultiBinding>
+                            </TextBlock.Text>
+                        </TextBlock>
+                    </Label>
+                    <Label Grid.Row="5" Grid.Column="1" HorizontalContentAlignment="Right" Padding="6 0 6 6">UP：</Label>
+                    <Label Grid.Row="5" Grid.Column="2" Padding="5 0 0 0" Content="{Binding GlobalRank4Up}"/>
+                    <Label Grid.Row="5" Grid.Column="3" Padding="5 0 0 0">
+                        <TextBlock>
+                            <TextBlock.Text>
+                                <MultiBinding Converter="{StaticResource PercentageCon}" StringFormat="{}[{0}]">
+                                    <Binding Path="GlobalRank4Up"/>
+                                    <Binding Path="GlobalTotal"/>
+                                </MultiBinding>
+                            </TextBlock.Text>
+                        </TextBlock>
+                    </Label>
+
+
+                    <Label  VerticalContentAlignment="Bottom" Grid.Row="1" Grid.Column="5" Grid.ColumnSpan="2">当前卡池：</Label>
+                    <Label  VerticalContentAlignment="Bottom" Grid.Row="1" Grid.Column="7" Grid.ColumnSpan="1" HorizontalContentAlignment="Right" Content="{Binding CurrentTotal}"/>
+                    <Label Grid.Row="2" Grid.Column="6" HorizontalContentAlignment="Right">五星：</Label>
+                    <Label Grid.Row="2" Grid.Column="7" Content="{Binding CurrentRank5}"/>
+                    <Label Grid.Row="3" Grid.Column="6" HorizontalContentAlignment="Right" Padding="6 0 6 6">UP：</Label>
+                    <Label Grid.Row="3" Grid.Column="7" Padding="5 0 0 0" Content="{Binding CurrentRank5Up}"/>
+                    <Label Grid.Row="4" Grid.Column="6" HorizontalContentAlignment="Right">四星：</Label>
+                    <Label Grid.Row="4" Grid.Column="7" Content="{Binding CurrentRank4}"/>
+                    <Label Grid.Row="5" Grid.Column="6" HorizontalContentAlignment="Right" Padding="6 0 6 6">UP：</Label>
+                    <Label Grid.Row="5" Grid.Column="7" Padding="5 0 0 0" Content="{Binding CurrentRank4Up}"/>
+                    <Grid Grid.Row="1" Grid.RowSpan="6" Grid.Column="8" >
+                        <Rectangle Width="0.5" Fill="#999999" Margin="0 5 10 0" HorizontalAlignment="Right"/>
+                    </Grid>
+                    <ItemsControl ItemsSource="{Binding Rank5List}" Grid.Row="1" Grid.RowSpan="6" Grid.Column="9"  Margin="5 5 5 25" MaxHeight="90">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel />
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Margin="0 0 5 3" Orientation="Horizontal">
+                                    <TextBlock FontSize="12">
+                                        <TextBlock.Text>
+                                            <MultiBinding StringFormat="{}{0}[{1}]">
+                                                <Binding Path="Name"/>
+                                                <Binding Path="Count"/>
+                                            </MultiBinding>
+                                        </TextBlock.Text>
+                                    </TextBlock>
+                                    <StackPanel.ToolTip>
+                                        <StackPanel>
+                                            <TextBlock>
+                                                <TextBlock.Text>
+                                                    <MultiBinding StringFormat="{}{0} - {1}">
+                                                        <Binding Path="Version"/>
+                                                        <Binding Path="Banner"/>
+                                                    </MultiBinding>
+                                                </TextBlock.Text>
+                                            </TextBlock>
+                                            <TextBlock Text="{Binding Time,StringFormat={}{0:yyyy-MM-dd HH:mm:ss}}" />
+                                        </StackPanel>
+
+                                    </StackPanel.ToolTip>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </Grid>
+                <StackPanel Orientation="Vertical" Grid.Row="4" Grid.Column="3" HorizontalAlignment="Right" VerticalAlignment="Bottom" Height="Auto" Margin="0 5">
+                    <CheckBox  Height="20"
+                            Name="InfoPanelStatusIndicator"
+                            Content="仪表"
+                            Background="#AB8DFF"
+                            Foreground="#FFFFFF"
+                            pu:CheckBoxHelper.CheckBoxStyle="Button"
+                            pu:CheckBoxHelper.CheckedBackground="#0096FF"
+                            pu:CheckBoxHelper.CheckedContent="详细" Checked="InfoPanelStatusIndicator_Checked" Unchecked="InfoPanelStatusIndicator_Checked"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>

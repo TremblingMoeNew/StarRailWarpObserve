@@ -144,15 +144,27 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Gui\Views\Cards\DDCVHomeSceneCharEventCard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Gui\Views\Cards\DDCVHomeSceneLCEventCard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Gui\Views\Cards\DDCVHomeScenePermanentCard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Gui\Views\Dialogs\DDCVGameClientManagerWindowEditDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Gui\Views\Windows\DDCVGameClientManagerWindow.xaml">
+    <Page Include="Gui\Views\Screens\DDCVHomeScreen.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Gui\Views\DDCVSettingsWindow.xaml">
+    <Page Include="Gui\Views\Windows\DDCVGameClientManagerWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -176,18 +188,34 @@
     <Compile Include="Gui\Converters\DDCVVisibleByAvailableUIDConverter.cs" />
     <Compile Include="Gui\Converters\DDCVVisibleByBooleanConverter.cs" />
     <Compile Include="Gui\DDCV.cs" />
+    <Compile Include="Gui\Enums\DDCVUnitIndicatorType.cs" />
     <Compile Include="Gui\Models\DDCVMainPanelItemModel.cs" />
+    <Compile Include="Gui\Models\DDCVUnitIndicatorModel.cs" />
+    <Compile Include="Gui\ViewModels\Cards\DDCVHomeSceneCardVMBase.cs" />
+    <Compile Include="Gui\ViewModels\Cards\DDCVHomeSceneCharEventCardVM.cs" />
+    <Compile Include="Gui\ViewModels\Cards\DDCVHomeSceneLCEventCardVM.cs" />
+    <Compile Include="Gui\ViewModels\Cards\DDCVHomeScenePermanentCardVM.cs" />
     <Compile Include="Gui\ViewModels\DDCVMainWindowVM.cs" />
     <Compile Include="Gui\ViewModels\Dialogs\DDCVGameClientManagerWindowEditDialogVM.cs" />
+    <Compile Include="Gui\Views\Cards\DDCVHomeSceneCharEventCard.xaml.cs">
+      <DependentUpon>DDCVHomeSceneCharEventCard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Gui\Views\Cards\DDCVHomeSceneLCEventCard.xaml.cs">
+      <DependentUpon>DDCVHomeSceneLCEventCard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Gui\Views\Cards\DDCVHomeScenePermanentCard.xaml.cs">
+      <DependentUpon>DDCVHomeScenePermanentCard.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Gui\Views\Dialogs\DDCVGameClientManagerWindowEditDialog.xaml.cs">
       <DependentUpon>DDCVGameClientManagerWindowEditDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Gui\ViewModels\Windows\DDCVGameClientManagerWindowVM.cs" />
+    <Compile Include="Gui\Views\Screens\DDCVHomeScreen.xaml.cs">
+      <DependentUpon>DDCVHomeScreen.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Gui\Views\Screens\DDCVSwapableScreen.cs" />
     <Compile Include="Gui\Views\Windows\DDCVGameClientManagerWindow.xaml.cs">
       <DependentUpon>DDCVGameClientManagerWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Gui\Views\DDCVSettingsWindow.xaml.cs">
-      <DependentUpon>DDCVSettingsWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Library\BannerLibrary\DDCLBannerLibrary.cs" />
     <Compile Include="Library\BannerLibrary\Models\DDCLBannerInfo.cs" />

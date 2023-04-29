@@ -27,7 +27,7 @@ namespace DodocoTales.SR.Library.BannerLibrary
             Versions = new List<DDCLVersionInfo>();
             Banners = new List<DDCLBannerInfo>();
             defaultVersion = new DDCLVersionInfo { Name = "未知", Version = "---", ID = 0 };
-            defaultBanner = new DDCLBannerInfo { Name = "未知", Hint = "未知", Type = DDCCPoolType.Null, ID = 0,  VersionId = 0, Rank4Up = new List<string>(), Rank5Up = new List<string>() };
+            defaultBanner = new DDCLBannerInfo { Name = "未知", Hint = "未知", Type = DDCCPoolType.Null, ID = 0,  VersionID = 0, Rank4Up = new List<string>(), Rank5Up = new List<string>() };
         }
 
         public DDCLVersionInfo GetVersion(ulong versionid)
@@ -37,7 +37,7 @@ namespace DodocoTales.SR.Library.BannerLibrary
             => GetBanner(ConvertToInternalBannerId(versionid, bannerid));
 
         public DDCLBannerInfo GetBanner(ulong internalbannerid)
-            => internalbannerid == 0 ? defaultBanner : Banners.Find(x => x.InternalId == internalbannerid);
+            => internalbannerid == 0 ? defaultBanner : Banners.Find(x => x.InternalID == internalbannerid);
 
         public List<DDCLBannerInfo> GetBannersByType(DDCCPoolType type)
             => Banners.FindAll(x => x.Type == type);
@@ -123,7 +123,7 @@ namespace DodocoTales.SR.Library.BannerLibrary
 
                 foreach (var banner in version.Banners)
                 {
-                    banner.VersionId = version.ID;
+                    banner.VersionID = version.ID;
                     Banners.Add(banner);
                 }
             }

@@ -111,7 +111,7 @@ namespace DodocoTales.SR.Loader
                             //DDCLog.Error(DCLN.Loader, String.Format("Log item classification failed. {0}", JsonConvert.SerializeObject(item)));
                             continue;
                         }
-                        item.BannerInternalID = banner.InternalId;
+                        item.BannerInternalID = banner.InternalID;
 
                     }
                 }

@@ -127,8 +127,8 @@ namespace DodocoTales.SR.Library.CurrentUser
             {
                 DDCLBannerLogItem bannerlog = new DDCLBannerLogItem
                 {
-                    VersionID = b.VersionId,
-                    BannerInternalID = b.InternalId,
+                    VersionID = b.VersionID,
+                    BannerInternalID = b.InternalID,
                     CategorizedGachaType = b.Type,
                     GreaterRounds = new List<DDCLRoundLogItem>(),
                     Logs = new List<DDCLGachaLogItem>(),
