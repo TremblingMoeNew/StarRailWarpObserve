@@ -55,6 +55,7 @@ namespace DodocoTales.SR.Loader
 
         public void EndProxy()
         {
+            if (PServer == null) return;
             if (PServer.ProxyRunning)
             {
                 PServer.Stop();

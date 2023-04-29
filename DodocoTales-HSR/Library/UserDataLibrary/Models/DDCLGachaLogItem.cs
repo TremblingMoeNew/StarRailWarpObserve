@@ -12,7 +12,7 @@ namespace DodocoTales.SR.Library.UserDataLibrary.Models
     {
         public ulong VersionID { get; set; }
         public ulong BannerID { get; set; }
-        public ulong round_id { get; set; }
+        public ulong RoundID { get; set; }
 
         public ulong ID { get; set; }
         public string Name { get; set; }

@@ -1,16 +1,10 @@
-﻿//using DodocoTales.Common;
-//using DodocoTales.Common.Enums;
-using DodocoTales.SR.Common;
+﻿using DodocoTales.SR.Common;
 using DodocoTales.SR.Gui;
 using DodocoTales.SR.Gui.Models;
 using DodocoTales.SR.Gui.Views;
 using DodocoTales.SR.Gui.Views.Windows;
 using DodocoTales.SR.Library;
 using DodocoTales.SR.Loader;
-//using DodocoTales.SR.Gui.Views.Windows;
-//using DodocoTales.Loader;
-//using DodocoTales.Loader.Models;
-//using DodocoTales.Logs;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -49,10 +43,10 @@ namespace DodocoTales
         {
         //    DDCLog.InitHint();
         //    DDCG.Initialize();
-        //    await DDCL.BannerLib.LoadLibraryAsync();
+            await DDCL.BannerLib.LoadLibraryAsync();
        //     await DDCL.UnitLib.LoadLibraryAsync();
-        //    await DDCL.UserDataLib.LoadLocalGachaLogsAsync();
-        //    await DDCL.GameClientLib.LoadLibraryAsync();
+            await DDCL.UserDataLib.LoadLocalGachaLogsAsync();
+            await DDCL.GameClientLib.LoadLibraryAsync();
        //     DDCL.CurrentUser.SwapUser(0);
        //     DDCV.RefreshAll();
 
@@ -100,7 +94,7 @@ namespace DodocoTales
 
         private void OnUIDSwapCompleted(long uid)
         {
-        //    VM.RefreshCurrentUID();
+            VM.RefreshCurrentUID();
        //     if (!VM.IsInUpdate) DDCV.RefreshAll();
         }
 
@@ -140,7 +134,7 @@ namespace DodocoTales
         private void Window_Unloaded(object sender, RoutedEventArgs e)
         {
             // Proxy Ensure Stopped
-
+            DDCG.ProxyLoader.EndProxy();
             Application.Current.Shutdown();
         }
 

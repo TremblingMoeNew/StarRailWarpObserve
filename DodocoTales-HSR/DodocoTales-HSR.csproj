@@ -193,6 +193,7 @@
     <Compile Include="Library\BannerLibrary\Models\DDCLBannerInfo.cs" />
     <Compile Include="Library\BannerLibrary\Models\DDCLBannerLibModel.cs" />
     <Compile Include="Library\BannerLibrary\Models\DDCLVersionInfo.cs" />
+    <Compile Include="Library\CurrentUser\DDCLCurrentUserLibrary.cs" />
     <Compile Include="Library\DDCL.cs" />
     <Compile Include="Library\Enums\DDCLActivateStatus.cs" />
     <Compile Include="Library\Enums\DDCLGameClientType.cs" />
@@ -202,6 +203,7 @@
     <Compile Include="Library\UserDataLibrary\Models\DDCLGachaLogItem.cs" />
     <Compile Include="Library\UserDataLibrary\Models\DDCLUserGachaLog.cs" />
     <Compile Include="Loader\DDCG.cs" />
+    <Compile Include="Loader\DDCGGachaLogMerger.cs" />
     <Compile Include="Loader\DDCGGameClientLoader.cs" />
     <Compile Include="Loader\DDCGProxyLoader.cs" />
     <Compile Include="Loader\DDCGWebGachaLogLoader.cs" />

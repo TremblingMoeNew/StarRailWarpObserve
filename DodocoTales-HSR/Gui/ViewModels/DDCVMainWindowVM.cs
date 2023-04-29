@@ -2,6 +2,7 @@
 using DodocoTales.SR.Gui.Models;
 using DodocoTales.SR.Gui.Views.Windows;
 using DodocoTales.SR.Library;
+using DodocoTales.SR.Library.Enums;
 using DodocoTales.SR.Loader;
 using Newtonsoft.Json;
 using Panuon.UI.Silver;
@@ -129,17 +130,17 @@ namespace DodocoTales.SR.Gui.ViewModels
 
         public void RefreshCurrentUID()
         {
-            /*
+            
             var user = DDCL.CurrentUser.OriginalLogs;
             if (user == null) CurrentUID = -1;
             else
             {
-                CurrentUID = user.uid;
-                CurrentUserTimeZone = user.zone;
-                CurrentUserClientType = user.ClientType;
+                CurrentUID = user.UID;
+                //CurrentUserTimeZone = user.zone;
+                //CurrentUserClientType = user.ClientType;
             }
-            DDCV.RefreshAll();
-            */
+            //DDCV.RefreshAll();
+            
         }
 
         public async Task WishLogUpdateAppended()
@@ -208,18 +209,18 @@ namespace DodocoTales.SR.Gui.ViewModels
                 return;
             }
             Console.WriteLine(uid);
-            /*
+            
             var user = DDCL.UserDataLib.GetUserLogByUid(uid);
             if (user.Logs.Count == 0)
             {
-                user.zone = client.TimeZone;
+                user.TimeZone = client.TimeZone;
             }
             if (user.ClientType == DDCLGameClientType.Unknown)
             {
                 user.ClientType = client.ClientType;
             }
             DDCL.CurrentUser.SwapUser(user);
-            */
+            
             await DDCG.WebLogLoader.GetGachaLogsAsNormalMode(authkey, client.ClientType);
             IsInUpdate = false;
             //DDCV.RefreshAll();
@@ -253,18 +254,18 @@ namespace DodocoTales.SR.Gui.ViewModels
                 IsInUpdate = false;
                 return;
             }
-            /*
+            
             var user = DDCL.UserDataLib.GetUserLogByUid(uid);
             if (user.Logs.Count == 0)
             {
-                user.zone = client.TimeZone;
+                user.TimeZone = client.TimeZone;
             }
             if (user.ClientType == DDCLGameClientType.Unknown)
             {
                 user.ClientType = client.ClientType;
             }
             DDCL.CurrentUser.SwapUser(user);
-            */
+            
             await DDCG.WebLogLoader.GetGachaLogsAsFullMode(authkey, client.ClientType);
             IsInUpdate = false;
             //DDCV.RefreshAll();
@@ -286,14 +287,13 @@ namespace DodocoTales.SR.Gui.ViewModels
             }
             var clientType = DDCG.ProxyLoader.CapturedClientType;
             IsInUpdate = true;
-            Console.WriteLine(authkey);
-            /*
+            
             var uid = await DDCG.WebLogLoader.TryConnectAndGetUid(authkey, clientType);
             if (uid < 0)
             {
                 Notice.Show("更新失败，未能获取到祈愿记录\n请确认网络是否连接正常，近六个月内是否进行过祈愿。\n请重新启动代理模式，并在游戏中重新打开祈愿历史记录页面。", "祈愿记录更新失败", MessageBoxIcon.Error);
                 IsInUpdate = false;
-                DDCLog.Info(DCLN.Gui, "Wish log update failed: Fetch failed. (Append mode, Proxy mode)");
+                //DDCLog.Info(DCLN.Gui, "Wish log update failed: Fetch failed. (Append mode, Proxy mode)");
                 DDCG.ProxyLoader.Authkey = null;
                 return;
             }
@@ -301,7 +301,7 @@ namespace DodocoTales.SR.Gui.ViewModels
             if (user.Logs.Count == 0)
             {
                 var client = DDCL.GameClientLib.GetSelectedClient();
-                user.zone = client?.TimeZone ?? DDCCTimeZone.DefaultUTCP8;
+                user.TimeZone = client?.TimeZone ?? DDCL.DefaultTimeZone;
             }
             if (user.ClientType == DDCLGameClientType.Unknown)
             {
@@ -310,21 +310,21 @@ namespace DodocoTales.SR.Gui.ViewModels
             DDCL.CurrentUser.SwapUser(user);
             await DDCG.WebLogLoader.GetGachaLogsAsNormalMode(authkey, clientType);
             IsInUpdate = false;
-            DDCV.RefreshAll();
+            //DDCV.RefreshAll();
             Notice.Show("祈愿记录常规更新完毕", "祈愿记录更新完毕", MessageBoxIcon.Success);
-            DDCLog.Info(DCLN.Gui, "Wish log update completed. (Append mode, Proxy mode)");
-            */
+            //DDCLog.Info(DCLN.Gui, "Wish log update completed. (Append mode, Proxy mode)");
+            
         }
 
         public async Task WishLogUpdateFullFromProxy()
         {
-            /*
+            
             if (IsProxyModeOn) IsProxyModeOn = false;
             var authkey = DDCG.ProxyLoader.Authkey;
             if (authkey == null)
             {
                 Notice.Show("更新失败，未能找到祈愿记录网址。\n请联系开发者。", "祈愿记录更新失败", MessageBoxIcon.Error);
-                DDCLog.Info(DCLN.Gui, "Wish log update failed: Authkey not found. (Full mode, Proxy mode)");
+                //DDCLog.Info(DCLN.Gui, "Wish log update failed: Authkey not found. (Full mode, Proxy mode)");
                 return;
             }
             var clientType = DDCG.ProxyLoader.CapturedClientType;
@@ -334,7 +334,7 @@ namespace DodocoTales.SR.Gui.ViewModels
             {
                 Notice.Show("更新失败，未能获取到祈愿记录\n请确认网络是否连接正常，近六个月内是否进行过祈愿。\n请重新启动代理模式，并在游戏中重新打开祈愿历史记录页面。", "祈愿记录更新失败", MessageBoxIcon.Error);
                 IsInUpdate = false;
-                DDCLog.Info(DCLN.Gui, "Wish log update failed: Fetch failed. (Full mode, Proxy mode)");
+                //DDCLog.Info(DCLN.Gui, "Wish log update failed: Fetch failed. (Full mode, Proxy mode)");
                 DDCG.ProxyLoader.Authkey = null;
                 return;
             }
@@ -342,7 +342,7 @@ namespace DodocoTales.SR.Gui.ViewModels
             if (user.Logs.Count == 0)
             {
                 var client = DDCL.GameClientLib.GetSelectedClient();
-                user.zone = client?.TimeZone ?? DDCCTimeZone.DefaultUTCP8;
+                user.TimeZone = client?.TimeZone ?? DDCL.DefaultTimeZone;
             }
             if (user.ClientType == DDCLGameClientType.Unknown)
             {
@@ -351,10 +351,10 @@ namespace DodocoTales.SR.Gui.ViewModels
             DDCL.CurrentUser.SwapUser(user);
             await DDCG.WebLogLoader.GetGachaLogsAsFullMode(authkey, clientType);
             IsInUpdate = false;
-            DDCV.RefreshAll();
+            //DDCV.RefreshAll();
             Notice.Show("祈愿记录全量更新完毕", "祈愿记录更新完毕", MessageBoxIcon.Success);
-            DDCLog.Info(DCLN.Gui, "Wish log update completed. (Full mode, Proxy mode)");
-            */
+            //DDCLog.Info(DCLN.Gui, "Wish log update completed. (Full mode, Proxy mode)");
+            
         }
     }
 

@@ -1,4 +1,6 @@
 ﻿using DodocoTales.SR.Common.Enums;
+using DodocoTales.SR.Library.BannerLibrary;
+using DodocoTales.SR.Library.CurrentUser;
 using DodocoTales.SR.Library.GameClient;
 using DodocoTales.SR.Library.UserDataLibrary;
 using System;
@@ -12,6 +14,9 @@ namespace DodocoTales.SR.Library
     public static class DDCL
     {
         public static DDCLUserDataLibrary UserDataLib = new DDCLUserDataLibrary();
+        public static DDCLBannerLibrary BannerLib = new DDCLBannerLibrary();
+
+        public static DDCLCurrentUserLibrary CurrentUser = new DDCLCurrentUserLibrary();
 
         public static DDCLGameClientLibrary GameClientLib = new DDCLGameClientLibrary();
 

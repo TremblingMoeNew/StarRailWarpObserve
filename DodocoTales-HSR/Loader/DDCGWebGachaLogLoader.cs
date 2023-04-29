@@ -162,29 +162,28 @@ namespace DodocoTales.SR.Loader
 
         public async Task GetGachaLogsAsNormalMode(string authkey, DDCLGameClientType clientType)
         {
-            /*
+            
             ClientType = clientType;
             var merger = new DDCGGachaLogMerger(DDCL.CurrentUser.OriginalLogs);
             var res = new SortedList<ulong, DDCLGachaLogItem>();
-            DDCLInternalIdGenerator idgen = new DDCLInternalIdGenerator();
             foreach (var item in await GetGachaLogsByTypeAsync(authkey, DDCCPoolType.Beginner, merger.GetLastItemMihoyoIdByType(DDCCPoolType.Beginner)))
             {
-                res.Add(idgen.GenerateNextInternalId(item.time), ConvertToDDCLLogItem(item, DDCCPoolType.Beginner));
+                res.Add(item.id, ConvertToDDCLLogItem(item, DDCCPoolType.Beginner));
             }
             foreach (var item in await GetGachaLogsByTypeAsync(authkey, DDCCPoolType.Permanent, merger.GetLastItemMihoyoIdByType(DDCCPoolType.Permanent)))
             {
-                res.Add(idgen.GenerateNextInternalId(item.time), ConvertToDDCLLogItem(item, DDCCPoolType.Permanent));
+                res.Add(item.id, ConvertToDDCLLogItem(item, DDCCPoolType.Permanent));
             }
-            foreach (var item in await GetGachaLogsByTypeAsync(authkey, DDCCPoolType.EventCharacter, merger.GetLastItemMihoyoIdByType(DDCCPoolType.EventCharacter)))
+            foreach (var item in await GetGachaLogsByTypeAsync(authkey, DDCCPoolType.CharacterEvent, merger.GetLastItemMihoyoIdByType(DDCCPoolType.CharacterEvent)))
             {
-                res.Add(idgen.GenerateNextInternalId(item.time), ConvertToDDCLLogItem(item, DDCCPoolType.EventCharacter));
+                res.Add(item.id, ConvertToDDCLLogItem(item, DDCCPoolType.CharacterEvent));
             }
-            foreach (var item in await GetGachaLogsByTypeAsync(authkey, DDCCPoolType.EventWeapon, merger.GetLastItemMihoyoIdByType(DDCCPoolType.EventWeapon)))
+            foreach (var item in await GetGachaLogsByTypeAsync(authkey, DDCCPoolType.LCEvent, merger.GetLastItemMihoyoIdByType(DDCCPoolType.LCEvent)))
             {
-                res.Add(idgen.GenerateNextInternalId(item.time), ConvertToDDCLLogItem(item, DDCCPoolType.EventWeapon));
+                res.Add(item.id, ConvertToDDCLLogItem(item, DDCCPoolType.LCEvent));
             }
-            merger.Merge(res.Values.ToList());
-            */
+            merger.Merge(res.Values.ToList(), true);
+            
         }
 
 
