@@ -63,5 +63,24 @@ namespace DodocoTales.SR.Library
         {
             return new TimeSpan(zone, 0, 0);
         }
+
+
+        public static string GetPoolTypeName(DDCCPoolType type)
+        {
+            switch (type)
+            {
+                case DDCCPoolType.Beginner:
+                    return "始发跃迁";
+                case DDCCPoolType.Permanent:
+                    return "常驻跃迁";
+                case DDCCPoolType.CharacterEvent:
+                    return "角色活动跃迁";
+                case DDCCPoolType.LCEvent:
+                    return "光锥活动跃迁";
+                default:
+                    //DDCLog.Warning(DCLN.Lib, "Get UNKNOWN PoolType name");
+                    return "(类型错误)";
+            }
+        }
     }
 }

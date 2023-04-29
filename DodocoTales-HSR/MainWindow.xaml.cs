@@ -48,7 +48,7 @@ namespace DodocoTales
             DDCL.CurrentUser.SwapUser(0);
             DDCV.RefreshAll();
 
-            Console.WriteLine(JsonConvert.SerializeObject(DDCL.CurrentUser.GreaterRounds, Formatting.Indented));
+            //Console.WriteLine(JsonConvert.SerializeObject(DDCL.CurrentUser.GreaterRounds, Formatting.Indented));
 
             //HomeScn.Refresh();
             //BanViewScn.SetBanner(201, 201101);
@@ -63,16 +63,16 @@ namespace DodocoTales
 
         private void MainPanel_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
-       //     var item = MainPanel.SelectedItem as DDCVMainPanelItemModel;
-        //    if (item != null)
-        //        DDCV.SwapMainScreen(item.Tag);
+            var item = MainPanel.SelectedItem as DDCVMainPanelItemModel;
+            if (item != null)
+                DDCV.SwapMainScreen(item.Tag);
         }
 
         private void TreeViewItem_MouseDown(object sender, MouseButtonEventArgs e)
         {
-         //   var item = (sender as Label).DataContext as DDCVMainPanelItemModel;
-         //   if (item == MainPanel.SelectedItem)
-        //        DDCV.SwapMainScreen(item.Tag);
+            var item = (sender as Label).DataContext as DDCVMainPanelItemModel;
+            if (item == MainPanel.SelectedItem)
+                DDCV.SwapMainScreen(item.Tag);
         }
 
 
@@ -84,7 +84,7 @@ namespace DodocoTales
         private void OnUIDSwapCompleted(long uid)
         {
             VM.RefreshCurrentUID();
-       //     if (!VM.IsInUpdate) DDCV.RefreshAll();
+            if (!VM.IsInUpdate) DDCV.RefreshAll();
         }
 
         private async void OnProxyCaptured()

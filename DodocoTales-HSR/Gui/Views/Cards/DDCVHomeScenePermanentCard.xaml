@@ -33,7 +33,7 @@
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <Label FontSize="18" Grid.ColumnSpan="5" Grid.RowSpan="2">常驻祈愿</Label>
+                <Label FontSize="18" Grid.ColumnSpan="5" Grid.RowSpan="2">常驻跃迁</Label>
                 <TextBlock Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="5" FontSize="13" >
                     <TextBlock.Text>
                         <MultiBinding StringFormat="{}{0} - {1}">

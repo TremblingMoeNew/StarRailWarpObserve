@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DodocoTales.SR.Common.Enums;
+using DodocoTales.SR.Library;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -13,9 +15,8 @@ namespace DodocoTales.SR.Gui.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return DependencyProperty.UnsetValue;
-            //DDCCPoolType type = (DDCCPoolType)value;
-            //return DDCL.GetPoolTypeName(type);
+            DDCCPoolType type = (DDCCPoolType)value;
+            return DDCL.GetPoolTypeName(type);
 
         }
 

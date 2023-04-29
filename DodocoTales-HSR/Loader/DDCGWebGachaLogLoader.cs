@@ -209,9 +209,6 @@ namespace DodocoTales.SR.Loader
                 res.Add(item.id, ConvertToDDCLLogItem(item, DDCCPoolType.LCEvent));
             }
             merger.Merge(res.Values.ToList(), true);
-            Console.WriteLine(JsonConvert.SerializeObject(res.Values.ToList(), Formatting.Indented));
-
-
         }
     }
 }

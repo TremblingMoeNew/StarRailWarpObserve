@@ -164,6 +164,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Gui\Views\Screens\DDCVVersionViewScreen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Gui\Views\Windows\DDCVGameClientManagerWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -189,14 +193,18 @@
     <Compile Include="Gui\Converters\DDCVVisibleByBooleanConverter.cs" />
     <Compile Include="Gui\DDCV.cs" />
     <Compile Include="Gui\Enums\DDCVUnitIndicatorType.cs" />
+    <Compile Include="Gui\Models\DDCVBannerItemModel.cs" />
     <Compile Include="Gui\Models\DDCVMainPanelItemModel.cs" />
+    <Compile Include="Gui\Models\DDCVRoundItemModel.cs" />
     <Compile Include="Gui\Models\DDCVUnitIndicatorModel.cs" />
+    <Compile Include="Gui\Models\DDCVVersionItemModel.cs" />
     <Compile Include="Gui\ViewModels\Cards\DDCVHomeSceneCardVMBase.cs" />
     <Compile Include="Gui\ViewModels\Cards\DDCVHomeSceneCharEventCardVM.cs" />
     <Compile Include="Gui\ViewModels\Cards\DDCVHomeSceneLCEventCardVM.cs" />
     <Compile Include="Gui\ViewModels\Cards\DDCVHomeScenePermanentCardVM.cs" />
     <Compile Include="Gui\ViewModels\DDCVMainWindowVM.cs" />
     <Compile Include="Gui\ViewModels\Dialogs\DDCVGameClientManagerWindowEditDialogVM.cs" />
+    <Compile Include="Gui\ViewModels\Screens\DDCVVersionViewScreenVM.cs" />
     <Compile Include="Gui\Views\Cards\DDCVHomeSceneCharEventCard.xaml.cs">
       <DependentUpon>DDCVHomeSceneCharEventCard.xaml</DependentUpon>
     </Compile>
@@ -214,6 +222,9 @@
       <DependentUpon>DDCVHomeScreen.xaml</DependentUpon>
     </Compile>
     <Compile Include="Gui\Views\Screens\DDCVSwapableScreen.cs" />
+    <Compile Include="Gui\Views\Screens\DDCVVersionViewScreen.xaml.cs">
+      <DependentUpon>DDCVVersionViewScreen.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Gui\Views\Windows\DDCVGameClientManagerWindow.xaml.cs">
       <DependentUpon>DDCVGameClientManagerWindow.xaml</DependentUpon>
     </Compile>

@@ -21,7 +21,7 @@ namespace DodocoTales.SR.Gui
         public static void RegisterMainScreens()
         {
             RegisterMainScreen("Home", new DDCVHomeScreen());
-         //   RegisterMainScreen("Version", new DDCVVersionViewScreen());
+            RegisterMainScreen("Version", new DDCVVersionViewScreen());
         }
 
 
@@ -84,7 +84,7 @@ namespace DodocoTales.SR.Gui
             }
         }
 
-        public static void CreateBannerViewScreen(ulong versionid, ulong bannerid)
+        public static void CreateBannerViewScreen(ulong versionid, ulong bannerinternalid)
         {
             /*
             var scn = new DDCVBannerViewScreen();

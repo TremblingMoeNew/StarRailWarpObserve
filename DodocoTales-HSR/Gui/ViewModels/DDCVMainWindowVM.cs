@@ -208,8 +208,6 @@ namespace DodocoTales.SR.Gui.ViewModels
                 //DDCLog.Info(DCLN.Gui, "Wish log update failed: Fetch failed. (Append mode, Cache mode)");
                 return;
             }
-            Console.WriteLine(uid);
-            
             var user = DDCL.UserDataLib.GetUserLogByUid(uid);
             if (user.Logs.Count == 0)
             {

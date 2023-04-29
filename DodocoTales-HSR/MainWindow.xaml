@@ -7,7 +7,7 @@
         xmlns:local="clr-namespace:DodocoTales"
         xmlns:vm="clr-namespace:DodocoTales.SR.Gui.ViewModels"
         mc:Ignorable="d"
-        Title="（DDC - Star Rail Version） - 1.0.0" Height="760" Width="1160"
+        Title="DodocoTales - Star Rail - 1.0.0" Height="760" Width="1160"
         Unloaded="Window_Unloaded">
     <Window.DataContext>
         <vm:DDCVMainWindowVM x:Name="VM"/>
@@ -15,7 +15,7 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="220"/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
 

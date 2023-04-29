@@ -430,7 +430,6 @@ namespace DodocoTales.SR.Gui.ViewModels.Cards
             CurrentRoundIndex = currentlog.GreaterRounds.Count;
 
             var curround = currentlog.GreaterRounds.Last();
-            Console.WriteLine(curround.Logs.Count);
 
             int prevr5p = 0, prev = 0, curr5p = 0, cur = 0;
 
