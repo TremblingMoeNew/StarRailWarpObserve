@@ -1,0 +1,530 @@
+﻿<local:DDCVSwapableScreen x:Class="DodocoTales.SR.Gui.Views.Screens.DDCVBannerViewScreen"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DodocoTales.SR.Gui.Views.Screens" 
+             xmlns:vm="clr-namespace:DodocoTales.SR.Gui.ViewModels.Screens" 
+             xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.WPF;assembly=LiveChartsCore.SkiaSharpView.WPF"
+             mc:Ignorable="d" 
+             d:DesignHeight="800" d:DesignWidth="910">
+    <Grid>
+        <Grid.DataContext>
+            <vm:DDCVBannerViewScreenVM x:Name="VM"/>
+        </Grid.DataContext>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition MinWidth="10" MaxWidth="10"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="180"/>
+            <ColumnDefinition MinWidth="20" MaxWidth="20"/>
+        </Grid.ColumnDefinitions>
+        <Border Grid.ColumnSpan="4" Margin="10" Padding="10" BorderThickness="1" BorderBrush="#CCCCCC" CornerRadius="5">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition MinWidth="20" MaxWidth="20"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Label FontSize="18" Grid.ColumnSpan="2" Content="{Binding BannerName}"/>
+                <Label Grid.Row="1" Grid.Column="1">
+                    <TextBlock>
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="{}{0} - {1} - {2}">
+                                <Binding Path="Version"/>
+                                <Binding Path="VersionName"/>
+                                <Binding Converter="{StaticResource PoolTypeCon}" Path="PoolType"/>
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                </Label>
+                <Label Grid.Row="2" Grid.Column="1">
+                    <TextBlock>
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="{}{0:yyyy-MM-dd HH:mm:ss} - {1:yyyy-MM-dd HH:mm:ss}">
+                                <Binding Path="BeginTime"/>
+                                <Binding Path="EndTime"/>
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                </Label>
+            </Grid>
+        </Border>
+        <Border Grid.Row="1" Grid.Column="1" Margin="10 5 0 5" Padding="10 10 0 10" BorderThickness="1" BorderBrush="#CCCCCC" CornerRadius="5 0 0 5">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition MinWidth="15" MaxWidth="15"/>
+                    <ColumnDefinition MinWidth="20" MaxWidth="20"/>
+                    <ColumnDefinition Width="Auto" MinWidth="60"/>
+                    <ColumnDefinition MinWidth="30" MaxWidth="30"/>
+                    <ColumnDefinition MinWidth="20" MaxWidth="20"/>
+                    <ColumnDefinition MinWidth="20" MaxWidth="20"/>
+                    <ColumnDefinition Width="Auto" MinWidth="60"/>
+                    <ColumnDefinition MinWidth="40" MaxWidth="40"/>
+                    <ColumnDefinition MinWidth="10" MaxWidth="10"/>
+                    <ColumnDefinition MinWidth="180"/>
+                    <ColumnDefinition MinWidth="180"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Label FontSize="16" Grid.ColumnSpan="9">总览</Label>
+                <Label Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" FontSize="14">五星：</Label>
+                <TextBlock Grid.Row="2" Grid.Column="2" Text="{Binding Rank5Ups[0].Name}"/>
+                <StackPanel Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Right" Orientation="Horizontal">
+                    <TextBlock Margin="0 0 4 0" Text="{Binding Rank5Ups[0].Count}"/>
+                    <TextBlock>
+                        <TextBlock.Text>
+                            <MultiBinding Converter="{StaticResource PercentageCon}" StringFormat="{}[{0}]">
+                                <Binding Path="Rank5Ups[0].Count"/>
+                                <Binding Path="TotalIncludesInherited"/>
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                </StackPanel>
+                <TextBlock Grid.Row="4" Grid.Column="2" Text="{Binding Rank5Ups[1].Name}"/>
+                <StackPanel Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Right" Orientation="Horizontal">
+                    <TextBlock Margin="0 0 4 0" Text="{Binding Rank5Ups[1].Count}"/>
+                    <TextBlock>
+                        <TextBlock.Text>
+                            <MultiBinding Converter="{StaticResource PercentageCon}" StringFormat="{}[{0}]">
+                                <Binding Path="Rank5Ups[1].Count"/>
+                                <Binding Path="TotalIncludesInherited"/>
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                </StackPanel>
+                <TextBlock Grid.Row="6" Grid.Column="2" Text="{Binding Rank5Ups[2].Name}"/>
+                <StackPanel Grid.Row="7" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Right" Orientation="Horizontal">
+                    <TextBlock Margin="0 0 4 0" Text="{Binding Rank5Ups[2].Count}"/>
+                    <TextBlock>
+                        <TextBlock.Text>
+                            <MultiBinding Converter="{StaticResource PercentageCon}" StringFormat="{}[{0}]">
+                                <Binding Path="Rank5Ups[2].Count"/>
+                                <Binding Path="TotalIncludesInherited"/>
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                </StackPanel>
+                <Label Grid.Row="1" Grid.Column="5" Grid.ColumnSpan="2" FontSize="14">四星：</Label>
+                <TextBlock Grid.Row="2" Grid.Column="6" Text="{Binding Rank4Ups[0].Name}"/>
+                <StackPanel Grid.Row="3" Grid.Column="6" Grid.ColumnSpan="2" HorizontalAlignment="Right" Orientation="Horizontal">
+                    <TextBlock Margin="0 0 4 0" Text="{Binding Rank4Ups[0].Count}"/>
+                    <TextBlock>
+                        <TextBlock.Text>
+                            <MultiBinding Converter="{StaticResource PercentageCon}" StringFormat="{}[{0}]">
+                                <Binding Path="Rank4Ups[0].Count"/>
+                                <Binding Path="Total"/>
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                </StackPanel>
+                <TextBlock Grid.Row="4" Grid.Column="6" Text="{Binding Rank4Ups[1].Name}"/>
+                <StackPanel Grid.Row="5" Grid.Column="6" Grid.ColumnSpan="2" HorizontalAlignment="Right" Orientation="Horizontal">
+                    <TextBlock Margin="0 0 4 0" Text="{Binding Rank4Ups[1].Count}"/>
+                    <TextBlock>
+                        <TextBlock.Text>
+                            <MultiBinding Converter="{StaticResource PercentageCon}" StringFormat="{}[{0}]">
+                                <Binding Path="Rank4Ups[1].Count"/>
+                                <Binding Path="Total"/>
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                </StackPanel>
+                <TextBlock Grid.Row="6" Grid.Column="6" Text="{Binding Rank4Ups[2].Name}"/>
+                <StackPanel Grid.Row="7" Grid.Column="6" Grid.ColumnSpan="2" HorizontalAlignment="Right" Orientation="Horizontal">
+                    <TextBlock Margin="0 0 4 0" Text="{Binding Rank4Ups[2].Count}"/>
+                    <TextBlock>
+                        <TextBlock.Text>
+                            <MultiBinding Converter="{StaticResource PercentageCon}" StringFormat="{}[{0}]">
+                                <Binding Path="Rank4Ups[2].Count"/>
+                                <Binding Path="Total"/>
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                </StackPanel>
+                <TextBlock Grid.Row="8" Grid.Column="6" Text="{Binding Rank4Ups[3].Name}"/>
+                <StackPanel Grid.Row="9" Grid.Column="6" Grid.ColumnSpan="2" HorizontalAlignment="Right" Orientation="Horizontal">
+                    <TextBlock Margin="0 0 4 0" Text="{Binding Rank4Ups[3].Count}"/>
+                    <TextBlock>
+                        <TextBlock.Text>
+                            <MultiBinding Converter="{StaticResource PercentageCon}" StringFormat="{}[{0}]">
+                                <Binding Path="Rank4Ups[3].Count"/>
+                                <Binding Path="Total"/>
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                </StackPanel>
+                <TextBlock Grid.Row="10" Grid.Column="6" Text="{Binding Rank4Ups[4].Name}"/>
+                <StackPanel Grid.Row="11" Grid.Column="6" Grid.ColumnSpan="2" HorizontalAlignment="Right" Orientation="Horizontal">
+                    <TextBlock Margin="0 0 4 0" Text="{Binding Rank4Ups[4].Count}"/>
+                    <TextBlock>
+                        <TextBlock.Text>
+                            <MultiBinding Converter="{StaticResource PercentageCon}" StringFormat="{}[{0}]">
+                                <Binding Path="Rank4Ups[4].Count"/>
+                                <Binding Path="Total"/>
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                </StackPanel>
+                <Grid Grid.Row="0" Grid.RowSpan="13"  Grid.Column="9" HorizontalAlignment="Center" VerticalAlignment="Center" Width="180" Height="180">
+                    <lvc:PieChart Series="{Binding SeriesGlobalR5}" Width="180" Height="180" Total="1.0" MaxAngle="270" InitialRotation="135"/>
+                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" >
+                        <TextBlock  HorizontalAlignment="Center" FontSize="20">
+                            <TextBlock.Text>
+                                <MultiBinding Converter="{StaticResource PercentageCon}" StringFormat="{}{0}">
+                                    <Binding Path="Rank5IncludesInherited"/>
+                                    <Binding Path="TotalIncludesInherited"/>
+                                </MultiBinding>
+                            </TextBlock.Text>
+                        </TextBlock>
+                        <TextBlock HorizontalAlignment="Center" Visibility="{Binding IsEventPool, Converter={StaticResource VisByBoolCon}}">
+                            <TextBlock.Text>
+                                <MultiBinding Converter="{StaticResource PercentageCon}" StringFormat="{}{0}">
+                                    <Binding Path="Rank5Up"/>
+                                    <Binding Path="TotalIncludesInherited"/>
+                                </MultiBinding>
+                            </TextBlock.Text>
+                        </TextBlock>
+                    </StackPanel>
+                    <StackPanel Grid.Row="0" Grid.RowSpan="2" Grid.Column="2"  VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,10">
+                        <Label  HorizontalAlignment="Center">
+                            <TextBlock FontSize="14">
+                                <TextBlock.Text>
+                                    <MultiBinding StringFormat="{}五星: {0} / 轮次: {1}">
+                                        <Binding Path="Rank5"/>
+                                        <Binding Path="RoundCnt"/>
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
+                        </Label>
+                    </StackPanel>
+                </Grid>
+                <Grid Grid.Row="0" Grid.RowSpan="13"  Grid.Column="10" HorizontalAlignment="Center" VerticalAlignment="Center" Width="180" Height="180">
+                    <lvc:PieChart Grid.Row="0" Grid.RowSpan="2" Grid.Column="3" Series="{Binding SeriesGlobalR4}" Width="180" Height="180" Total="1.0" MaxAngle="270" InitialRotation="135"/>
+                    <StackPanel Grid.Row="0" Grid.RowSpan="2" Grid.Column="3"  VerticalAlignment="Center" HorizontalAlignment="Center" >
+                        <TextBlock  HorizontalAlignment="Center" FontSize="20">
+                            <TextBlock.Text>
+                                <MultiBinding Converter="{StaticResource PercentageCon}" StringFormat="{}{0}">
+                                    <Binding Path="Rank4"/>
+                                    <Binding Path="Total"/>
+                                </MultiBinding>
+                            </TextBlock.Text>
+                        </TextBlock>
+                        <TextBlock HorizontalAlignment="Center" Visibility="{Binding IsEventPool, Converter={StaticResource VisByBoolCon}}">
+                            <TextBlock.Text>
+                                <MultiBinding Converter="{StaticResource PercentageCon}" StringFormat="{}{0}">
+                                    <Binding Path="Rank4Up"/>
+                                    <Binding Path="Total"/>
+                                </MultiBinding>
+                            </TextBlock.Text>
+                        </TextBlock>
+                    </StackPanel>
+                    <StackPanel Grid.Row="0" Grid.RowSpan="2" Grid.Column="3"  VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,10">
+                        <Label  HorizontalAlignment="Center">
+                            <TextBlock FontSize="14">
+                                <TextBlock.Text>
+                                    <MultiBinding StringFormat="{}四星: {0} / 总计: {1}">
+                                        <Binding Path="Rank4"/>
+                                        <Binding Path="Total"/>
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
+                        </Label>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+        </Border>
+        <Border Grid.Row="2" Grid.Column="1" Margin="10 5 0 5" Padding="10" BorderThickness="1" BorderBrush="#CCCCCC" CornerRadius="5 0 0 5">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition MinHeight="15" MaxHeight="15"/>
+                    <RowDefinition/>
+                    <RowDefinition MinHeight="10" MaxHeight="10"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition  MinWidth="30" MaxWidth="30" />
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition  MinWidth="10" MaxWidth="10" />
+                    <ColumnDefinition Width="Auto" MinWidth="40"/>
+                    <ColumnDefinition  MinWidth="20" MaxWidth="20" />
+                    <ColumnDefinition  MinWidth="20" MaxWidth="20" />
+                    <ColumnDefinition Width="Auto" MinWidth="60"/>
+                    <ColumnDefinition  MinWidth="20" MaxWidth="20" />
+                    <ColumnDefinition  MinWidth="20" MaxWidth="20" />
+                    <ColumnDefinition/>
+                    <ColumnDefinition  MinWidth="10" MaxWidth="10" />
+                </Grid.ColumnDefinitions>
+                <Label FontSize="16" Grid.ColumnSpan="5">
+                    <TextBlock Text="{Binding SelectedRound.Index, StringFormat='{}轮次 {0}'}"/>
+                </Label>
+                <TextBlock Grid.Row="1" Grid.Column="1">抽数:</TextBlock>
+                <TextBlock Grid.Row="1" Grid.Column="3" Text="{Binding SelectedRound.CountCurrent}"/>
+                <TextBlock Grid.Row="2" Grid.Column="1">继承:</TextBlock>
+                <TextBlock Grid.Row="2" Grid.Column="3" Text="{Binding SelectedRound.CountInherited}"/>
+                <TextBlock Grid.Row="3" Grid.Column="1">总计:</TextBlock>
+                <TextBlock Grid.Row="3" Grid.Column="3" Text="{Binding SelectedRound.Count}"/>
+
+                <TextBlock Grid.Row="0" Grid.Column="5" Grid.ColumnSpan="3" VerticalAlignment="Bottom">五星：</TextBlock>
+                <ItemsControl Grid.Row="1" Grid.Column="6" Grid.RowSpan="4" ItemsSource="{Binding Rank5InRound}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Grid.Row="1" Grid.Column="6" >
+                                <TextBlock.Text>
+                                    <MultiBinding StringFormat="{}{0} [{1}]">
+                                        <Binding Path="Name"/>
+                                        <Binding Path="Count"/>
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                                <TextBlock.ToolTip>
+                                    <StackPanel>
+                                        <TextBlock>
+                                            <TextBlock.Text>
+                                                <MultiBinding StringFormat="{}{0} - {1}">
+                                                    <Binding Path="Version"/>
+                                                    <Binding Path="Banner"/>
+                                                </MultiBinding>
+                                            </TextBlock.Text>
+                                        </TextBlock>
+                                        <TextBlock Text="{Binding Time,StringFormat={}{0:yyyy-MM-dd HH:mm:ss}}" />
+                                    </StackPanel>
+                                </TextBlock.ToolTip>
+                            </TextBlock>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+                <TextBlock Grid.Row="0" Grid.Column="8" Grid.ColumnSpan="2" VerticalAlignment="Bottom">四星：</TextBlock>
+                <ItemsControl Grid.Row="1" Grid.RowSpan="5" Grid.Column="9" ItemsSource="{Binding Rank4InRound}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Grid.Row="1" Grid.Column="6" Text="{Binding Name}">
+                                    <TextBlock.ToolTip>
+                                        <StackPanel>
+                                            <TextBlock>
+                                                <TextBlock.Text>
+                                                    <MultiBinding StringFormat="{}{0} - {1}">
+                                                        <Binding Path="Version"/>
+                                                        <Binding Path="Banner"/>
+                                                    </MultiBinding>
+                                                </TextBlock.Text>
+                                            </TextBlock>
+                                            <TextBlock Text="{Binding Time,StringFormat={}{0:yyyy-MM-dd HH:mm:ss}}" />
+                                        </StackPanel>
+                                    </TextBlock.ToolTip>
+                                </TextBlock>
+                                <TextBlock Margin="3 0" Text="/"/>
+                            </StackPanel>
+
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+                <Grid Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="11">
+                    <ItemsControl ItemsSource="{Binding GridIndicatorItems}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel HorizontalAlignment="Center" Margin="0 0 0 0" Orientation="Horizontal" ScrollViewer.HorizontalScrollBarVisibility="Disabled"/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <ItemsControl ItemsSource="{Binding}">
+                                    <ItemsControl.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <StackPanel Orientation="Vertical"/>
+                                        </ItemsPanelTemplate>
+                                    </ItemsControl.ItemsPanel>
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <ListViewItem>
+                                                <ListViewItem.Style>
+                                                    <Style TargetType="ListViewItem">
+                                                        <Style.Setters>
+                                                            <Setter Property="Template">
+                                                                <Setter.Value>
+                                                                    <ControlTemplate TargetType="ListViewItem">
+                                                                        <Border Margin="2 2 0 0" CornerRadius="1" BorderThickness="1" BorderBrush="#AAAAAA" Name="Main">
+                                                                            <Border.ToolTip>
+                                                                                <StackPanel>
+                                                                                    <TextBlock Text="{Binding Index}" FontSize="14"/>
+                                                                                    <StackPanel Margin="10 2 5 0" Name="TooltipCommon">
+                                                                                        <TextBlock Text="{Binding Name}"/>
+                                                                                        <StackPanel Orientation="Horizontal">
+                                                                                            <TextBlock Text="往期单位/" Name="InheritHint" Visibility="Collapsed"/>
+                                                                                            <TextBlock Name="TypeHint"/>
+                                                                                        </StackPanel>
+                                                                                        <TextBlock Text="{Binding Time,StringFormat={}{0:yyyy-MM-dd HH:mm:ss}}" />
+                                                                                        <TextBlock Margin="10 0 0 0" Name="BannerHint" Visibility="Collapsed">
+                                                                                            <TextBlock.Text>
+                                                                                                <MultiBinding StringFormat="{}{0} - {1}">
+                                                                                                    <Binding Path="Version"/>
+                                                                                                    <Binding Path="Banner"/>
+                                                                                                </MultiBinding>
+                                                                                            </TextBlock.Text>
+                                                                                        </TextBlock>
+                                                                                    </StackPanel>
+                                                                                    <TextBlock Margin="10 2 10 5" Text="无记录" Name="TooltipDefault" Visibility="Collapsed"/>
+
+                                                                                </StackPanel>
+                                                                            </Border.ToolTip>
+                                                                            <Border HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Name="Mask" Visibility="Hidden">
+                                                                                <Border.Background>
+                                                                                    <LinearGradientBrush MappingMode="RelativeToBoundingBox" StartPoint="0,0" EndPoint="1,1">
+                                                                                        <GradientStop Color="#00FFFFFF" Offset="0"/>
+                                                                                        <GradientStop Color="#00FFFFFF" Offset="0.6"/>
+                                                                                        <GradientStop Color="#88AAAAAA" Offset="0.70"/>
+                                                                                        <GradientStop Color="#FF000000" Offset="0.71"/>
+                                                                                        <GradientStop Color="#FF000000" Offset="1"/>
+                                                                                    </LinearGradientBrush>
+                                                                                </Border.Background>
+                                                                                <ContentPresenter/>
+                                                                            </Border>
+                                                                        </Border>
+                                                                        <ControlTemplate.Triggers>
+                                                                            <DataTrigger Binding="{Binding ElementName=VM, Path=GreaterRoundType}" Value="Permanent">
+                                                                                <Setter TargetName="Main" Property="Width" Value="16"/>
+                                                                                <Setter TargetName="Main" Property="Height" Value="16"/>
+                                                                            </DataTrigger>
+                                                                            <DataTrigger Binding="{Binding ElementName=VM, Path=GreaterRoundType}" Value="CharacterEvent">
+                                                                                <Setter TargetName="Main" Property="Width" Value="14"/>
+                                                                                <Setter TargetName="Main" Property="Height" Value="14"/>
+                                                                            </DataTrigger>
+                                                                            <DataTrigger Binding="{Binding ElementName=VM, Path=GreaterRoundType}" Value="WeaponEvent">
+                                                                                <Setter TargetName="Main" Property="Width" Value="15"/>
+                                                                                <Setter TargetName="Main" Property="Height" Value="15"/>
+                                                                            </DataTrigger>
+                                                                            <DataTrigger Binding="{Binding ElementName=VM, Path=GreaterRoundType}" Value="Beginner">
+                                                                                <Setter TargetName="Main" Property="Width" Value="16"/>
+                                                                                <Setter TargetName="Main" Property="Height" Value="16"/>
+                                                                            </DataTrigger>
+
+                                                                            <DataTrigger Binding="{Binding Inherited}" Value="True">
+                                                                                <Setter TargetName="Mask" Property="Visibility" Value="Visible"/>
+                                                                                <Setter TargetName="InheritHint" Property="Visibility" Value="Visible"/>
+                                                                                <Setter TargetName="BannerHint" Property="Visibility" Value="Visible"/>
+                                                                            </DataTrigger>
+                                                                            <DataTrigger Binding="{Binding IndicatorType}" Value="Default">
+                                                                                <Setter TargetName="Main" Property="Background" Value="#FFEAEFF5"/>
+                                                                                <Setter TargetName="TooltipCommon" Property="Visibility" Value="Collapsed"/>
+                                                                                <Setter TargetName="TooltipDefault" Property="Visibility" Value="Visible"/>
+                                                                            </DataTrigger>
+                                                                            <DataTrigger Binding="{Binding IndicatorType}" Value="Rank3">
+                                                                                <Setter TargetName="Main" Property="Background" Value="#BFF692"/>
+                                                                                <Setter TargetName="TypeHint" Property="Text" Value="三星"/>
+                                                                            </DataTrigger>
+                                                                            <DataTrigger Binding="{Binding IndicatorType}" Value="Rank4Up">
+                                                                                <Setter TargetName="Main" Property="Background" Value="#FFC0B2FF"/>
+                                                                                <Setter TargetName="TypeHint" Property="Text" Value="当期四星"/>
+                                                                            </DataTrigger>
+                                                                            <DataTrigger Binding="{Binding IndicatorType}" Value="Rank4PermanentChar">
+                                                                                <Setter TargetName="Main" Property="Background" Value="#CCFC8FF1"/>
+                                                                                <Setter TargetName="TypeHint" Property="Text" Value="常驻四星角色"/>
+                                                                            </DataTrigger>
+                                                                            <DataTrigger Binding="{Binding IndicatorType}" Value="Rank4PermanentLC">
+                                                                                <Setter TargetName="Main" Property="Background" Value="#FFE3B0F8"/>
+                                                                                <Setter TargetName="TypeHint" Property="Text" Value="常驻四星光锥"/>
+                                                                            </DataTrigger>
+                                                                            <DataTrigger Binding="{Binding IndicatorType}" Value="Rank5Up">
+                                                                                <Setter TargetName="Main" Property="Background" Value="#FFFF7461"/>
+                                                                                <Setter TargetName="TypeHint" Property="Text" Value="当期五星"/>
+                                                                            </DataTrigger>
+                                                                            <DataTrigger Binding="{Binding IndicatorType}" Value="Rank5PermanentChar">
+                                                                                <Setter TargetName="Main" Property="Background" Value="#FFA169"/>
+                                                                                <Setter TargetName="TypeHint" Property="Text" Value="常驻五星角色"/>
+                                                                            </DataTrigger>
+                                                                            <DataTrigger Binding="{Binding IndicatorType}" Value="Rank5PermanentLC">
+                                                                                <Setter TargetName="Main" Property="Background" Value="#FFE8EB3E"/>
+                                                                                <Setter TargetName="TypeHint" Property="Text" Value="常驻五星光锥"/>
+                                                                            </DataTrigger>
+
+                                                                        </ControlTemplate.Triggers>
+                                                                    </ControlTemplate>
+                                                                </Setter.Value>
+                                                            </Setter>
+                                                        </Style.Setters>
+                                                    </Style>
+                                                </ListViewItem.Style>
+                                            </ListViewItem>
+
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </Grid>
+            </Grid>
+        </Border>
+        <Border Grid.Row="1" Grid.Column="2" Grid.RowSpan="3" Margin="5 5 0 20">
+
+            <ListBox
+                    ItemsSource="{Binding Rounds}" 
+                    ItemContainerStyle="{StaticResource Style-ListBoxItem-Modern-Red-With-Select}" 
+                    SelectionMode="Single" 
+                    BorderThickness="0"
+                    SelectedItem="{Binding SelectedRound}"
+                >
+                <ListBox.ItemTemplate>
+                    <DataTemplate >
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition MinHeight="10" MaxHeight="10"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition MinWidth="40" MaxWidth="40"/>
+                                <ColumnDefinition />
+                                <ColumnDefinition MinWidth="40" MaxWidth="40"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock FontSize="17" Margin="5 5 0 3" Grid.ColumnSpan="3" Text="{Binding Index, StringFormat='{}轮次 {0}'}"/>
+                            <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Count, StringFormat='{}总计：{0}'}"/>
+                            <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding Rank5, StringFormat='{}五星：{0}'}"/>
+                            <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding Rank4, StringFormat='{}四星：{0}'}"/>
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Border>
+    </Grid>
+</local:DDCVSwapableScreen>

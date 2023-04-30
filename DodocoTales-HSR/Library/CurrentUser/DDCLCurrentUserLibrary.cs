@@ -218,32 +218,6 @@ namespace DodocoTales.SR.Library.CurrentUser
                     foreach (var roundlog in bannerlog.Logs.GroupBy(x => x.RoundID))
                     {
                         var t_rfst = roundlog.First();
-                        if (buf.Count > 0)
-                        {
-                            if (buf.Last().BannerInternalID == t_rfst.BannerInternalID)
-                            {
-                                int removecnt = 1 + buf.FindIndex(
-                                    x => x.Logs.Count > 0 && x.Logs.Last().Rank == 5
-                                    && (DDCL.BannerLib.GetBanner(x.BannerInternalID)?.Rank5Up.Contains(x.Logs.Last().Name) ?? false)
-                                );
-
-                                var greater = new DDCLRoundLogItem
-                                {
-                                    VersionID = bannerlog.VersionID,
-                                    BannerInternalID = bannerlog.BannerInternalID,
-                                    CategorizedGachaType = bannerlog.CategorizedGachaType,
-                                    Logs = new List<DDCLGachaLogItem>(),
-                                };
-                                foreach (var r in buf.GetRange(0, removecnt))
-                                {
-                                    greater.Logs.AddRange(r.Logs);
-                                }
-                                bannerlog.GreaterRounds.Add(greater);
-                                GreaterRounds.Add(greater);
-
-                                buf.RemoveRange(0, removecnt);
-                            }
-                        }
                         var tmplogs = new DDCLRoundLogItem { BannerInternalID = t_rfst.BannerInternalID, Logs = new List<DDCLGachaLogItem>(roundlog.ToList()) };
                         buf.Add(tmplogs);
 
@@ -288,6 +262,16 @@ namespace DodocoTales.SR.Library.CurrentUser
             return true;
         }
 
+        public bool RebuildLibrary()
+        {
+            if (OriginalLogs == null)
+            {
+                return false;
+            }
+            return (RebuildBasicLibrary() && RebuildGreaterRoundsLibrary());
+        }
+
+
         public bool SwapUser(DDCLUserGachaLog userlog)
         {
             if (userlog == null)
@@ -303,14 +287,13 @@ namespace DodocoTales.SR.Library.CurrentUser
             DDCS.Emit_CurUserSwapping(userlog.UID);
             var old = OriginalLogs;
             OriginalLogs = userlog;
-            if (!RebuildBasicLibrary())
+            if (!RebuildLibrary())
             {
                 OriginalLogs = old;
                 //DDCLog.Info(DCLN.Lib, String.Format("Swap cancelled."));
                 DDCS.Emit_CurUserSwapReverted();
                 return false;
             }
-            RebuildGreaterRoundsLibrary();
             DDCS.Emit_CurUserSwapCompleted(userlog.UID);
             //DDCLog.Info(DCLN.Lib, String.Format("Swap completed."));
             return true;
@@ -330,5 +313,7 @@ namespace DodocoTales.SR.Library.CurrentUser
             if (OriginalLogs == null) return DDCL.DefaultTimeZone;
             return OriginalLogs.TimeZone;
         }
+        public bool IsCurrentUser(long uid)
+            => uid == OriginalLogs.UID;
     }
 }

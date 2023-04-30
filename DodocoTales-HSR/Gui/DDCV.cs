@@ -86,12 +86,12 @@ namespace DodocoTales.SR.Gui
 
         public static void CreateBannerViewScreen(ulong versionid, ulong bannerinternalid)
         {
-            /*
+            
             var scn = new DDCVBannerViewScreen();
-            scn.SetBanner(versionid, bannerid);
+            scn.SetBanner(versionid, bannerinternalid);
             PushScreen(scn);
             scn.Refresh();
-            */
+            
         }
         
         public static bool ShowWindowDialog(Window window)

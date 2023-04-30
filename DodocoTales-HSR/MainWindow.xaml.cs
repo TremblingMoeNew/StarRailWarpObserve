@@ -49,15 +49,6 @@ namespace DodocoTales
             DDCV.RefreshAll();
 
             //Console.WriteLine(JsonConvert.SerializeObject(DDCL.CurrentUser.GreaterRounds, Formatting.Indented));
-
-            //HomeScn.Refresh();
-            //BanViewScn.SetBanner(201, 201101);
-            //BanViewScn.SetBanner(202, 202102);
-            //BanViewScn.Refresh();
-            //Card.Refresh();
-            // Card2.Refresh();
-            ///Card3.Refresh();
-            //DDCLog.Info(DCLN.Debug, JsonConvert.SerializeObject(DDCL.CurrentUser.GreaterRounds,Formatting.Indented));
         }
 
 

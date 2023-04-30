@@ -160,6 +160,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Gui\Views\Screens\DDCVBannerViewScreen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Gui\Views\Screens\DDCVHomeScreen.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -192,6 +196,7 @@
     <Compile Include="Gui\Converters\DDCVVisibleByAvailableUIDConverter.cs" />
     <Compile Include="Gui\Converters\DDCVVisibleByBooleanConverter.cs" />
     <Compile Include="Gui\DDCV.cs" />
+    <Compile Include="Gui\Enums\DDCVGreaterRoundType.cs" />
     <Compile Include="Gui\Enums\DDCVUnitIndicatorType.cs" />
     <Compile Include="Gui\Models\DDCVBannerItemModel.cs" />
     <Compile Include="Gui\Models\DDCVMainPanelItemModel.cs" />
@@ -204,6 +209,7 @@
     <Compile Include="Gui\ViewModels\Cards\DDCVHomeScenePermanentCardVM.cs" />
     <Compile Include="Gui\ViewModels\DDCVMainWindowVM.cs" />
     <Compile Include="Gui\ViewModels\Dialogs\DDCVGameClientManagerWindowEditDialogVM.cs" />
+    <Compile Include="Gui\ViewModels\Screens\DDCVBannerViewScreenVM.cs" />
     <Compile Include="Gui\ViewModels\Screens\DDCVVersionViewScreenVM.cs" />
     <Compile Include="Gui\Views\Cards\DDCVHomeSceneCharEventCard.xaml.cs">
       <DependentUpon>DDCVHomeSceneCharEventCard.xaml</DependentUpon>
@@ -218,6 +224,9 @@
       <DependentUpon>DDCVGameClientManagerWindowEditDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Gui\ViewModels\Windows\DDCVGameClientManagerWindowVM.cs" />
+    <Compile Include="Gui\Views\Screens\DDCVBannerViewScreen.xaml.cs">
+      <DependentUpon>DDCVBannerViewScreen.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Gui\Views\Screens\DDCVHomeScreen.xaml.cs">
       <DependentUpon>DDCVHomeScreen.xaml</DependentUpon>
     </Compile>

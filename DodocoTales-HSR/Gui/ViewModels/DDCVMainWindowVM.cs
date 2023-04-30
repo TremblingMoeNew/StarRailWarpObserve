@@ -139,7 +139,7 @@ namespace DodocoTales.SR.Gui.ViewModels
                 //CurrentUserTimeZone = user.zone;
                 //CurrentUserClientType = user.ClientType;
             }
-            //DDCV.RefreshAll();
+            DDCV.RefreshAll();
             
         }
 
@@ -221,7 +221,7 @@ namespace DodocoTales.SR.Gui.ViewModels
             
             await DDCG.WebLogLoader.GetGachaLogsAsNormalMode(authkey, client.ClientType);
             IsInUpdate = false;
-            //DDCV.RefreshAll();
+            DDCV.RefreshAll();
             Notice.Show("祈愿记录常规更新完毕", "祈愿记录更新完毕", MessageBoxIcon.Success);
             //DDCLog.Info(DCLN.Gui, "Wish log update completed. (Append mode, Cache mode)");
             
@@ -244,7 +244,7 @@ namespace DodocoTales.SR.Gui.ViewModels
                 return;
             }
             IsInUpdate = true;
-            var uid = await DDCG.WebLogLoader.GetUidFromWeb(authkey);
+            var uid = await DDCG.WebLogLoader.TryConnectAndGetUid(authkey, client.ClientType);
             if (uid < 0)
             {
                 Notice.Show("更新失败，未能获取到祈愿记录\n请确认网络是否连接正常，设置的客户端类型是否正确，近六个月内是否进行过祈愿。\n请在游戏中重新打开祈愿历史记录页面。若仍然失败，可尝试在客户端管理中清除缓存。", "祈愿记录更新失败", MessageBoxIcon.Error);
@@ -266,7 +266,7 @@ namespace DodocoTales.SR.Gui.ViewModels
             
             await DDCG.WebLogLoader.GetGachaLogsAsFullMode(authkey, client.ClientType);
             IsInUpdate = false;
-            //DDCV.RefreshAll();
+            DDCV.RefreshAll();
             Notice.Show("祈愿记录全量更新完毕", "祈愿记录更新完毕", MessageBoxIcon.Success);
             //DDCLog.Info(DCLN.Gui, "Wish log update completed. (Full mode, Cache mode)");
             
@@ -308,7 +308,7 @@ namespace DodocoTales.SR.Gui.ViewModels
             DDCL.CurrentUser.SwapUser(user);
             await DDCG.WebLogLoader.GetGachaLogsAsNormalMode(authkey, clientType);
             IsInUpdate = false;
-            //DDCV.RefreshAll();
+            DDCV.RefreshAll();
             Notice.Show("祈愿记录常规更新完毕", "祈愿记录更新完毕", MessageBoxIcon.Success);
             //DDCLog.Info(DCLN.Gui, "Wish log update completed. (Append mode, Proxy mode)");
             
@@ -349,7 +349,7 @@ namespace DodocoTales.SR.Gui.ViewModels
             DDCL.CurrentUser.SwapUser(user);
             await DDCG.WebLogLoader.GetGachaLogsAsFullMode(authkey, clientType);
             IsInUpdate = false;
-            //DDCV.RefreshAll();
+            DDCV.RefreshAll();
             Notice.Show("祈愿记录全量更新完毕", "祈愿记录更新完毕", MessageBoxIcon.Success);
             //DDCLog.Info(DCLN.Gui, "Wish log update completed. (Full mode, Proxy mode)");
             

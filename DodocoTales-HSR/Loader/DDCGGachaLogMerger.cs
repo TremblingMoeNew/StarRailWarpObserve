@@ -122,6 +122,10 @@ namespace DodocoTales.SR.Loader
             RebuildClassifiers();
             UserLog.Logs = GachaLogSet.Values.ToList();
             DDCL.UserDataLib.SaveUserAsync(UserLog);
+            if (DDCL.CurrentUser.IsCurrentUser(UserLog.UID))
+            {
+                DDCL.CurrentUser.RebuildLibrary();
+            }
         }
 
         public void Merge(List<DDCLGachaLogItem> imported, bool replace)
