@@ -117,7 +117,7 @@ namespace DodocoTales.SR.Loader
                     if (result.Count > 0)
                     {
                         Regex regex = new Regex(@"lang=.+&authkey=");
-                        authkey = regex.Replace(result[result.Count - 1].Groups[1].Value, "lang=en-us&authkey=");
+                        authkey = regex.Replace(result[result.Count - 1].Groups[1].Value, "lang=zh-cn&authkey=");
                     }
                 }
             }

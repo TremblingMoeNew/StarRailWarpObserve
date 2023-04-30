@@ -253,6 +253,8 @@
     <Compile Include="Library\GameClient\Models\DDCLGameClientItem.cs" />
     <Compile Include="Library\MetadataLibrary\DDCLMetadataVersionLibrary.cs" />
     <Compile Include="Library\MetadataLibrary\Models\DDCLMetadataVersion.cs" />
+    <Compile Include="Library\Settings\DDCLSettingsLibrary.cs" />
+    <Compile Include="Library\Settings\Models\DDCLSettingsInfo.cs" />
     <Compile Include="Library\UserDataLibrary\DDCLUserDataLibrary.cs" />
     <Compile Include="Library\UserDataLibrary\Models\DDCLGachaLogItem.cs" />
     <Compile Include="Library\UserDataLibrary\Models\DDCLUserGachaLog.cs" />

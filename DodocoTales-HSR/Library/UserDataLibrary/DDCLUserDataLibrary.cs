@@ -116,5 +116,10 @@ namespace DodocoTales.SR.Library.UserDataLibrary
             TryAddEmptyUser(uid);
             return U[uid];
         }
+
+        public bool UserExists(long uid)
+        {
+            return U.ContainsKey(uid);
+        }
     }
 }

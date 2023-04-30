@@ -46,7 +46,6 @@
             </TreeView.ItemTemplate>
         </TreeView>
         <StackPanel VerticalAlignment="Center" Grid.Column="0">
-            <Button HorizontalAlignment="Center" VerticalAlignment="Center" Click="Button_Click">Initialize</Button>
         </StackPanel>
         <Grid VerticalAlignment="Bottom" x:Name="BottomMenu">
             <Grid.ColumnDefinitions>

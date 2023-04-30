@@ -130,7 +130,6 @@ namespace DodocoTales.SR.Gui.ViewModels
 
         public void RefreshCurrentUID()
         {
-            
             var user = DDCL.CurrentUser.OriginalLogs;
             if (user == null) CurrentUID = -1;
             else

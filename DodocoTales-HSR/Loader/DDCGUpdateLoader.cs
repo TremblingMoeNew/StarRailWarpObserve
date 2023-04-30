@@ -105,9 +105,11 @@ namespace DodocoTales.SR.Loader
                     DDCL.MetaVersionLib.BannerLibraryVersion = lib.BannerLibraryVersion;
                 }
                 var clientoldver = DDCL.MetaVersionLib.ConvertClientVersionToInt64(DDCL.MetaVersionLib.ClientVersion);
-                var clientnewver = DDCL.MetaVersionLib.ConvertClientVersionToInt64(lib.BannerLibraryVersion);
+                var clientnewver = DDCL.MetaVersionLib.ConvertClientVersionToInt64(lib.ClientVersion);
 
-                if(clientoldver < clientnewver)
+                Console.WriteLine(clientoldver);
+                Console.WriteLine(clientnewver);    
+                if (clientoldver < clientnewver)
                 {
                     DDCS.Emit_ClientNeedsUpdate();
                 }

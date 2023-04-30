@@ -42,6 +42,8 @@ namespace DodocoTales
             DDCS.ClientNeedsUpdate += OnClientUpdateDownloadStart;
             DDCS.ClientUpdateDownloadCompleted += OnClientUpdateDownloadCompleted;
             AppDomain.CurrentDomain.ProcessExit += CurrentDomain_ProcessExit;
+
+            Initialize();
         }
 
         private void CurrentDomain_ProcessExit(object sender, EventArgs e)
@@ -50,24 +52,40 @@ namespace DodocoTales
             DDCG.UpdateLoader.ApplyUpdate();
         }
 
-        private async void Button_Click(object sender, RoutedEventArgs e)
+        public async void Initialize()
         {
-            //    DDCLog.InitHint();
-            //await DDCG.UpdateLoader.UpdateBannerLibrary();
-
+            VM.IsInUpdate = true;
             await DDCL.MetaVersionLib.Initialize();
-            await DDCG.UpdateLoader.CheckVersion();
+            bool versionchecked = await DDCG.UpdateLoader.CheckVersion();
 
-            await DDCL.BannerLib.LoadLibraryAsync();
+            bool bannerlibloaded = await DDCL.BannerLib.LoadLibraryAsync();
             await DDCL.UserDataLib.LoadLocalGachaLogsAsync();
 
             await DDCL.GameClientLib.LoadLibraryAsync();
-            DDCL.CurrentUser.SwapUser(0);
+
+            await DDCL.SettingsLib.LoadSettingsAsync();
+
+
+            if (!versionchecked)
+            {
+                Notice.Show("元数据更新检查失败，请检查网络连接。抽卡记录更新功能将被禁用。", "错误", MessageBoxIcon.Error);
+            }
+            if (!bannerlibloaded)
+            {
+                Notice.Show("卡池信息载入失败。", "错误", MessageBoxIcon.Error);
+            }
+            VM.IsInUpdate = !(versionchecked && bannerlibloaded);
+
+            if (bannerlibloaded && DDCL.UserDataLib.UserExists(DDCL.SettingsLib.LastUserUID))
+            {
+                DDCL.CurrentUser.SwapUser(DDCL.SettingsLib.LastUserUID);
+            }
             DDCV.RefreshAll();
-
-            //Console.WriteLine(JsonConvert.SerializeObject(DDCL.CurrentUser.GreaterRounds, Formatting.Indented));
+            if (DDCL.MetaVersionLib.FirstRunAfterUpdate)
+            {
+                Notice.Show("应用更新完毕", "更新", MessageBoxIcon.Info);
+            }
         }
-
 
         private void MainPanel_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
