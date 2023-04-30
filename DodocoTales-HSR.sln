@@ -5,6 +5,8 @@ VisualStudioVersion = 17.2.32616.157
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DodocoTales-HSR", "DodocoTales-HSR\DodocoTales-HSR.csproj", "{4C70370C-2661-4088-9821-5FA391564627}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Updater", "Updater\Updater.csproj", "{2B10FF4B-41B8-41C4-A5D1-FDEA5F52A16D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{4C70370C-2661-4088-9821-5FA391564627}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4C70370C-2661-4088-9821-5FA391564627}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4C70370C-2661-4088-9821-5FA391564627}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2B10FF4B-41B8-41C4-A5D1-FDEA5F52A16D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B10FF4B-41B8-41C4-A5D1-FDEA5F52A16D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B10FF4B-41B8-41C4-A5D1-FDEA5F52A16D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B10FF4B-41B8-41C4-A5D1-FDEA5F52A16D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

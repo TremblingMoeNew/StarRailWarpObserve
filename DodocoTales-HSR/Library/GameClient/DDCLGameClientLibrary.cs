@@ -67,7 +67,7 @@ namespace DodocoTales.SR.Library.GameClient
             clients.Clear();
             try
             {
-                var stream = File.Open(libPath, FileMode.OpenOrCreate, FileAccess.Read, FileShare.ReadWrite);
+                var stream = File.Open(libPath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
                 StreamReader reader = new StreamReader(stream);
                 var buffer = await reader.ReadToEndAsync();
                 reader.Close();

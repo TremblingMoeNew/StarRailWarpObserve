@@ -95,6 +95,8 @@
     <Reference Include="System.Drawing.Common, Version=4.0.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Drawing.Common.4.5.1\lib\net461\System.Drawing.Common.dll</HintPath>
     </Reference>
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
     </Reference>
@@ -249,6 +251,8 @@
     <Compile Include="Library\Enums\DDCLGameClientType.cs" />
     <Compile Include="Library\GameClient\DDCLGameClientLibrary.cs" />
     <Compile Include="Library\GameClient\Models\DDCLGameClientItem.cs" />
+    <Compile Include="Library\MetadataLibrary\DDCLMetadataVersionLibrary.cs" />
+    <Compile Include="Library\MetadataLibrary\Models\DDCLMetadataVersion.cs" />
     <Compile Include="Library\UserDataLibrary\DDCLUserDataLibrary.cs" />
     <Compile Include="Library\UserDataLibrary\Models\DDCLGachaLogItem.cs" />
     <Compile Include="Library\UserDataLibrary\Models\DDCLUserGachaLog.cs" />
@@ -256,6 +260,7 @@
     <Compile Include="Loader\DDCGGachaLogMerger.cs" />
     <Compile Include="Loader\DDCGGameClientLoader.cs" />
     <Compile Include="Loader\DDCGProxyLoader.cs" />
+    <Compile Include="Loader\DDCGUpdateLoader.cs" />
     <Compile Include="Loader\DDCGWebGachaLogLoader.cs" />
     <Compile Include="Loader\Models\DDCGGachaLogResponse.cs" />
     <Compile Include="Loader\Models\DDCGGachaLogResponseItem.cs" />

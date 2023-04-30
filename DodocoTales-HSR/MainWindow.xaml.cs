@@ -6,6 +6,7 @@ using DodocoTales.SR.Gui.Views.Windows;
 using DodocoTales.SR.Library;
 using DodocoTales.SR.Loader;
 using Newtonsoft.Json;
+using Panuon.UI.Silver;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,6 +22,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace DodocoTales
 {
@@ -37,13 +39,28 @@ namespace DodocoTales
             DDCV.RegisterMainScreens();
             DDCS.CurUserSwapCompleted += OnUIDSwapCompleted;
             DDCS.ProxyCaptured += OnProxyCaptured;
+            DDCS.ClientNeedsUpdate += OnClientUpdateDownloadStart;
+            DDCS.ClientUpdateDownloadCompleted += OnClientUpdateDownloadCompleted;
+            AppDomain.CurrentDomain.ProcessExit += CurrentDomain_ProcessExit;
+        }
+
+        private void CurrentDomain_ProcessExit(object sender, EventArgs e)
+        {
+            DDCG.ProxyLoader.EndProxy();
+            DDCG.UpdateLoader.ApplyUpdate();
         }
 
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
-        //    DDCLog.InitHint();
+            //    DDCLog.InitHint();
+            //await DDCG.UpdateLoader.UpdateBannerLibrary();
+
+            await DDCL.MetaVersionLib.Initialize();
+            await DDCG.UpdateLoader.CheckVersion();
+
             await DDCL.BannerLib.LoadLibraryAsync();
             await DDCL.UserDataLib.LoadLocalGachaLogsAsync();
+
             await DDCL.GameClientLib.LoadLibraryAsync();
             DDCL.CurrentUser.SwapUser(0);
             DDCV.RefreshAll();
@@ -97,6 +114,22 @@ namespace DodocoTales
             await Dispatcher.BeginInvoke(action);
         }
 
+        private async void OnClientUpdateDownloadStart()
+        {
+            Action action = async () => {
+                Notice.Show("正在下载更新……", "更新", MessageBoxIcon.Info);
+            };
+            await Dispatcher.BeginInvoke(action, DispatcherPriority.ApplicationIdle);
+            DDCG.UpdateLoader.DownloadClient();
+        }
+
+        private async void OnClientUpdateDownloadCompleted()
+        {
+            Action action = async () => {
+                Notice.Show("更新下载完毕，将于重启时生效", "更新", MessageBoxIcon.Info);
+            };
+            await Dispatcher.BeginInvoke(action, DispatcherPriority.ApplicationIdle);
+        }
         private async void UpdateWishButton_Click(object sender, RoutedEventArgs e)
         {
             await VM.WishLogUpdateAppended();
@@ -114,7 +147,7 @@ namespace DodocoTales
         private void Window_Unloaded(object sender, RoutedEventArgs e)
         {
             // Proxy Ensure Stopped
-            DDCG.ProxyLoader.EndProxy();
+
             Application.Current.Shutdown();
         }
 

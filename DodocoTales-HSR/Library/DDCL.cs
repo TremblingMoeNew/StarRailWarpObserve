@@ -2,6 +2,7 @@
 using DodocoTales.SR.Library.BannerLibrary;
 using DodocoTales.SR.Library.CurrentUser;
 using DodocoTales.SR.Library.GameClient;
+using DodocoTales.SR.Library.MetadataLibrary;
 using DodocoTales.SR.Library.UserDataLibrary;
 using System;
 using System.Collections.Generic;
@@ -20,7 +21,7 @@ namespace DodocoTales.SR.Library
 
         public static DDCLGameClientLibrary GameClientLib = new DDCLGameClientLibrary();
 
-
+        public static DDCLMetadataVersionLibrary MetaVersionLib = new DDCLMetadataVersionLibrary();
 
         public static DDCCUnitType ConvertToUnitType(string typename)
         {

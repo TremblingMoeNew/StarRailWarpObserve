@@ -44,5 +44,11 @@ namespace DodocoTales.SR.Common
         public static void Emit_ProxyCaptured()
             => ExecCommonDelegate(ProxyCaptured);
 
+        public static DDCSCommonDelegate ClientNeedsUpdate;
+        public static void Emit_ClientNeedsUpdate()
+            => ExecCommonDelegate(ClientNeedsUpdate);
+        public static DDCSCommonDelegate ClientUpdateDownloadCompleted;
+        public static void Emit_ClientUpdateDownloadCompleted()
+            => ExecCommonDelegate(ClientUpdateDownloadCompleted);
     }
 }

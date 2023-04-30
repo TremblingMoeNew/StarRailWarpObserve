@@ -12,5 +12,7 @@ namespace DodocoTales.SR.Loader
         public static DDCGProxyLoader ProxyLoader = new DDCGProxyLoader();
 
         public static DDCGWebGachaLogLoader WebLogLoader = new DDCGWebGachaLogLoader();
+
+        public static DDCGUpdateLoader UpdateLoader = new DDCGUpdateLoader();
     }
 }
