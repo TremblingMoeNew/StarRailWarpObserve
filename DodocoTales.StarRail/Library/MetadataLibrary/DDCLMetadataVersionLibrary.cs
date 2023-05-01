@@ -17,8 +17,8 @@ namespace DodocoTales.SR.Library.MetadataLibrary
         public readonly string libPath = @"Library/Version.json";
         public readonly string libUpdateInfoPath = @"Library/Version.Update.json";
         DDCLMetadataVersion model;
-        public string ClientVersion { get { return model?.ClientVersion; } set { model.ClientVersion = value; SaveLibrary(); } }
-        public string BannerLibraryVersion { get { return model?.BannerLibraryVersion; } set { model.BannerLibraryVersion = value; SaveLibrary(); } }
+        public string ClientVersion { get { return model?.ClientVersion; } set { if (model == null) model = new DDCLMetadataVersion(); model.ClientVersion = value; SaveLibrary(); } }
+        public string BannerLibraryVersion { get { return model?.BannerLibraryVersion; } set { if (model == null) model = new DDCLMetadataVersion(); model.BannerLibraryVersion = value; SaveLibrary(); } }
 
         public bool FirstRunAfterUpdate { get; set; }
 

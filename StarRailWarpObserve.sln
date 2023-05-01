@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32616.157
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DodocoTales.StarRail", "DodocoTales-HSR\DodocoTales.StarRail.csproj", "{4C70370C-2661-4088-9821-5FA391564627}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DodocoTales.StarRail", "DodocoTales.StarRail\DodocoTales.StarRail.csproj", "{4C70370C-2661-4088-9821-5FA391564627}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Updater", "Updater\Updater.csproj", "{2B10FF4B-41B8-41C4-A5D1-FDEA5F52A16D}"
 EndProject

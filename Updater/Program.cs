@@ -22,7 +22,7 @@ namespace Updater
                 return;
             }
             Thread.Sleep(5000);
-            var prols = Process.GetProcessesByName("SRWrapObserve");
+            var prols = Process.GetProcessesByName("SRWarpObserve");
             if (prols.Any())
             {
                 foreach (var pro in prols)
