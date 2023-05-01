@@ -1,8 +1,8 @@
-# DodocoTales-HSR
+# 星穹铁道跃迁观测工具
 
 基于开发中止的原神祈愿记录导出工具[“嘟嘟可故事集”(重制版本)](https://github.com/TremblingMoeNew/DodocoTales) 开发的崩坏：星穹铁道跃迁(抽卡)记录导出工具。
 
-正式名称待定，代号*DodocoTales - Star Rail*。
+正式名称“星穹铁道跃迁观测工具” （Star Rail Warp Observe），代号*DodocoTales - Star Rail*。
 
 
 
@@ -25,7 +25,7 @@
 - [x] （迁移完毕）
 ---
 - [ ] 记录账号管理（待开发）
-- [x] 自动更新（待开发）
+- [x] 自动更新
 - [ ] 跃迁记录导入（待开发）
 - [ ] 跃迁记录导出（待开发）
 
