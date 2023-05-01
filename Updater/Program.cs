@@ -22,7 +22,7 @@ namespace Updater
                 return;
             }
             Thread.Sleep(5000);
-            var prols = Process.GetProcessesByName("DodocoTales");
+            var prols = Process.GetProcessesByName("SRWrapObserve");
             if (prols.Any())
             {
                 foreach (var pro in prols)
@@ -43,6 +43,9 @@ namespace Updater
             {
                 if (File.Exists("update/Latest.zip"))
                     File.Delete("update/Latest.zip");
+                Directory.Delete("update");
+                if (File.Exists("DodocoTales.StarRail.exe"))
+                    File.Delete("DodocoTales.StarRail.exe");
                 Directory.Delete("update");
             }
             catch (Exception)

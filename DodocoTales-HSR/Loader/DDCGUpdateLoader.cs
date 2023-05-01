@@ -107,8 +107,6 @@ namespace DodocoTales.SR.Loader
                 var clientoldver = DDCL.MetaVersionLib.ConvertClientVersionToInt64(DDCL.MetaVersionLib.ClientVersion);
                 var clientnewver = DDCL.MetaVersionLib.ConvertClientVersionToInt64(lib.ClientVersion);
 
-                Console.WriteLine(clientoldver);
-                Console.WriteLine(clientnewver);    
                 if (clientoldver < clientnewver)
                 {
                     DDCS.Emit_ClientNeedsUpdate();
