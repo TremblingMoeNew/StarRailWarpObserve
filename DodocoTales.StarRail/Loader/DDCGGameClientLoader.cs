@@ -43,7 +43,6 @@ namespace DodocoTales.SR.Loader
                     {
                         Path = starrail_data_dir,
                         IsDefault = false,
-                        TimeZone = 8
                     };
 
                     var info = new DirectoryInfo(starrail_data_dir);
@@ -85,7 +84,6 @@ namespace DodocoTales.SR.Loader
                         Name = ClientName_CN,
                         ClientType = DDCLGameClientType.CN,
                         Path = genshin_data_dir,
-                        TimeZone = 8,
                         IsDefault = false
                     };
                 }

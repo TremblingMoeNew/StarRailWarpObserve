@@ -40,6 +40,8 @@ namespace DodocoTales.SR.Library.GameClient
         public void SetSelectedClient(DDCLGameClientItem item)
         {
             if (clients.Contains(item)) SelectedClient = item; else SelectedClient = null;
+            clients.ForEach(x => x.IsDefault = (x == SelectedClient));
+            SaveLibraryAsync();
         }
 
         public List<DDCLGameClientItem> GetClients()

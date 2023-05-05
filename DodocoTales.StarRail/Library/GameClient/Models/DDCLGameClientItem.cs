@@ -14,7 +14,6 @@ namespace DodocoTales.SR.Library.GameClient.Models
         public string Name { get; set; }
         public string Path { get; set; }
         public DDCLGameClientType ClientType { get; set; }
-        public int TimeZone { get; set; }
 
         [DefaultValue(false)]
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]

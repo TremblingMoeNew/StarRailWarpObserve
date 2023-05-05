@@ -37,16 +37,17 @@
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
-                                <ColumnDefinition Width="Auto" MinWidth="150"/>
+                                <ColumnDefinition Width="Auto" MinWidth="120"/>
                                 <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto" MinWidth="20"/>
                                 <ColumnDefinition Width="Auto" MinWidth="50"/>
                                 <ColumnDefinition Width="Auto"/>
 
                             </Grid.ColumnDefinitions>
                             <Label FontSize="16" Content="{Binding Name}"/>
                             <Label Grid.Column="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Content="{Binding ClientType, Converter={StaticResource ClientTypeCon}}"/>
-                            <Button Grid.Column="3"
+                            
+                            <Button Grid.Column="2"
                             FontSize="13"
                             Padding="10 0"
                             Margin="5 0 0 0"
@@ -55,11 +56,11 @@
                             pu:ButtonHelper.ButtonStyle="Link"
                             DataContext="{Binding}"
                             Click="EditButton_Click"/>
-
+                            <Label Grid.Column="3" FontSize="16" Content="★" Margin="0" Padding="3" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Foreground="#FFAB4CF8" Visibility="{Binding IsDefault, Converter={StaticResource VisByBoolCon}}"/>
                             <Button Grid.Column="4"
                             FontSize="13"
-                            Padding="10 0"
-                            Margin="5 0 0 0"
+                            Padding="0 0"
+                            Margin="0 0 0 0"
                             Content="设为导出源"
                             pu:ButtonHelper.ClickStyle="Sink"
                             pu:ButtonHelper.ButtonStyle="Link"

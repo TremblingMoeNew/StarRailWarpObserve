@@ -79,7 +79,6 @@ namespace DodocoTales.SR.Gui.ViewModels.Dialogs
             GameClientItem = item;
             Name = item.Name;
             ClientType = item.ClientType;
-            TimeZone = item.TimeZone;
             Path = item.Path;
         }
 
@@ -99,7 +98,6 @@ namespace DodocoTales.SR.Gui.ViewModels.Dialogs
                 {
                     if (Name == null) Name = item.Name;
                     if (ClientType == DDCLGameClientType.Unknown) ClientType = item.ClientType;
-                    if (GameClientItem == null) TimeZone = item.TimeZone;
                     Path = item.Path;
                 }
 
@@ -121,7 +119,6 @@ namespace DodocoTales.SR.Gui.ViewModels.Dialogs
                 Name = Name,
                 ClientType = ClientType,
                 Path = Path,
-                TimeZone = TimeZone
             };
             DDCL.GameClientLib.AddClients(new List<DDCLGameClientItem> { item });
         }
@@ -136,7 +133,6 @@ namespace DodocoTales.SR.Gui.ViewModels.Dialogs
             if (!CheckValid()) return;
             GameClientItem.Name = Name;
             GameClientItem.ClientType = ClientType;
-            GameClientItem.TimeZone = TimeZone;
             GameClientItem.Path = Path;
             await DDCL.GameClientLib.SaveLibraryAsync();
         }
