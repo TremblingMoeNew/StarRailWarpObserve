@@ -14,14 +14,18 @@ namespace DodocoTales.SR.Loader
     public class DDCGGameClientLoader
     {
         readonly string output_log_cn = Environment.GetEnvironmentVariable("USERPROFILE") + @"/AppData/LocalLow/miHoYo/崩坏：星穹铁道/Player.log";
+        readonly string output_log_os = Environment.GetEnvironmentVariable("USERPROFILE") + @"/AppData/LocalLow/Cognosphere/Star Rail/Player.log";
         readonly string game_path_pattern = @"Loading player data from (.+)data.unity3d.+";
         public readonly string StarRailData_CN = "StarRail_Data";
         public readonly string ClientName_CN = "崩坏：星穹铁道";
+        public readonly string StarRailData_OS = "StarRail_Data";
+        public readonly string ClientName_OS = "Honkai: Star Rail";
 
         public void LoadGameClientFromGameLog()
         {
             var ls = new List<DDCLGameClientItem>();
             ls.AddRange(LoadGameClientFromGameLogBase(output_log_cn));
+            ls.AddRange(LoadGameClientFromGameLogBase(output_log_os));
             var exists = DDCL.GameClientLib.GetClients().Select(x => x.Path);
             ls.RemoveAll(x => exists.Contains(x.Path));
             DDCL.GameClientLib.AddClients(ls);
@@ -52,6 +56,11 @@ namespace DodocoTales.SR.Loader
                         item.Name = ClientName_CN;
                         item.ClientType = DDCLGameClientType.CN;
                     }
+                    else if (info.Name == StarRailData_OS)
+                    {
+                        item.Name = ClientName_OS;
+                        item.ClientType = DDCLGameClientType.Global;
+                    }
                     else
                     {
                         item = null;
@@ -74,16 +83,16 @@ namespace DodocoTales.SR.Loader
             FileInfo exec = new FileInfo(execpath);
             if (exec.Name == ClientExecutable)
             {
-                var genshin_data_dir = exec.DirectoryName + "/" + StarRailData_CN + "/";
-                genshin_data_dir = genshin_data_dir.Replace('\\', '/');
-                if (Directory.Exists(genshin_data_dir))
+                var star_rail_data_dir = exec.DirectoryName + "/" + StarRailData_CN + "/";
+                star_rail_data_dir = star_rail_data_dir.Replace('\\', '/');
+                if (Directory.Exists(star_rail_data_dir))
                 {
                     //DDCLog.Info(DCLN.Loader, String.Format("CN client confirmed: {0}", genshin_data_dir));
                     return new DDCLGameClientItem
                     {
-                        Name = ClientName_CN,
-                        ClientType = DDCLGameClientType.CN,
-                        Path = genshin_data_dir,
+                        Name = null,
+                        ClientType = DDCLGameClientType.Unknown,
+                        Path = star_rail_data_dir,
                         IsDefault = false
                     };
                 }
@@ -93,12 +102,26 @@ namespace DodocoTales.SR.Loader
 
 
         readonly string WebCachePath = @"/webCaches/Cache/Cache_Data/data_2";
-        readonly string authkey_pattern = @"1/0/\S+\?(\S+&game_biz=hkrpg_cn)";
+        // 用CN API强行获取OS或反之，会获得缺失name、item_type与rank_type的记录，造成解析错误
+        readonly string authkey_pattern_cn = @"1/0/\S+\?(\S+&game_biz=hkrpg_cn)";
+        readonly string authkey_pattern_os = @"1/0/\S+\?(\S+&game_biz=hkrpg_global)";
 
         public string GetAuthkeyFromWebCache(DDCLGameClientItem client)
         {
             string authkey = null;
             string path = client.Path + WebCachePath;
+            string authkey_pattern;
+            switch (client.ClientType)
+            {
+                case DDCLGameClientType.CN:
+                    authkey_pattern = authkey_pattern_cn;
+                    break;
+                case DDCLGameClientType.Global:
+                    authkey_pattern = authkey_pattern_os;
+                    break;
+                default:
+                    return null;
+            }
             if (!File.Exists(path))
             {
                 return null;
@@ -114,8 +137,8 @@ namespace DodocoTales.SR.Loader
                     var result = Regex.Matches(log, authkey_pattern);
                     if (result.Count > 0)
                     {
-                        Regex regex = new Regex(@"lang=.+&authkey=");
-                        authkey = regex.Replace(result[result.Count - 1].Groups[1].Value, "lang=zh-cn&authkey=");
+                        Regex regex = new Regex(@"lang=.+?&");
+                        authkey = regex.Replace(result[result.Count - 1].Groups[1].Value, "lang=zh-cn&");
                     }
                 }
             }

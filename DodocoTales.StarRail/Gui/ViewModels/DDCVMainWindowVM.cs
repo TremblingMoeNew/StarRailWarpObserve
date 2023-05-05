@@ -92,9 +92,9 @@ namespace DodocoTales.SR.Gui.ViewModels
             get => currentUID;
             set => SetProperty(ref currentUID, value);
         }
-        /*
-        private DDCCTimeZone currentUserTimeZone;
-        public DDCCTimeZone CurrentUserTimeZone
+        
+        private int currentUserTimeZone;
+        public int CurrentUserTimeZone
         {
             get => currentUserTimeZone;
             set => SetProperty(ref currentUserTimeZone, value);
@@ -105,7 +105,7 @@ namespace DodocoTales.SR.Gui.ViewModels
             get => currentUserClientType;
             set => SetProperty(ref currentUserClientType, value);
         }
-        */
+        
         public bool IsInProxyUpdateAppended { get; set; }
         public bool IsInProxyUpdateFull { get; set; }
 
@@ -135,8 +135,8 @@ namespace DodocoTales.SR.Gui.ViewModels
             else
             {
                 CurrentUID = user.UID;
-                //CurrentUserTimeZone = user.zone;
-                //CurrentUserClientType = user.ClientType;
+                CurrentUserTimeZone = user.TimeZone;
+                CurrentUserClientType = user.ClientType;
             }
             DDCV.RefreshAll();
             
@@ -194,7 +194,7 @@ namespace DodocoTales.SR.Gui.ViewModels
 
             if (authkey == null)
             {
-                Notice.Show("更新失败，未能找到祈愿记录网址。\n请确认您的原神客户端地址设置是否正确，且是否在游戏中正确打开祈愿历史记录。", "祈愿记录更新失败", MessageBoxIcon.Error);
+                Notice.Show("更新失败，未能找到祈愿记录网址。\n请确认您的崩坏：星穹铁道客户端地址设置是否正确，且是否在游戏中正确打开祈愿历史记录。", "祈愿记录更新失败", MessageBoxIcon.Error);
                 //DDCLog.Info(DCLN.Gui, "Wish log update failed: Authkey not found. (Append mode, Cache mode)");
                 return;
             }
@@ -234,7 +234,7 @@ namespace DodocoTales.SR.Gui.ViewModels
 
             if (authkey == null)
             {
-                Notice.Show("更新失败，未能找到祈愿记录网址。\n请确认您的原神客户端地址设置是否正确，且是否在游戏中正确打开祈愿历史记录。", "祈愿记录更新失败", MessageBoxIcon.Error);
+                Notice.Show("更新失败，未能找到祈愿记录网址。\n请确认您的崩坏：星穹铁道客户端地址设置是否正确，且是否在游戏中正确打开祈愿历史记录。", "祈愿记录更新失败", MessageBoxIcon.Error);
                 //DDCLog.Info(DCLN.Gui, "Wish log update failed: Authkey not found. (Full mode, Cache mode)");
                 return;
             }

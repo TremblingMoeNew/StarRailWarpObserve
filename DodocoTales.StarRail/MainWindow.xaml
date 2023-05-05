@@ -97,7 +97,14 @@
                            ToolTip="点击跳转到设置-用户管理"
                             Content="{Binding CurrentUID,Converter={StaticResource UIDNormalCon}}"/>
                         <Label HorizontalContentAlignment="Right" Margin="0 0 20 0" Padding="0" Foreground="#333333" Visibility="{Binding CurrentUID, Converter={StaticResource VisByAvaliableUIDCon}}">
-                            <TextBlock Text="国服客户端 / UTC+8"/>
+                            <TextBlock>
+                                <TextBlock.Text>
+                                    <MultiBinding StringFormat="{}{0} / {1}">
+                                        <Binding Path="CurrentUserClientType" Converter="{StaticResource ClientTypeCon}"/>
+                                        <Binding Path="CurrentUserTimeZone" Converter="{StaticResource TimeZoneCon}"/>
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
                         </Label>
                         <Grid Margin="0 10 0 0">
                             <Grid.RowDefinitions>

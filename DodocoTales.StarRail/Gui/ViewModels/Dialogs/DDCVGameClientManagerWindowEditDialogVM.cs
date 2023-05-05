@@ -31,7 +31,21 @@ namespace DodocoTales.SR.Gui.ViewModels.Dialogs
         public DDCLGameClientType ClientType
         {
             get => clientType;
-            set => SetProperty(ref clientType, value);
+            set
+            {
+                SetProperty(ref clientType, value);
+                switch(ClientType)
+                {
+                    case DDCLGameClientType.CN:
+                        if(string.IsNullOrEmpty(Name)|| Name== DDCG.GameClientLoader.ClientName_OS)
+                            Name = DDCG.GameClientLoader.ClientName_CN;
+                        break;
+                    case DDCLGameClientType.Global:
+                        if (string.IsNullOrEmpty(Name) || Name == DDCG.GameClientLoader.ClientName_CN)
+                            Name = DDCG.GameClientLoader.ClientName_OS;
+                        break;
+                }
+            }
         }
         private int timeZone;
         public int TimeZone
@@ -60,11 +74,8 @@ namespace DodocoTales.SR.Gui.ViewModels.Dialogs
         {
             ClientOptions = new Dictionary<string, DDCLGameClientType>
             {
-                { "国服客户端", DDCLGameClientType.CN }
-            };
-            TimeZoneOptions = new Dictionary<string, int>
-            {
-                { "UTC+8", 8 },
+                { "国服客户端", DDCLGameClientType.CN },
+                { "国际服客户端", DDCLGameClientType.Global }
             };
 
         }
@@ -111,9 +122,9 @@ namespace DodocoTales.SR.Gui.ViewModels.Dialogs
         }
 
 
-        public void SaveAsCopy()
+        public bool SaveAsCopy()
         {
-            if (!CheckValid()) return;
+            if (!CheckValid()) return false;
             var item = new DDCLGameClientItem
             {
                 Name = Name,
@@ -121,20 +132,21 @@ namespace DodocoTales.SR.Gui.ViewModels.Dialogs
                 Path = Path,
             };
             DDCL.GameClientLib.AddClients(new List<DDCLGameClientItem> { item });
+            return true;
         }
 
-        public async Task Save()
+        public async Task<bool> Save()
         {
             if (GameClientItem == null)
             {
-                SaveAsCopy();
-                return;
+                return SaveAsCopy();
             }
-            if (!CheckValid()) return;
+            if (!CheckValid()) return false;
             GameClientItem.Name = Name;
             GameClientItem.ClientType = ClientType;
             GameClientItem.Path = Path;
             await DDCL.GameClientLib.SaveLibraryAsync();
+            return true;
         }
         public void Delete()
         {

@@ -194,6 +194,7 @@
     <Compile Include="Gui\Converters\DDCVClientTypeConverter.cs" />
     <Compile Include="Gui\Converters\DDCVPercentageConverter.cs" />
     <Compile Include="Gui\Converters\DDCVPoolTypeConverter.cs" />
+    <Compile Include="Gui\Converters\DDCVTimeZoneConverter.cs" />
     <Compile Include="Gui\Converters\DDCVUidAnonymousConverter.cs" />
     <Compile Include="Gui\Converters\DDCVUidNormalConverter.cs" />
     <Compile Include="Gui\Converters\DDCVVisibleByAvailableUIDConverter.cs" />

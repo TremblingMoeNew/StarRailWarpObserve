@@ -68,17 +68,19 @@ namespace DodocoTales.SR.Loader
         {
             var request = e.HttpClient.Request;
             string authkey = null;
-            if ((request.Host == "api-takumi.mihoyo.com") && request.RequestUri.AbsolutePath == "/common/gacha_record/api/getGachaLog")
+            if (((request.Host == "api-takumi.mihoyo.com")||(request.Host == "api-os-takumi.mihoyo.com")) && request.RequestUri.AbsolutePath == "/common/gacha_record/api/getGachaLog")
             {
-                string pattern = @".+\?(\S+&game_biz=hkrpg_cn)";
+                string pattern = @".+\?(\S+&game_biz=hkrpg_(cn|global))";
                 var result = Regex.Matches(request.Url, pattern);
-                Regex regex = new Regex(@"lang=.+&authkey=");
-                authkey = regex.Replace(result[result.Count - 1].Groups[1].Value, "lang=zh-cn&device_type");
+                Regex regex = new Regex(@"lang=.+?&");
+                authkey = regex.Replace(result[result.Count - 1].Groups[1].Value, "lang=zh-cn&");
             }
             if (authkey != null)
             {
                 Authkey = authkey;
                 if (Authkey.Contains("game_biz=hkrpg_cn"))
+                    CapturedClientType = DDCLGameClientType.CN;
+                else if (Authkey.Contains("game_biz=hkrpg_global"))
                     CapturedClientType = DDCLGameClientType.CN;
                 else
                     CapturedClientType = DDCLGameClientType.Unknown;

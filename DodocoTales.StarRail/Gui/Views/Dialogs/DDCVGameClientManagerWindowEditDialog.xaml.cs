@@ -44,13 +44,11 @@ namespace DodocoTales.SR.Gui.Views.Dialogs
         }
         private async void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            await VM.Save();
-            Close();
+            if(await VM.Save()) Close();
         }
         private void SaveAsCopyButton_Click(object sender, RoutedEventArgs e)
         {
-            VM.SaveAsCopy();
-            Close();
+            if (VM.SaveAsCopy()) Close();
         }
         private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
