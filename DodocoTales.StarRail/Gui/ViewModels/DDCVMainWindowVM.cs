@@ -208,10 +208,6 @@ namespace DodocoTales.SR.Gui.ViewModels
                 return;
             }
             var user = DDCL.UserDataLib.GetUserLogByUid(uid);
-            if (user.Logs.Count == 0)
-            {
-                user.TimeZone = client.TimeZone;
-            }
             if (user.ClientType == DDCLGameClientType.Unknown)
             {
                 user.ClientType = client.ClientType;
@@ -253,10 +249,6 @@ namespace DodocoTales.SR.Gui.ViewModels
             }
             
             var user = DDCL.UserDataLib.GetUserLogByUid(uid);
-            if (user.Logs.Count == 0)
-            {
-                user.TimeZone = client.TimeZone;
-            }
             if (user.ClientType == DDCLGameClientType.Unknown)
             {
                 user.ClientType = client.ClientType;
@@ -295,11 +287,6 @@ namespace DodocoTales.SR.Gui.ViewModels
                 return;
             }
             var user = DDCL.UserDataLib.GetUserLogByUid(uid);
-            if (user.Logs.Count == 0)
-            {
-                var client = DDCL.GameClientLib.GetSelectedClient();
-                user.TimeZone = client?.TimeZone ?? DDCL.DefaultTimeZone;
-            }
             if (user.ClientType == DDCLGameClientType.Unknown)
             {
                 user.ClientType = clientType;
@@ -336,11 +323,6 @@ namespace DodocoTales.SR.Gui.ViewModels
                 return;
             }
             var user = DDCL.UserDataLib.GetUserLogByUid(uid);
-            if (user.Logs.Count == 0)
-            {
-                var client = DDCL.GameClientLib.GetSelectedClient();
-                user.TimeZone = client?.TimeZone ?? DDCL.DefaultTimeZone;
-            }
             if (user.ClientType == DDCLGameClientType.Unknown)
             {
                 user.ClientType = clientType;

@@ -8,4 +8,5 @@
     <converter:DDCVUidAnonymousConverter x:Key="UIDAnonyCon"/>
     <converter:DDCVUidNormalConverter x:Key="UIDNormalCon"/>
     <converter:DDCVVisibleByAvailableUIDConverter x:Key="VisByAvaliableUIDCon"/>
+    <converter:DDCVClientTypeConverter x:Key="ClientTypeCon"/>
 </ResourceDictionary>

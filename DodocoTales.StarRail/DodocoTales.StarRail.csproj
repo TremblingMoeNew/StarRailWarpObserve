@@ -191,6 +191,7 @@
     <Compile Include="Common\Signals\DDCS_Core.cs" />
     <Compile Include="Common\Signals\DDCS_Lib.cs" />
     <Compile Include="Common\Signals\DDCS_Loader.cs" />
+    <Compile Include="Gui\Converters\DDCVClientTypeConverter.cs" />
     <Compile Include="Gui\Converters\DDCVPercentageConverter.cs" />
     <Compile Include="Gui\Converters\DDCVPoolTypeConverter.cs" />
     <Compile Include="Gui\Converters\DDCVUidAnonymousConverter.cs" />

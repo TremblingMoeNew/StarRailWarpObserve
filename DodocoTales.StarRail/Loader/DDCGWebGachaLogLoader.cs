@@ -31,6 +31,9 @@ namespace DodocoTales.SR.Loader
         }
         readonly string apipattern_cn = @"https://api-takumi.mihoyo.com/common/gacha_record/api/getGachaLog?{0}&gacha_type={1}&page={2}&size={4}&end_id={3}";
 
+        int last_timezone;
+
+
         HttpClient client;
 
         public DDCGWebGachaLogLoader()
@@ -82,6 +85,7 @@ namespace DodocoTales.SR.Loader
                 //DDCLog.Warning(DCLN.Loader, String.Format("Unknown retcode {0}: {1}", response.retcode, response.message));
                 return null;
             }
+            last_timezone = response.data.region_time_zone;
             return response.data.list;
         }
 
@@ -181,6 +185,7 @@ namespace DodocoTales.SR.Loader
             {
                 res.Add(item.id, ConvertToDDCLLogItem(item, DDCCPoolType.LCEvent));
             }
+            merger.SetTimeZone(last_timezone);
             merger.Merge(res.Values.ToList(), false);
             
         }

@@ -37,16 +37,15 @@
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
-                                <ColumnDefinition Width="Auto" MinWidth="100"/>
-                                <ColumnDefinition Width="Auto" MinWidth="100"/>
+                                <ColumnDefinition Width="Auto" MinWidth="150"/>
+                                <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition Width="Auto" MinWidth="50"/>
                                 <ColumnDefinition Width="Auto"/>
 
                             </Grid.ColumnDefinitions>
                             <Label FontSize="16" Content="{Binding Name}"/>
-                            <Label Grid.Column="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Content="{Binding ClientType}"/>
-                            <Label Grid.Column="2" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Content="{Binding TimeZone}"/>
+                            <Label Grid.Column="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Content="{Binding ClientType, Converter={StaticResource ClientTypeCon}}"/>
                             <Button Grid.Column="3"
                             FontSize="13"
                             Padding="10 0"

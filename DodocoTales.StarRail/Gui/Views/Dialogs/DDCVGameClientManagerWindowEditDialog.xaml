@@ -27,8 +27,8 @@
                         <ColumnDefinition MinWidth="30" MaxWidth="30"/>
                         <ColumnDefinition Width="Auto" MinWidth="50"/>
                         <ColumnDefinition />
-                        <ColumnDefinition Width="Auto" MinWidth="100"/>
-                        <ColumnDefinition Width="Auto" MinWidth="100"/>
+                        <ColumnDefinition Width="Auto" MinWidth="150"/>
+                        <ColumnDefinition Width="Auto" MinWidth="50"/>
                     </Grid.ColumnDefinitions>
                     <TextBox FontSize="16"
                          BorderBrush="#00000000"
@@ -38,7 +38,6 @@
                          pu:TextBoxHelper.Watermark="点击输入名称"
                          Text="{Binding Name}" Cursor="IBeam" Grid.ColumnSpan="3" />
                     <ComboBox Grid.Column="3" Padding="10 0 25 0" Margin="5 0 0 0" BorderThickness="1 0 0 0" ItemsSource="{Binding ClientOptions}" DisplayMemberPath="Key" SelectedValuePath="Value" SelectedValue="{Binding ClientType}" pu:ComboBoxHelper.HoverBackground="#1EFF0026" pu:ComboBoxHelper.SelectedBackground="#32FF0026"/>
-                    <ComboBox Grid.Column="4" Padding="10 0 25 0"  BorderThickness="1 0 0 0" ItemsSource="{Binding TimeZoneOptions}" DisplayMemberPath="Key" SelectedValuePath="Value" SelectedValue="{Binding TimeZone}" pu:ComboBoxHelper.HoverBackground="#1EFF0026" pu:ComboBoxHelper.SelectedBackground="#32FF0026"/>
                     <Label Grid.Row="2" Grid.Column="1" Content="路径:" FontSize="14"/>
                     <TextBox Grid.Row="2" Grid.Column="2"
                          BorderBrush="#00000000"

@@ -24,6 +24,10 @@ namespace DodocoTales.SR.Loader
                 GachaLogSet.Add(item.ID, item);
             }
         }
+        public void SetTimeZone(int timezone)
+        {
+            UserLog.TimeZone = timezone;
+        }
 
         public ulong GetLastItemMihoyoIdByType(DDCCPoolType type)
         {

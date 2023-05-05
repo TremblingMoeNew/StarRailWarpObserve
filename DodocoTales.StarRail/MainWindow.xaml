@@ -7,7 +7,7 @@
         xmlns:local="clr-namespace:DodocoTales"
         xmlns:vm="clr-namespace:DodocoTales.SR.Gui.ViewModels"
         mc:Ignorable="d"
-        Title="星铁跃迁观测工具 - 1.0.0" Height="760" Width="1160"
+        Title="星铁跃迁观测工具 - 1.1.0" Height="760" Width="1160"
         Unloaded="Window_Unloaded">
     <Window.DataContext>
         <vm:DDCVMainWindowVM x:Name="VM"/>

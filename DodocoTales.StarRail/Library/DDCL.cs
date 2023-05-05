@@ -1,6 +1,7 @@
 ﻿using DodocoTales.SR.Common.Enums;
 using DodocoTales.SR.Library.BannerLibrary;
 using DodocoTales.SR.Library.CurrentUser;
+using DodocoTales.SR.Library.Enums;
 using DodocoTales.SR.Library.GameClient;
 using DodocoTales.SR.Library.MetadataLibrary;
 using DodocoTales.SR.Library.Settings;
@@ -84,6 +85,19 @@ namespace DodocoTales.SR.Library
                 default:
                     //DDCLog.Warning(DCLN.Lib, "Get UNKNOWN PoolType name");
                     return "(类型错误)";
+            }
+        }
+        public static string GetGameClientTypeName(DDCLGameClientType type)
+        {
+            switch (type)
+            {
+                case DDCLGameClientType.CN:
+                    return "国服客户端";
+                case DDCLGameClientType.Global:
+                    return "国际服客户端";
+                default:
+                //    DDCLog.Warning(DCLN.Lib, "Get UNKNOWN GameClientType name");
+                    return "(未知客户端)";
             }
         }
     }
