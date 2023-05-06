@@ -170,11 +170,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Gui\Views\Screens\DDCVSettingsWindowAboutScreen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Gui\Views\Screens\DDCVSettingsWindowUsersScreen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Gui\Views\Screens\DDCVVersionViewScreen.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Gui\Views\Windows\DDCVGameClientManagerWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Gui\Views\Windows\DDCVSettingsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -214,7 +226,9 @@
     <Compile Include="Gui\ViewModels\DDCVMainWindowVM.cs" />
     <Compile Include="Gui\ViewModels\Dialogs\DDCVGameClientManagerWindowEditDialogVM.cs" />
     <Compile Include="Gui\ViewModels\Screens\DDCVBannerViewScreenVM.cs" />
+    <Compile Include="Gui\ViewModels\Screens\DDCVSettingsWindowAboutScreenVM.cs" />
     <Compile Include="Gui\ViewModels\Screens\DDCVVersionViewScreenVM.cs" />
+    <Compile Include="Gui\ViewModels\Windows\DDCVSettingsWindowVM.cs" />
     <Compile Include="Gui\Views\Cards\DDCVHomeSceneCharEventCard.xaml.cs">
       <DependentUpon>DDCVHomeSceneCharEventCard.xaml</DependentUpon>
     </Compile>
@@ -234,12 +248,21 @@
     <Compile Include="Gui\Views\Screens\DDCVHomeScreen.xaml.cs">
       <DependentUpon>DDCVHomeScreen.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Gui\Views\Screens\DDCVSettingsWindowAboutScreen.xaml.cs">
+      <DependentUpon>DDCVSettingsWindowAboutScreen.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Gui\Views\Screens\DDCVSettingsWindowUsersScreen.xaml.cs">
+      <DependentUpon>DDCVSettingsWindowUsersScreen.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Gui\Views\Screens\DDCVSwapableScreen.cs" />
     <Compile Include="Gui\Views\Screens\DDCVVersionViewScreen.xaml.cs">
       <DependentUpon>DDCVVersionViewScreen.xaml</DependentUpon>
     </Compile>
     <Compile Include="Gui\Views\Windows\DDCVGameClientManagerWindow.xaml.cs">
       <DependentUpon>DDCVGameClientManagerWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Gui\Views\Windows\DDCVSettingsWindow.xaml.cs">
+      <DependentUpon>DDCVSettingsWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Library\BannerLibrary\DDCLBannerLibrary.cs" />
     <Compile Include="Library\BannerLibrary\Models\DDCLBannerInfo.cs" />

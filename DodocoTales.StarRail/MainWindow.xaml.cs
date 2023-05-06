@@ -171,7 +171,7 @@ namespace DodocoTales
 
         private void SettingsButton_Click(object sender, RoutedEventArgs e)
         {
-        //    DDCV.ShowWindowDialog(new DDCVSettingsWindow());
+            DDCV.ShowWindowDialog(new DDCVSettingsWindow());
         }
     }
 }

@@ -1,0 +1,53 @@
+﻿<pu:WindowX  xmlns:pu="clr-namespace:Panuon.UI.Silver;assembly=Panuon.UI.Silver" 
+        x:Class="DodocoTales.SR.Gui.Views.Windows.DDCVSettingsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DodocoTales.SR.Gui.Views.Windows" 
+        xmlns:vm="clr-namespace:DodocoTales.SR.Gui.ViewModels.Windows" 
+        xmlns:screens="clr-namespace:DodocoTales.SR.Gui.Views.Screens"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterOwner"
+        Title="设置" Height="450" Width="800">
+    <Window.DataContext>
+        <vm:DDCVSettingsWindowVM x:Name="VM"/>
+    </Window.DataContext>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="160"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Border BorderThickness="0 0 1 0" BorderBrush="#33AAAAAA">
+            <TreeView ItemsSource="{Binding MenuItems}" 
+                      Name="MainPanel"
+                      pu:TreeViewHelper.TreeViewStyle="Modern"
+                      pu:TreeViewHelper.SelectMode="ChildOnly"
+                      pu:TreeViewHelper.SelectedBackground="#22FF0035" 
+                      BorderBrush="#FF0035"
+                      SelectedItemChanged="MainPanel_SelectedItemChanged"
+                      Margin="0" Padding="0"
+                      >
+
+                <TreeView.ItemContainerStyle>
+                    <Style TargetType="{x:Type TreeViewItem}"
+                               BasedOn="{StaticResource {x:Type TreeViewItem}}">
+                        <Setter Property="IsExpanded"
+                                    Value="True" />
+                        <Setter Property="IsSelected" Value="{Binding IsSelected,Mode=TwoWay}"/>
+                        <Setter Property="Padding" Value="0"/>
+                    </Style>
+                </TreeView.ItemContainerStyle>
+                <TreeView.ItemTemplate>
+                    <HierarchicalDataTemplate ItemsSource="{Binding MenuItems}">
+                        <Label  Padding="{Binding Padding}" MouseDown="TreeViewItem_MouseDown" VerticalAlignment="Stretch"  Height="40" VerticalContentAlignment="Center" DataContext="{Binding}">
+                            <TextBlock Text="{Binding Path=Title}" Margin="10 0"/>
+                        </Label>
+                    </HierarchicalDataTemplate>
+                </TreeView.ItemTemplate>
+            </TreeView>
+        </Border>
+        <Grid Grid.Column="1" x:Name="Navigator">
+        </Grid>
+    </Grid>
+</pu:WindowX>
