@@ -16,17 +16,18 @@
             <TextBlock Margin="20 5 0 0">Star Rail Wrap Observe</TextBlock>
             <TextBlock Margin="20 0 0 0" Foreground="#888888" FontSize="12">(Codename: DodocoTales.StarRail)</TextBlock>
 
-            <StackPanel Orientation="Horizontal" Margin="20 10 0 0">
-                <TextBlock Margin="0 0 5 0">项目地址: </TextBlock>
+            <StackPanel Orientation="Horizontal" Margin="20 15 0 0">
+                <TextBlock Margin="0 0 5 0">项目地址:</TextBlock>
                 <TextBlock>
                     <Hyperlink NavigateUri="https://github.com/TremblingMoeNew/StarRailWarpObserve" RequestNavigate="Hyperlink_RequestNavigate">TremblingMoeNew/StarRailWarpObserve</Hyperlink>
                 </TextBlock>
             </StackPanel>
+            <TextBlock Margin="20 5 0 0">许可证: MIT协议</TextBlock>
             <TextBlock Margin="20 20 0 0" Text="{Binding ClientVersion,StringFormat=主程序版本: {0}}"/>
             <TextBlock Margin="20 5 0 0" Text="{Binding BannerLibraryVersion, StringFormat=卡池数据库: {0}}"/>
 
             <TextBlock Margin="20 20 0 0">本程序基于.NET Framework 4.7.2构建，依赖以下项目:</TextBlock>
-            <TextBlock Margin="30 10 0 0">
+            <TextBlock Margin="30 5 0 0">
                 <Hyperlink NavigateUri="https://github.com/JamesNK/Newtonsoft.Json" RequestNavigate="Hyperlink_RequestNavigate">JamesNK/Newtonsoft.Json</Hyperlink>
             </TextBlock>
             <TextBlock Margin="30 5 0 0">

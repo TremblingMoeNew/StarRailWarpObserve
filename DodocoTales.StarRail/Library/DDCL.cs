@@ -9,6 +9,7 @@ using DodocoTales.SR.Library.UserDataLibrary;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -37,6 +38,19 @@ namespace DodocoTales.SR.Library
                     return DDCCUnitType.LightCone;
                 default:
                     return DDCCUnitType.Unknown;
+            }
+        }
+
+        public static string ConvertUnitTypeToString(DDCCUnitType type)
+        {
+            switch (type)
+            {
+                case DDCCUnitType.Character:
+                    return "角色";
+                case DDCCUnitType.LightCone:
+                    return "光锥";
+                default:
+                    return null;
             }
         }
 
@@ -99,6 +113,28 @@ namespace DodocoTales.SR.Library
                 //    DDCLog.Warning(DCLN.Lib, "Get UNKNOWN GameClientType name");
                     return "(未知客户端)";
             }
+        }
+        public static string MD5Hash(string data)
+        {
+            byte[] bytes = Encoding.UTF8.GetBytes(data);
+            byte[] hash = MD5.Create().ComputeHash(bytes);
+            StringBuilder bui = new StringBuilder();
+            foreach (byte b in hash)
+            {
+                bui.Append(b.ToString("X2"));
+            }
+            return bui.ToString();
+        }
+        public static string SHA256Hash(string data)
+        {
+            byte[] bytes = Encoding.UTF8.GetBytes(data);
+            byte[] hash = SHA256.Create().ComputeHash(bytes);
+            StringBuilder bui= new StringBuilder();
+            foreach(byte b in hash)
+            {
+                bui.Append(b.ToString("X2"));
+            }
+            return bui.ToString();
         }
     }
 }

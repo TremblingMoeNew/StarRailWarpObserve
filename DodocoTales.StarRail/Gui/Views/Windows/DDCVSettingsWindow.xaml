@@ -9,7 +9,9 @@
         xmlns:screens="clr-namespace:DodocoTales.SR.Gui.Views.Screens"
         mc:Ignorable="d"
         WindowStartupLocation="CenterOwner"
-        Title="设置" Height="450" Width="800">
+        ResizeMode="NoResize"
+        ShowInTaskbar="False"
+        Title="设置" Height="500" Width="800">
     <Window.DataContext>
         <vm:DDCVSettingsWindowVM x:Name="VM"/>
     </Window.DataContext>

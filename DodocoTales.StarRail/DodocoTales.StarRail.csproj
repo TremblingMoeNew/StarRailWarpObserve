@@ -287,10 +287,14 @@
     <Compile Include="Loader\DDCGGachaLogMerger.cs" />
     <Compile Include="Loader\DDCGGameClientLoader.cs" />
     <Compile Include="Loader\DDCGProxyLoader.cs" />
+    <Compile Include="Loader\DDCGUniversalFormatExporter.cs" />
     <Compile Include="Loader\DDCGUpdateLoader.cs" />
     <Compile Include="Loader\DDCGWebGachaLogLoader.cs" />
     <Compile Include="Loader\Models\DDCGGachaLogResponse.cs" />
     <Compile Include="Loader\Models\DDCGGachaLogResponseItem.cs" />
+    <Compile Include="Loader\Models\DDCGUniversalFormatLog.cs" />
+    <Compile Include="Loader\Models\DDCGUniversalFormatLogInfo.cs" />
+    <Compile Include="Loader\Models\DDCGUniversalFormatLogItem.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

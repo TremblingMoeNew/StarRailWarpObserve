@@ -173,5 +173,17 @@ namespace DodocoTales
         {
             DDCV.ShowWindowDialog(new DDCVSettingsWindow());
         }
+
+        private async void ExportLog_Click(object sender, RoutedEventArgs e)
+        {
+            var anonymous = true;
+            var file = "Export/" + DDCG.UFExporter.GenerateExportFileName(VM.CurrentUID, anonymous);
+            await DDCG.UFExporter.Export(file, VM.CurrentUID, anonymous);
+        }
+
+        private async void ImportLog_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

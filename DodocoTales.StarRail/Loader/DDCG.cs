@@ -14,5 +14,7 @@ namespace DodocoTales.SR.Loader
         public static DDCGWebGachaLogLoader WebLogLoader = new DDCGWebGachaLogLoader();
 
         public static DDCGUpdateLoader UpdateLoader = new DDCGUpdateLoader();
+
+        public static DDCGUniversalFormatExporter UFExporter = new DDCGUniversalFormatExporter();
     }
 }
