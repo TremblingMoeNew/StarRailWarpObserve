@@ -28,6 +28,16 @@ namespace DodocoTales.SR.Library
 
         public static DDCLSettingsLibrary SettingsLib = new DDCLSettingsLibrary();
 
+        public static long ToUnixTimestamp(DateTime time)
+            => (long)((time.Ticks - 621355968000000000) / 10000000);
+
+        public static DateTime UnixTimestampToTime(long timestamp)
+        {
+            if (timestamp < 100000000000) timestamp *= 1000;
+            timestamp = timestamp * 10000 + 621355968000000000;
+            return new DateTime(timestamp);
+        }
+
         public static DDCCUnitType ConvertToUnitType(string typename)
         {
             switch (typename)

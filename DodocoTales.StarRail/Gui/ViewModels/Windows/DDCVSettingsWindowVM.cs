@@ -31,7 +31,7 @@ namespace DodocoTales.SR.Gui.ViewModels.Windows
 
             MenuItems = new ObservableCollection<DDCVMainPanelItemModel>()
             {
-                new DDCVMainPanelItemModel("用户","User", 0),
+                //new DDCVMainPanelItemModel("用户","User", 0),
                 new DDCVMainPanelItemModel("关于","About",0)
             };
         }

@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:DodocoTales.SR.Gui.Views.Screens" xmlns:screens="clr-namespace:DodocoTales.SR.Gui.ViewModels.Screens"
                           mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="480" d:DesignWidth="800">
     <Grid>
         <Grid.DataContext>
             <screens:DDCVSettingsWindowAboutScreenVM x:Name="VM"/>
@@ -13,11 +13,17 @@
         <StackPanel Margin="10" Orientation="Vertical">
             <Label FontSize="22">关于</Label>
             <TextBlock Margin="20 5 0 0">星穹铁道跃迁观测工具</TextBlock>
-            <TextBlock Margin="20 5 0 0">Star Rail Wrap Observe</TextBlock>
+            <TextBlock Margin="20 5 0 0">Star Rail Wrap Observe (Starwo)</TextBlock>
             <TextBlock Margin="20 0 0 0" Foreground="#888888" FontSize="12">(Codename: DodocoTales.StarRail)</TextBlock>
 
             <StackPanel Orientation="Horizontal" Margin="20 15 0 0">
-                <TextBlock Margin="0 0 5 0">项目地址:</TextBlock>
+                <TextBlock Margin="0 0 5 0">网站:</TextBlock>
+                <TextBlock>
+                    <Hyperlink NavigateUri="https://starwo.dodocotales.cc" RequestNavigate="Hyperlink_RequestNavigate">地址</Hyperlink>
+                </TextBlock>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="20 5 0 0">
+                <TextBlock Margin="0 0 5 0">项目:</TextBlock>
                 <TextBlock>
                     <Hyperlink NavigateUri="https://github.com/TremblingMoeNew/StarRailWarpObserve" RequestNavigate="Hyperlink_RequestNavigate">TremblingMoeNew/StarRailWarpObserve</Hyperlink>
                 </TextBlock>

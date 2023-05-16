@@ -68,6 +68,7 @@ namespace DodocoTales.SR.Loader
                 UID = userlog.UID.ToString(),
                 ApplicationVersion = DDCL.MetaVersionLib.ClientVersion,
                 ExportTime = String.Format("{0:yyyy-MM-dd HH:mm:ss}", DateTime.Now),
+                ExportTimestamp = DDCL.ToUnixTimestamp(DateTime.Now).ToString(),
                 TimeZone = userlog.TimeZone.ToString(),
                 GameBiz = ConvertGameClientTypeToGameBizString(userlog.ClientType),
             };
@@ -94,7 +95,7 @@ namespace DodocoTales.SR.Loader
 
         public string GenerateExportFileName(long uid, bool anonymous)
         {
-            return string.Format("SRObserveExport_{1}_{0:yyyyMMdd_HHmmss}.json", DateTime.Now, anonymous ? "anonymous": uid.ToString());
+            return string.Format("StarwoExport_{1}_{0:yyyyMMdd_HHmmss}.json", DateTime.Now, anonymous ? "anonymous": uid.ToString());
         }
 
         public async Task<bool> Export(string filename, long uid, bool anonymous)

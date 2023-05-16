@@ -55,7 +55,7 @@ namespace DodocoTales.SR.Gui.ViewModels
                 {
                     IsWaiting = value;
                     DDCG.ProxyLoader.StartProxy();
-                    Notice.Show("代理模式已启动，请在游戏中重新打开祈愿历史记录页面", "代理模式", MessageBoxIcon.Info);
+                    Notice.Show("代理模式已启动，请在游戏中重新打开跃迁历史记录页面", "代理模式", MessageBoxIcon.Info);
                 }
                 else
                 {
@@ -194,7 +194,7 @@ namespace DodocoTales.SR.Gui.ViewModels
 
             if (authkey == null)
             {
-                Notice.Show("更新失败，未能找到祈愿记录网址。\n请确认您的崩坏：星穹铁道客户端地址设置是否正确，且是否在游戏中正确打开祈愿历史记录。", "祈愿记录更新失败", MessageBoxIcon.Error);
+                Notice.Show("更新失败，未能找到跃迁记录网址。\n请确认您的崩坏：星穹铁道客户端地址设置是否正确，且是否在游戏中正确打开跃迁历史记录。", "跃迁记录更新失败", MessageBoxIcon.Error);
                 //DDCLog.Info(DCLN.Gui, "Wish log update failed: Authkey not found. (Append mode, Cache mode)");
                 return;
             }
@@ -202,7 +202,7 @@ namespace DodocoTales.SR.Gui.ViewModels
             var uid = await DDCG.WebLogLoader.TryConnectAndGetUid(authkey, client.ClientType);
             if (uid < 0)
             {
-                Notice.Show("更新失败，未能获取到祈愿记录\n请确认网络是否连接正常，设置的客户端类型是否正确，近六个月内是否进行过祈愿。\n请在游戏中重新打开祈愿历史记录页面。若仍然失败，可尝试在客户端管理中清除缓存。", "祈愿记录更新失败", MessageBoxIcon.Error);
+                Notice.Show("更新失败，未能获取到跃迁记录\n请确认网络是否连接正常，设置的客户端类型是否正确，近六个月内是否进行过跃迁。\n请在游戏中重新打开跃迁历史记录页面。若仍然失败，可尝试在客户端管理中清除缓存。", "跃迁记录更新失败", MessageBoxIcon.Error);
                 IsInUpdate = false;
                 //DDCLog.Info(DCLN.Gui, "Wish log update failed: Fetch failed. (Append mode, Cache mode)");
                 return;
@@ -217,7 +217,7 @@ namespace DodocoTales.SR.Gui.ViewModels
             await DDCG.WebLogLoader.GetGachaLogsAsNormalMode(authkey, client.ClientType);
             IsInUpdate = false;
             DDCV.RefreshAll();
-            Notice.Show("祈愿记录常规更新完毕", "祈愿记录更新完毕", MessageBoxIcon.Success);
+            Notice.Show("跃迁记录常规更新完毕", "跃迁记录更新完毕", MessageBoxIcon.Success);
             //DDCLog.Info(DCLN.Gui, "Wish log update completed. (Append mode, Cache mode)");
             
         }
@@ -234,7 +234,7 @@ namespace DodocoTales.SR.Gui.ViewModels
 
             if (authkey == null)
             {
-                Notice.Show("更新失败，未能找到祈愿记录网址。\n请确认您的崩坏：星穹铁道客户端地址设置是否正确，且是否在游戏中正确打开祈愿历史记录。", "祈愿记录更新失败", MessageBoxIcon.Error);
+                Notice.Show("更新失败，未能找到跃迁记录网址。\n请确认您的崩坏：星穹铁道客户端地址设置是否正确，且是否在游戏中正确打开跃迁历史记录。", "跃迁记录更新失败", MessageBoxIcon.Error);
                 //DDCLog.Info(DCLN.Gui, "Wish log update failed: Authkey not found. (Full mode, Cache mode)");
                 return;
             }
@@ -242,7 +242,7 @@ namespace DodocoTales.SR.Gui.ViewModels
             var uid = await DDCG.WebLogLoader.TryConnectAndGetUid(authkey, client.ClientType);
             if (uid < 0)
             {
-                Notice.Show("更新失败，未能获取到祈愿记录\n请确认网络是否连接正常，设置的客户端类型是否正确，近六个月内是否进行过祈愿。\n请在游戏中重新打开祈愿历史记录页面。若仍然失败，可尝试在客户端管理中清除缓存。", "祈愿记录更新失败", MessageBoxIcon.Error);
+                Notice.Show("更新失败，未能获取到跃迁记录\n请确认网络是否连接正常，设置的客户端类型是否正确，近六个月内是否进行过跃迁。\n请在游戏中重新打开跃迁历史记录页面。若仍然失败，可尝试在客户端管理中清除缓存。", "跃迁记录更新失败", MessageBoxIcon.Error);
                 //DDCLog.Info(DCLN.Gui, "Wish log update failed: Fetch failed. (Full mode, Cache mode)");
                 IsInUpdate = false;
                 return;
@@ -258,7 +258,7 @@ namespace DodocoTales.SR.Gui.ViewModels
             await DDCG.WebLogLoader.GetGachaLogsAsFullMode(authkey, client.ClientType);
             IsInUpdate = false;
             DDCV.RefreshAll();
-            Notice.Show("祈愿记录全量更新完毕", "祈愿记录更新完毕", MessageBoxIcon.Success);
+            Notice.Show("跃迁记录全量更新完毕", "跃迁记录更新完毕", MessageBoxIcon.Success);
             //DDCLog.Info(DCLN.Gui, "Wish log update completed. (Full mode, Cache mode)");
             
         }
@@ -270,7 +270,7 @@ namespace DodocoTales.SR.Gui.ViewModels
             var authkey = DDCG.ProxyLoader.Authkey;
             if (authkey == null)
             {
-                Notice.Show("更新失败，未能找到祈愿记录网址。\n请联系开发者。", "祈愿记录更新失败", MessageBoxIcon.Error);
+                Notice.Show("更新失败，未能找到跃迁记录网址。\n请联系开发者。", "跃迁记录更新失败", MessageBoxIcon.Error);
                 //DDCLog.Info(DCLN.Gui, "Wish log update failed: Authkey not found. (Append mode, Proxy mode)");
                 return;
             }
@@ -280,7 +280,7 @@ namespace DodocoTales.SR.Gui.ViewModels
             var uid = await DDCG.WebLogLoader.TryConnectAndGetUid(authkey, clientType);
             if (uid < 0)
             {
-                Notice.Show("更新失败，未能获取到祈愿记录\n请确认网络是否连接正常，近六个月内是否进行过祈愿。\n请重新启动代理模式，并在游戏中重新打开祈愿历史记录页面。", "祈愿记录更新失败", MessageBoxIcon.Error);
+                Notice.Show("更新失败，未能获取到跃迁记录\n请确认网络是否连接正常，近六个月内是否进行过跃迁。\n请重新启动代理模式，并在游戏中重新打开跃迁历史记录页面。", "跃迁记录更新失败", MessageBoxIcon.Error);
                 IsInUpdate = false;
                 //DDCLog.Info(DCLN.Gui, "Wish log update failed: Fetch failed. (Append mode, Proxy mode)");
                 DDCG.ProxyLoader.Authkey = null;
@@ -295,7 +295,7 @@ namespace DodocoTales.SR.Gui.ViewModels
             await DDCG.WebLogLoader.GetGachaLogsAsNormalMode(authkey, clientType);
             IsInUpdate = false;
             DDCV.RefreshAll();
-            Notice.Show("祈愿记录常规更新完毕", "祈愿记录更新完毕", MessageBoxIcon.Success);
+            Notice.Show("跃迁记录常规更新完毕", "跃迁记录更新完毕", MessageBoxIcon.Success);
             //DDCLog.Info(DCLN.Gui, "Wish log update completed. (Append mode, Proxy mode)");
             
         }
@@ -307,7 +307,7 @@ namespace DodocoTales.SR.Gui.ViewModels
             var authkey = DDCG.ProxyLoader.Authkey;
             if (authkey == null)
             {
-                Notice.Show("更新失败，未能找到祈愿记录网址。\n请联系开发者。", "祈愿记录更新失败", MessageBoxIcon.Error);
+                Notice.Show("更新失败，未能找到跃迁记录网址。\n请联系开发者。", "跃迁记录更新失败", MessageBoxIcon.Error);
                 //DDCLog.Info(DCLN.Gui, "Wish log update failed: Authkey not found. (Full mode, Proxy mode)");
                 return;
             }
@@ -316,7 +316,7 @@ namespace DodocoTales.SR.Gui.ViewModels
             var uid = await DDCG.WebLogLoader.TryConnectAndGetUid(authkey, clientType);
             if (uid < 0)
             {
-                Notice.Show("更新失败，未能获取到祈愿记录\n请确认网络是否连接正常，近六个月内是否进行过祈愿。\n请重新启动代理模式，并在游戏中重新打开祈愿历史记录页面。", "祈愿记录更新失败", MessageBoxIcon.Error);
+                Notice.Show("更新失败，未能获取到跃迁记录\n请确认网络是否连接正常，近六个月内是否进行过跃迁。\n请重新启动代理模式，并在游戏中重新打开跃迁历史记录页面。", "跃迁记录更新失败", MessageBoxIcon.Error);
                 IsInUpdate = false;
                 //DDCLog.Info(DCLN.Gui, "Wish log update failed: Fetch failed. (Full mode, Proxy mode)");
                 DDCG.ProxyLoader.Authkey = null;
@@ -331,7 +331,7 @@ namespace DodocoTales.SR.Gui.ViewModels
             await DDCG.WebLogLoader.GetGachaLogsAsFullMode(authkey, clientType);
             IsInUpdate = false;
             DDCV.RefreshAll();
-            Notice.Show("祈愿记录全量更新完毕", "祈愿记录更新完毕", MessageBoxIcon.Success);
+            Notice.Show("跃迁记录全量更新完毕", "跃迁记录更新完毕", MessageBoxIcon.Success);
             //DDCLog.Info(DCLN.Gui, "Wish log update completed. (Full mode, Proxy mode)");
             
         }

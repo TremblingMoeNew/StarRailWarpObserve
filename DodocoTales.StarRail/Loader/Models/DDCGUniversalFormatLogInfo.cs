@@ -19,17 +19,23 @@ namespace DodocoTales.SR.Loader.Models
         [JsonProperty(PropertyName = "export_time")]
         public string ExportTime { get; set; }
 
+        [JsonProperty(PropertyName = "export_timestamp")]
+        public string ExportTimestamp { get; set; }
+
         [JsonProperty(PropertyName = "export_app")]
         public string Application { get; set; } = "DodocoTales.StarRail";
 
         [JsonProperty(PropertyName = "export_app_version")]
         public string ApplicationVersion { get; set; }
 
-        [JsonProperty(PropertyName = "game")]
-        public string Game { get; set; } = "Honkai_Star_Rail";
-
         [JsonProperty(PropertyName = "region_time_zone")]
         public string TimeZone { get; set; }
+
+        [JsonProperty(PropertyName = "srgf_version")]
+        public string StandardVersion { get; set; } = "v1.0";
+
+        [JsonProperty(PropertyName = "game")]
+        public string Game { get; set; } = "Honkai_Star_Rail";
 
         [JsonProperty(PropertyName = "game_biz")]
         public string GameBiz { get; set; }

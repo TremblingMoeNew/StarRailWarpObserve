@@ -2,6 +2,7 @@
 using DodocoTales.SR.Gui;
 using DodocoTales.SR.Gui.Models;
 using DodocoTales.SR.Gui.Views;
+using DodocoTales.SR.Gui.Views.Dialogs;
 using DodocoTales.SR.Gui.Views.Windows;
 using DodocoTales.SR.Library;
 using DodocoTales.SR.Loader;
@@ -176,9 +177,7 @@ namespace DodocoTales
 
         private async void ExportLog_Click(object sender, RoutedEventArgs e)
         {
-            var anonymous = true;
-            var file = "Export/" + DDCG.UFExporter.GenerateExportFileName(VM.CurrentUID, anonymous);
-            await DDCG.UFExporter.Export(file, VM.CurrentUID, anonymous);
+            DDCV.ShowWindowDialog(new DDCVExportDialog());
         }
 
         private async void ImportLog_Click(object sender, RoutedEventArgs e)
