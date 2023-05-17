@@ -46,7 +46,7 @@
                         <Label FontSize="14" Margin="20 0 0 0">UID: </Label>
                         <ComboBox Width="120" Padding="5 0 25 0" BorderThickness="0 0 0 2" BorderBrush="#88F4D4E6" ItemsSource="{Binding UIDOptions}" SelectedValue="{Binding SelectedUID}" pu:ComboBoxHelper.HoverBackground="#1EFF0026" pu:ComboBoxHelper.SelectedBackground="#32FF0026"/>
                     </StackPanel>
-                    <TextBlock TextWrapping="Wrap" Grid.Row="3" Margin="30 10 0 2" Grid.ColumnSpan="3" FontSize="11" Foreground="#888888"><Run Text="星穹铁道抽卡记录格式(SRGF)是由UIGF组织所提出的通用跃迁历史记录格式标准"/><Run Language="zh-cn" Text="，用于数据交换"/><Run Text="。"/><LineBreak/><Run Text="若您需要进行数据备份或向其他工具导入，请选择以该格式导出。请勿手动修改导出的文件。"/></TextBlock>
+                    <TextBlock TextWrapping="Wrap" Grid.Row="3" Margin="30 10 0 2" Grid.ColumnSpan="3" FontSize="11" Foreground="#888888"><Run Text="星穹铁道抽卡记录格式(SRGF)是由UIGF组织所提出的通用跃迁历史记录格式标准，用于数据交换。"/><LineBreak/><Run Text="若您需要进行数据备份或向其他工具导入，请选择以该格式导出。请勿手动修改导出的文件。"/></TextBlock>
                 </Grid>
             </Border>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 5">

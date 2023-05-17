@@ -215,6 +215,7 @@ namespace DodocoTales.SR.Loader
             {
                 res.Add(item.id, ConvertToDDCLLogItem(item, DDCCPoolType.LCEvent));
             }
+            merger.SetTimeZone(last_timezone);
             merger.Merge(res.Values.ToList(), true);
         }
     }

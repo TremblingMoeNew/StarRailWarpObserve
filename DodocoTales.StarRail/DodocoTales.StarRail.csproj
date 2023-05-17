@@ -297,6 +297,7 @@
     <Compile Include="Loader\DDCGGameClientLoader.cs" />
     <Compile Include="Loader\DDCGProxyLoader.cs" />
     <Compile Include="Loader\DDCGUniversalFormatExporter.cs" />
+    <Compile Include="Loader\DDCGUniversalFormatImporter.cs" />
     <Compile Include="Loader\DDCGUpdateLoader.cs" />
     <Compile Include="Loader\DDCGWebGachaLogLoader.cs" />
     <Compile Include="Loader\Models\DDCGGachaLogResponse.cs" />
