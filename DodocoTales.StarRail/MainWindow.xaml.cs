@@ -182,7 +182,7 @@ namespace DodocoTales
 
         private async void ImportLog_Click(object sender, RoutedEventArgs e)
         {
-
+            new DDCVImportDialog().Import();
         }
     }
 }

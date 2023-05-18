@@ -35,15 +35,18 @@ namespace DodocoTales.SR.Loader
             return last == null ? 0 : last.ID;
         }
 
-        public void MergeLogToDict(List<DDCLGachaLogItem> imported, bool replace)
+        public int MergeLogToDict(List<DDCLGachaLogItem> imported, bool replace)
         {
+            int cnt = 0;
             foreach(var item in imported)
             {
                 if(replace || !GachaLogSet.ContainsKey(item.ID))
                 {
                     GachaLogSet[item.ID] = item;
+                    cnt++;
                 }
             }
+            return cnt;
         }
 
         public void RebuildClassifiers()
@@ -132,10 +135,11 @@ namespace DodocoTales.SR.Loader
             }
         }
 
-        public void Merge(List<DDCLGachaLogItem> imported, bool replace)
+        public int Merge(List<DDCLGachaLogItem> imported, bool replace)
         {
-            MergeLogToDict(imported, replace);
+            var cnt = MergeLogToDict(imported, replace);
             WriteToUserlog();
+            return cnt;
         }
         public int CheckTimeWithVersion(DDCLVersionInfo version, DateTime time)
         {

@@ -166,6 +166,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Gui\Views\Dialogs\DDCVImportDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Gui\Views\Screens\DDCVBannerViewScreen.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -231,6 +235,7 @@
     <Compile Include="Gui\ViewModels\DDCVMainWindowVM.cs" />
     <Compile Include="Gui\ViewModels\Dialogs\DDCVExportDialogVM.cs" />
     <Compile Include="Gui\ViewModels\Dialogs\DDCVGameClientManagerWindowEditDialogVM.cs" />
+    <Compile Include="Gui\ViewModels\Dialogs\DDCVImportDialogVM.cs" />
     <Compile Include="Gui\ViewModels\Screens\DDCVBannerViewScreenVM.cs" />
     <Compile Include="Gui\ViewModels\Screens\DDCVSettingsWindowAboutScreenVM.cs" />
     <Compile Include="Gui\ViewModels\Screens\DDCVVersionViewScreenVM.cs" />
@@ -251,6 +256,9 @@
       <DependentUpon>DDCVGameClientManagerWindowEditDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Gui\ViewModels\Windows\DDCVGameClientManagerWindowVM.cs" />
+    <Compile Include="Gui\Views\Dialogs\DDCVImportDialog.xaml.cs">
+      <DependentUpon>DDCVImportDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Gui\Views\Screens\DDCVBannerViewScreen.xaml.cs">
       <DependentUpon>DDCVBannerViewScreen.xaml</DependentUpon>
     </Compile>

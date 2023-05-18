@@ -71,6 +71,10 @@ namespace DodocoTales.SR.Loader
                 ExportTimestamp = DDCL.ToUnixTimestamp(DateTime.Now).ToString(),
                 TimeZone = userlog.TimeZone.ToString(),
                 GameBiz = ConvertGameClientTypeToGameBizString(userlog.ClientType),
+
+                Application = "DodocoTales.StarRail",
+                StandardVersion = "v1.0",
+                Game = "Honkai_Star_Rail",
             };
             if (anonymous)
             {
@@ -100,8 +104,13 @@ namespace DodocoTales.SR.Loader
 
         public async Task<bool> Export(string filename, long uid, bool anonymous)
         {
+            FileInfo fileinfo = new FileInfo(filename);
             try
             {
+                if (!fileinfo.Directory.Exists)
+                {
+                    Directory.CreateDirectory(fileinfo.DirectoryName);
+                }
                 var stream = File.Open(filename, FileMode.Create, FileAccess.Write, FileShare.ReadWrite);
                 StreamWriter writer = new StreamWriter(stream);
                 var serialized = JsonConvert.SerializeObject(CreateUFLog(uid, anonymous), Formatting.Indented);
@@ -115,7 +124,7 @@ namespace DodocoTales.SR.Loader
                 return false;
                 //DDCLog.Error(DCLN.Loader, String.Format("Failed to exported userlog. UID:{0}", uid), e);
             }
-            FileInfo fileinfo = new FileInfo(filename);
+            
             Process.Start(fileinfo.DirectoryName);
             return true;
         }

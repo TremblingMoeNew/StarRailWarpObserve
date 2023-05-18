@@ -15,6 +15,7 @@ namespace DodocoTales.SR.Loader
 
         public static DDCGUpdateLoader UpdateLoader = new DDCGUpdateLoader();
 
+        public static DDCGUniversalFormatImporter UFImporter = new DDCGUniversalFormatImporter();
         public static DDCGUniversalFormatExporter UFExporter = new DDCGUniversalFormatExporter();
     }
 }

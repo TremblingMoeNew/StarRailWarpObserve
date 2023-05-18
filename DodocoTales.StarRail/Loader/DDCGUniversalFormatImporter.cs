@@ -31,11 +31,27 @@ namespace DodocoTales.SR.Loader
         }
 
         public bool IsAcceptableFormat(DDCGUniversalFormatLog log)
-            => ((log?.Info?.StandardVersion) != null || (log?.Info?.AnonymousExport == "true")) && log?.List != null;
+            => ((log?.Info?.StandardVersion != null && log?.Info.UID != null) || (log?.Info?.AnonymousExport == "true")) && log?.List != null;
 
         public bool IsAcceptableLanguage(DDCGUniversalFormatLog log)
              => log?.Info?.Language == "zh-cn";
 
+        public bool IsAnonymousFormat(DDCGUniversalFormatLog log)
+                => log?.Info?.AnonymousExport == "true";
+
+
+        public DDCLGameClientType ConvertGameBizStringToGameClientType(string game_biz)
+        {
+            switch (game_biz)
+            {
+                case "hkrpg_cn":
+                    return DDCLGameClientType.CN;
+                case "hkrpg_global":
+                    return DDCLGameClientType.Global;
+                default:
+                    return DDCLGameClientType.Unknown;
+            }
+        }
         public DDCLGachaLogItem ConvertToDDCLLogItem(DDCGUniversalFormatLogItem UFItem)
         {
             var item = new DDCLGachaLogItem()
@@ -82,7 +98,7 @@ namespace DodocoTales.SR.Loader
             return res.Values.ToList();
         }
 
-        public void Import(long uid, List<DDCLGachaLogItem> loglist, DDCLGameClientType clientType, int timezone)
+        public int Import(long uid, List<DDCLGachaLogItem> loglist, DDCLGameClientType clientType, int timezone)
         {
             var userlog = DDCL.UserDataLib.GetUserLogByUid(uid);
             var merger = new DDCGGachaLogMerger(userlog);
@@ -91,7 +107,7 @@ namespace DodocoTales.SR.Loader
                 userlog.ClientType = clientType;
                 merger.SetTimeZone(timezone);
             }
-            merger.Merge(loglist, false);
+           return merger.Merge(loglist, false);
         }
     }
 }

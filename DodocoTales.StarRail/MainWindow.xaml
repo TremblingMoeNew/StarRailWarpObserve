@@ -116,7 +116,7 @@
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
 
-                            <Button pu:ButtonHelper.ButtonStyle="Hollow" Grid.Row="1" BorderBrush="#803F3F3F" IsEnabled="False" Name ="ImportLog" Click="ImportLog_Click">导入记录</Button>
+                            <Button pu:ButtonHelper.ButtonStyle="Hollow" Grid.Row="1" BorderBrush="#803F3F3F" IsEnabled="True" Name ="ImportLog" Click="ImportLog_Click">导入记录</Button>
                             <Button pu:ButtonHelper.ButtonStyle="Hollow" Grid.Row="1" Grid.Column="1" Height="40" BorderBrush="#803F3F3F" IsEnabled="True" Name="ExportLog" Click="ExportLog_Click">导出记录</Button>
                         </Grid>
                         <Button pu:ButtonHelper.ButtonStyle="Hollow" Grid.ColumnSpan="2" Height="30" BorderBrush="#803F3F3F" ToolTip="管理客户端并选择跃迁记录更新源" Click="OpenGameClientManagerWindowButton_Click">客户端管理</Button>
