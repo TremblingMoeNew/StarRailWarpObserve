@@ -1,4 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using DodocoTales.SR.Common;
+using DodocoTales.SR.Gui.Enums;
 using DodocoTales.SR.Library;
 using DodocoTales.SR.Library.Enums;
 using DodocoTales.SR.Loader;
@@ -16,6 +18,21 @@ namespace DodocoTales.SR.Gui.ViewModels.Dialogs
 {
     public class DDCVImportDialogVM : ObservableObject
     {
+        private DDCGUniversalFormatLog UFlog;
+
+        private Dictionary<string, DDCVSupportedGachaLogFormat> formatOptions;
+        public Dictionary<string, DDCVSupportedGachaLogFormat> FormatOptions
+        {
+            get => formatOptions;
+            set => SetProperty(ref formatOptions, value);
+        }
+
+        private DDCVSupportedGachaLogFormat formatType;
+        public DDCVSupportedGachaLogFormat FormatType
+        {
+            get => formatType;
+            set => SetProperty(ref formatType, value);
+        }
         private string importPath;
         public string ImportPath
         {
@@ -46,6 +63,12 @@ namespace DodocoTales.SR.Gui.ViewModels.Dialogs
             set => SetProperty(ref selectedLanguage, value);
         }
 
+        private Dictionary<string, DDCLGameClientType> clientTypeOptions;
+        public Dictionary<string, DDCLGameClientType> ClientTypeOptions
+        {
+            get => clientTypeOptions;
+            set => SetProperty(ref clientTypeOptions, value);
+        }
         private DDCLGameClientType selectedClientType;
         public DDCLGameClientType SelectedClientType
         {
@@ -89,6 +112,20 @@ namespace DodocoTales.SR.Gui.ViewModels.Dialogs
         }
 
 
+        public DDCVImportDialogVM()
+        {
+            FormatOptions = new Dictionary<string, DDCVSupportedGachaLogFormat>
+            {
+                {"JSON: 星穹铁道抽卡记录格式(SRGF)", DDCVSupportedGachaLogFormat.StarRailGachaLogFormat },
+                //{"JSON: 星穹铁道抽卡记录格式(SRGF)兼容 - 匿名", DDCVSupportedGachaLogFormat.StarRailGachaLogFormatAnonymous },
+            };
+            FormatType = DDCVSupportedGachaLogFormat.StarRailGachaLogFormat;
+            ClientTypeOptions = new Dictionary<string, DDCLGameClientType>
+            {
+                { "国服客户端", DDCLGameClientType.CN },
+                { "国际服客户端", DDCLGameClientType.Global }
+            };
+        }
 
 
 
@@ -158,7 +195,7 @@ namespace DodocoTales.SR.Gui.ViewModels.Dialogs
             ImportPath = SelectLogFile();
             if (ImportPath == null) return false;
 
-            var UFlog = await DDCG.UFImporter.Load(ImportPath);
+            UFlog = await DDCG.UFImporter.Load(ImportPath);
 
             ImportPath = ImportPath.Replace('\\', '/');
             if (!DDCG.UFImporter.IsAcceptableFormat(UFlog))
@@ -191,6 +228,22 @@ namespace DodocoTales.SR.Gui.ViewModels.Dialogs
         public string GetApplicationName(string code)
         {
             return KnownApplication.ContainsKey(code) ? KnownApplication[code] : code;
+        }
+
+        public bool IsImportReady()
+        {
+            return SelectedClientType != DDCLGameClientType.Unknown;
+        }
+
+        public void Import()
+        {
+            var list = DDCG.UFImporter.ConvertList(UFlog.List);
+            var available_cnt = list.Count;
+            var failed_cnt = UFlog.List.Count - available_cnt;
+            var added_cnt = DDCG.UFImporter.Import(SelectedUID, list, SelectedClientType, TimeZone);
+            Notice.Show($"跃迁记录导入完毕。\n{available_cnt}个记录项读取成功，{failed_cnt}个记录项读取失败。\n用户{SelectedUID}新增{added_cnt}个跃迁记录项。", "跃迁记录导入", Panuon.UI.Silver.MessageBoxIcon.Success);
+            DDCL.CurrentUser.SwapUser(SelectedUID);
+            DDCV.RefreshAll();
         }
 
 

@@ -11,7 +11,7 @@
         SizeToContent="Height"
         ResizeMode="NoResize"
         WindowStartupLocation="CenterOwner"
-        Title="DDCVExportDialog"  Width="630">
+        Title="跃迁记录导出"  Width="630">
     <Grid>
         <Grid.DataContext>
             <vm:DDCVExportDialogVM x:Name="VM"/>
@@ -28,10 +28,11 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
                     <Label FontSize="14" Grid.Column="0">保存路径: </Label>
-                    <TextBox Grid.Row="0" Grid.Column="2"
+                    <TextBox Grid.Row="0" Grid.Column="1"
                          BorderBrush="#88F4D4E6"
                          BorderThickness="0 0 0 2"
                          pu:TextBoxHelper.FocusedBorderBrush="#FF008C"
@@ -40,13 +41,11 @@
                          MouseDoubleClick="FilePathBox_MouseDown"
                          pu:TextBoxHelper.Watermark="请先选择需要导出的UID以及导出格式"
                          Text="{Binding ExportPath}" Cursor="IBeam" Grid.ColumnSpan="3" ToolTip="双击以修改路径"/>
-                    <StackPanel Grid.Row="2" Orientation="Horizontal" Grid.ColumnSpan="3">
-                        <Label FontSize="14">导出格式:</Label>
-                        <ComboBox Width="340" Padding="5 0 25 0" BorderThickness="0 0 0 2" BorderBrush="#88F4D4E6" ItemsSource="{Binding FormatOptions}" DisplayMemberPath="Key" SelectedValuePath="Value" SelectedValue="{Binding FormatType}" pu:ComboBoxHelper.HoverBackground="#1EFF0026" pu:ComboBoxHelper.SelectedBackground="#32FF0026"/>
-                        <Label FontSize="14" Margin="20 0 0 0">UID: </Label>
-                        <ComboBox Width="120" Padding="5 0 25 0" BorderThickness="0 0 0 2" BorderBrush="#88F4D4E6" ItemsSource="{Binding UIDOptions}" SelectedValue="{Binding SelectedUID}" pu:ComboBoxHelper.HoverBackground="#1EFF0026" pu:ComboBoxHelper.SelectedBackground="#32FF0026"/>
-                    </StackPanel>
-                    <TextBlock TextWrapping="Wrap" Grid.Row="3" Margin="30 10 0 2" Grid.ColumnSpan="3" FontSize="11" Foreground="#888888"><Run Text="星穹铁道抽卡记录格式(SRGF)是由UIGF组织所提出的通用跃迁历史记录格式标准，用于数据交换。"/><LineBreak/><Run Text="若您需要进行数据备份或向其他工具导入，请选择以该格式导出。请勿手动修改导出的文件。"/></TextBlock>
+                    <Label FontSize="14" Grid.Row="2" Grid.Column="0">导出格式:</Label>
+                    <ComboBox Width="340" Grid.Row="2" Grid.Column="1" Padding="5 0 25 0" BorderThickness="0 0 0 2" BorderBrush="#88F4D4E6" ItemsSource="{Binding FormatOptions}" DisplayMemberPath="Key" SelectedValuePath="Value" SelectedValue="{Binding FormatType}" pu:ComboBoxHelper.HoverBackground="#1EFF0026" pu:ComboBoxHelper.SelectedBackground="#32FF0026"/>
+                    <Label FontSize="14"  Grid.Row="2" Grid.Column="2" Margin="20 0 0 0">UID: </Label>
+                    <ComboBox Width="120"  Grid.Row="2" Grid.Column="3" Padding="5 0 25 0" BorderThickness="0 0 0 2" BorderBrush="#88F4D4E6" ItemsSource="{Binding UIDOptions}" SelectedValue="{Binding SelectedUID}" pu:ComboBoxHelper.HoverBackground="#1EFF0026" pu:ComboBoxHelper.SelectedBackground="#32FF0026"/>
+                    <TextBlock TextWrapping="Wrap" Grid.Row="3" Margin="30 10 0 2" Grid.ColumnSpan="4" FontSize="11" Foreground="#888888"><Run Text="星穹铁道抽卡记录格式(SRGF)是由UIGF组织所提出的通用跃迁历史记录格式标准，用于数据交换。"/><LineBreak/><Run Text="若您需要进行数据备份或向其他工具导入，请选择以该格式导出。请勿手动修改导出的文件。"/></TextBlock>
                 </Grid>
             </Border>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 5">

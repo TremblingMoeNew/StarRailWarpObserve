@@ -33,5 +33,19 @@ namespace DodocoTales.SR.Gui.Views.Dialogs
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
         }
+
+        private void ImportButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (VM.IsImportReady())
+            {
+                VM.Import();
+                Close();
+            }
+        }
+
+        private void CancelButton_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
     }
 }

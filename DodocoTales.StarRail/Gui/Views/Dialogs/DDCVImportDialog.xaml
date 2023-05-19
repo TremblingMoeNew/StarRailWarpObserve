@@ -4,13 +4,140 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DodocoTales.SR.Gui.Views.Dialogs" 
+        xmlns:pu="clr-namespace:Panuon.UI.Silver;assembly=Panuon.UI.Silver" 
         xmlns:vm="clr-namespace:DodocoTales.SR.Gui.ViewModels.Dialogs"
         mc:Ignorable="d"
-        Title="DDCVImportDialog" Height="450" Width="800"
+        ShowInTaskbar="False"
+        SizeToContent="Height"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterOwner"
+        Title="跃迁记录导入"  Width="650"
         Loaded="Window_Loaded">
     <Grid>
         <Grid.DataContext>
             <vm:DDCVImportDialogVM x:Name="VM"/>
         </Grid.DataContext>
+        <StackPanel>
+            <Border Margin="10 10 10 0" BorderBrush="#88888888" BorderThickness="1" CornerRadius="5" Padding="5">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition Height="5"/>
+                        <RowDefinition/>
+                        <RowDefinition Height="5"/>
+                        <RowDefinition/>
+                        <RowDefinition Height="5"/>
+                        <RowDefinition/>
+                        <RowDefinition Height="5"/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="120"/>
+                        <ColumnDefinition Width="20"/>
+                        <ColumnDefinition Width="85"/>
+                        <ColumnDefinition Width="115"/>
+                        <ColumnDefinition Width="20"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="5"/>
+                    </Grid.ColumnDefinitions>
+                    <Label FontSize="14" Grid.Column="0">文件路径:</Label>
+                    <TextBox Grid.Row="0" Grid.Column="1" 
+                         BorderBrush="#88F4D4E6"
+                         BorderThickness="0 0 0 2"
+                         pu:TextBoxHelper.FocusedBorderBrush="#FF008C"
+                         pu:TextBoxHelper.FocusedShadowColor="#FF008C"
+                         IsReadOnly="True"
+                         Text="{Binding ImportPath}" Cursor="IBeam" Grid.ColumnSpan="8" IsEnabled="False"/>
+                    <Label Grid.Row="2" FontSize="14">记录格式:</Label>
+                    <ComboBox Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="4" Padding="5 0 25 0" BorderThickness="0 0 0 2" BorderBrush="#88F4D4E6" ItemsSource="{Binding FormatOptions}" DisplayMemberPath="Key" SelectedValuePath="Value" SelectedValue="{Binding FormatType}" pu:ComboBoxHelper.HoverBackground="#1EFF0026" pu:ComboBoxHelper.SelectedBackground="#32FF0026" IsEnabled="False"/>
+                    <Label Grid.Row="2" Grid.Column="6" FontSize="14">版本:</Label>
+                    <TextBox
+                         Grid.Row="2" Grid.Column="7" 
+                         BorderBrush="#88F4D4E6"
+                         BorderThickness="0 0 0 2"
+                         pu:TextBoxHelper.FocusedBorderBrush="#FF008C"
+                         pu:TextBoxHelper.FocusedShadowColor="#FF008C"
+                         IsReadOnly="True"
+                         Text="{Binding StandardVersion}" Cursor="IBeam"  IsEnabled="False"/>
+                    <Label FontSize="14" Grid.Row="4" Grid.Column="0">导出工具:</Label>
+                    <TextBox Grid.Row="4" Grid.Column="1"
+                        BorderBrush="#88F4D4E6"
+                        BorderThickness="0 0 0 2"
+                        pu:TextBoxHelper.FocusedBorderBrush="#FF008C"
+                        pu:TextBoxHelper.FocusedShadowColor="#FF008C"
+                        IsReadOnly="True"
+                        Text="{Binding Application}" Cursor="IBeam" Grid.ColumnSpan="4" IsEnabled="False"/>
+                    <Label FontSize="14" Grid.Row="4" Grid.Column="6">版本:</Label>
+                    <TextBox Grid.Row="4" Grid.Column="7"
+                            BorderBrush="#88F4D4E6"
+                            BorderThickness="0 0 0 2"
+                            pu:TextBoxHelper.FocusedBorderBrush="#FF008C"
+                            pu:TextBoxHelper.FocusedShadowColor="#FF008C"
+                            IsReadOnly="True"
+                            Text="{Binding ApplicationVersion}" Cursor="IBeam"  IsEnabled="False"/>
+
+                    <Label FontSize="14" Grid.Row="6" Grid.Column="0">导出时间:</Label>
+                    <TextBox Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="4"
+                            BorderBrush="#88F4D4E6"
+                            BorderThickness="0 0 0 2"
+                            pu:TextBoxHelper.FocusedBorderBrush="#FF008C"
+                            pu:TextBoxHelper.FocusedShadowColor="#FF008C"
+                            IsReadOnly="True"
+                            Text="{Binding ExportTime}" Cursor="IBeam"  IsEnabled="False"/>
+
+                    <Label FontSize="14" Grid.Row="6" Grid.Column="6" >语言:</Label>
+                    <ComboBox Grid.Row="6" Grid.Column="7"  Padding="5 0 25 0" BorderThickness="0 0 0 2" BorderBrush="#88F4D4E6" pu:ComboBoxHelper.HoverBackground="#1EFF0026" pu:ComboBoxHelper.SelectedBackground="#32FF0026" IsEnabled="False">
+                        <ComboBoxItem IsSelected="True">zh-cn</ComboBoxItem>
+                        <ComboBoxItem>en-us</ComboBoxItem>
+                    </ComboBox>
+
+                    <Label FontSize="14" Grid.Row="8" Grid.Column="0" HorizontalAlignment="Right">UID:</Label>
+                    <TextBox Grid.Row="8" Grid.Column="1"
+                            BorderBrush="#88F4D4E6"
+                            BorderThickness="0 0 0 2"
+                            pu:TextBoxHelper.FocusedBorderBrush="#FF008C"
+                            pu:TextBoxHelper.FocusedShadowColor="#FF008C"
+                            IsReadOnly="True" IsEnabled="False"
+                            Text="{Binding SelectedUID}" Cursor="IBeam" />
+                    <Label FontSize="14" Grid.Row="8" Grid.Column="3" >客户端类型:</Label>
+                    <ComboBox Grid.Row="8" Grid.Column="4" Padding="5 0 25 0" BorderThickness="0 0 0 2" BorderBrush="#88F4D4E6" pu:ComboBoxHelper.HoverBackground="#1EFF0026" pu:ComboBoxHelper.SelectedBackground="#32FF0026" pu:ComboBoxHelper.Watermark="请选择类型" IsEnabled="{Binding IsNewUID}" ItemsSource="{Binding ClientTypeOptions}" DisplayMemberPath="Key" SelectedValuePath="Value" SelectedValue="{Binding SelectedClientType}"/>
+                    <Label FontSize="14" Grid.Row="8" Grid.Column="6">时区:</Label>
+                    <TextBox Grid.Row="8" Grid.Column="7"
+                            BorderBrush="#88F4D4E6"
+                            BorderThickness="0 0 0 2"
+                            pu:TextBoxHelper.FocusedBorderBrush="#FF008C"
+                            pu:TextBoxHelper.FocusedShadowColor="#FF008C"
+                            IsEnabled="False"
+                            Text="{Binding TimeZone, Converter={StaticResource TimeZoneCon}}" Cursor="IBeam"/>
+                </Grid>
+            </Border>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 5">
+                <Button  Height="30"
+                Width="80"
+                Content="导入"
+                Margin="0 0 10 0"
+                pu:ButtonHelper.ClickStyle="Sink"
+                pu:ButtonHelper.ButtonStyle="Hollow"
+                BorderBrush="#FF7C3232"
+                Foreground="#FF890B0B"
+                pu:ButtonHelper.HoverBrush="#88FF8282"
+                pu:ButtonHelper.CornerRadius="5" Click="ImportButton_Click"
+                />
+                <Button  Height="30"
+                Width="80"
+                Content="取消"
+                Margin="0 0 10 0"
+                pu:ButtonHelper.ClickStyle="Sink"
+                pu:ButtonHelper.ButtonStyle="Hollow"
+                BorderBrush="#FF7C3232"
+                Foreground="#FF890B0B"
+                pu:ButtonHelper.HoverBrush="#88FF8282"
+                pu:ButtonHelper.CornerRadius="5" Click="CancelButton_Click"
+                />
+            </StackPanel>
+        </StackPanel>
     </Grid>
 </Window>

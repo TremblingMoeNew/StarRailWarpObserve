@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Data;
 
 namespace DodocoTales.SR.Gui.Converters
@@ -20,7 +21,11 @@ namespace DodocoTales.SR.Gui.Converters
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            throw new NotImplementedException();
+            var str = (string)value;
+            if (str == "UTC") return 0;
+            else if(str.StartsWith("UTC")) str = str.Substring(3);
+            if (Int32.TryParse(str, out int res)) return res;
+            return DependencyProperty.UnsetValue;
         }
     }
 }
