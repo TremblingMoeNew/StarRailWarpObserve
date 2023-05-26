@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -19,8 +20,15 @@ namespace DodocoTales.SR.Loader.Models
         [JsonProperty(PropertyName = "export_time")]
         public string ExportTime { get; set; }
 
-        [JsonProperty(PropertyName = "export_timestamp")]
+        [JsonIgnore]
         public string ExportTimestamp { get; set; }
+
+        [JsonProperty(PropertyName = "export_timestamp")]
+        public JToken SerializedTimestamp
+        {
+            get => int.TryParse(ExportTimestamp, out var ts) ? new JValue(ts) : null;
+            set => ExportTimestamp = value.ToString();
+        }
 
         [JsonProperty(PropertyName = "export_app")]
         public string Application { get; set; }
@@ -28,8 +36,15 @@ namespace DodocoTales.SR.Loader.Models
         [JsonProperty(PropertyName = "export_app_version")]
         public string ApplicationVersion { get; set; }
 
-        [JsonProperty(PropertyName = "region_time_zone")]
+        [JsonIgnore]
         public string TimeZone { get; set; }
+
+        [JsonProperty(PropertyName = "region_time_zone")]
+        public JToken SerializedTimeZone
+        {
+            get => int.TryParse(TimeZone,out var tz) ? new JValue(tz) : null;
+            set => TimeZone = value.ToString();
+        }
 
         [JsonProperty(PropertyName = "srgf_version")]
         public string StandardVersion { get; set; } 
