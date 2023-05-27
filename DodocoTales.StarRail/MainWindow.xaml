@@ -76,7 +76,7 @@
                    pu:ButtonHelper.ButtonStyle="Link"
                    FontSize="16" Click="UpdatePanelButton_Click" MouseRightButtonUp="UpdatePanelButton_Click" Content="{Binding CurrentUID, Converter={StaticResource UIDAnonyCon}}"/>
         </Grid>
-        <Popup x:Name="UpdatePanel" StaysOpen="False" PopupAnimation="Fade" PlacementTarget="{Binding ElementName=BottomMenu}" Placement="Top" AllowsTransparency="True" >
+        <Popup x:Name="UpdatePanel" PopupAnimation="Fade" PlacementTarget="{Binding ElementName=BottomMenu}" Placement="Top" AllowsTransparency="True" StaysOpen="{Binding IsInUpdate}">
             <Grid>
                 <Border Width="220" BorderBrush="#888888" BorderThickness="1" Margin="5">
                     <Border.Effect>

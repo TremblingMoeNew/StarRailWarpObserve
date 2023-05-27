@@ -243,7 +243,7 @@ namespace DodocoTales.SR.Gui.ViewModels.Dialogs
             var added_cnt = DDCG.UFImporter.Import(SelectedUID, list, SelectedClientType, TimeZone);
             Notice.Show($"跃迁记录导入完毕。\n{available_cnt}个记录项读取成功，{failed_cnt}个记录项读取失败。\n用户{SelectedUID}新增{added_cnt}个跃迁记录项。", "跃迁记录导入", Panuon.UI.Silver.MessageBoxIcon.Success);
             DDCL.CurrentUser.SwapUser(SelectedUID);
-            DDCV.RefreshAll();
+            DDCS.Emit_CurUserUpdateCompleted();
         }
 
 

@@ -39,6 +39,7 @@ namespace DodocoTales
             DDCV.MainNavigater = MainNavigator;
             DDCV.RegisterMainScreens();
             DDCS.CurUserSwapCompleted += OnUIDSwapCompleted;
+            DDCS.CurUserUpdateCompleted += OnCurrentUserUpdateCompleted;
             DDCS.ProxyCaptured += OnProxyCaptured;
             DDCS.ClientNeedsUpdate += OnClientUpdateDownloadStart;
             DDCS.ClientUpdateDownloadCompleted += OnClientUpdateDownloadCompleted;
@@ -114,7 +115,11 @@ namespace DodocoTales
         private void OnUIDSwapCompleted(long uid)
         {
             VM.RefreshCurrentUID();
-            if (!VM.IsInUpdate) DDCV.RefreshAll();
+        }
+
+        private void OnCurrentUserUpdateCompleted()
+        {
+            VM.RefreshCurrentUID();
         }
 
         private async void OnProxyCaptured()

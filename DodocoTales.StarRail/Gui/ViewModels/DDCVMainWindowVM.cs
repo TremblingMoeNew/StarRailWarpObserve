@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using DodocoTales.SR.Common;
 using DodocoTales.SR.Gui.Models;
 using DodocoTales.SR.Gui.Views.Windows;
 using DodocoTales.SR.Library;
@@ -216,8 +217,8 @@ namespace DodocoTales.SR.Gui.ViewModels
             
             await DDCG.WebLogLoader.GetGachaLogsAsNormalMode(authkey, client.ClientType);
             IsInUpdate = false;
-            DDCV.RefreshAll();
             Notice.Show("跃迁记录常规更新完毕", "跃迁记录更新完毕", MessageBoxIcon.Success);
+            DDCS.Emit_CurUserUpdateCompleted();
             //DDCLog.Info(DCLN.Gui, "Wish log update completed. (Append mode, Cache mode)");
             
         }
@@ -257,10 +258,10 @@ namespace DodocoTales.SR.Gui.ViewModels
             
             await DDCG.WebLogLoader.GetGachaLogsAsFullMode(authkey, client.ClientType);
             IsInUpdate = false;
-            DDCV.RefreshAll();
             Notice.Show("跃迁记录全量更新完毕", "跃迁记录更新完毕", MessageBoxIcon.Success);
+            DDCS.Emit_CurUserUpdateCompleted();
             //DDCLog.Info(DCLN.Gui, "Wish log update completed. (Full mode, Cache mode)");
-            
+
         }
 
         public async Task WishLogUpdateAppendedFromProxy()
@@ -294,10 +295,10 @@ namespace DodocoTales.SR.Gui.ViewModels
             DDCL.CurrentUser.SwapUser(user);
             await DDCG.WebLogLoader.GetGachaLogsAsNormalMode(authkey, clientType);
             IsInUpdate = false;
-            DDCV.RefreshAll();
             Notice.Show("跃迁记录常规更新完毕", "跃迁记录更新完毕", MessageBoxIcon.Success);
+            DDCS.Emit_CurUserUpdateCompleted();
             //DDCLog.Info(DCLN.Gui, "Wish log update completed. (Append mode, Proxy mode)");
-            
+
         }
 
         public async Task WishLogUpdateFullFromProxy()
@@ -330,10 +331,10 @@ namespace DodocoTales.SR.Gui.ViewModels
             DDCL.CurrentUser.SwapUser(user);
             await DDCG.WebLogLoader.GetGachaLogsAsFullMode(authkey, clientType);
             IsInUpdate = false;
-            DDCV.RefreshAll();
             Notice.Show("跃迁记录全量更新完毕", "跃迁记录更新完毕", MessageBoxIcon.Success);
+            DDCS.Emit_CurUserUpdateCompleted();
             //DDCLog.Info(DCLN.Gui, "Wish log update completed. (Full mode, Proxy mode)");
-            
+
         }
     }
 

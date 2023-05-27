@@ -42,6 +42,10 @@ namespace DodocoTales.SR.Common
         public static void Emit_CurUserSwapCompleted(long uid)
             => ExecUidParamDelegate(CurUserSwapCompleted, uid);
 
+        public static DDCSCommonDelegate CurUserUpdateCompleted;
+        public static void Emit_CurUserUpdateCompleted()
+            => ExecCommonDelegate(CurUserUpdateCompleted);
+
         public static DDCSUidParamDelegate UserLibUidDeplicated;
         public static void Emit_UserLibUidDeplicated(long uid)
             => ExecUidParamDelegate(UserLibUidDeplicated, uid);
