@@ -16,7 +16,7 @@ namespace DodocoTales.SR.Gui.Converters
             try
             {
                 long val = System.Convert.ToInt64(value);
-                if (val > 1000000) res = String.Format("UID:{0}****{1}", val / 1000000, val % 100);
+                if (val > 1000000) res = String.Format("UID:{0}****{1:D2}", val / 1000000, val % 100);
                 else if (val >= 10000) res = String.Format("UID:{0} (匿名)", val);
                 else if (val >= 0) res = String.Format("UID:{0} (临时)", val);
             }

@@ -27,7 +27,7 @@ namespace DodocoTales.SR.Loader.Models
         public JToken SerializedTimestamp
         {
             get => int.TryParse(ExportTimestamp, out var ts) ? new JValue(ts) : null;
-            set => ExportTimestamp = value.ToString();
+            set => ExportTimestamp = value?.ToString();
         }
 
         [JsonProperty(PropertyName = "export_app")]
@@ -43,7 +43,7 @@ namespace DodocoTales.SR.Loader.Models
         public JToken SerializedTimeZone
         {
             get => int.TryParse(TimeZone,out var tz) ? new JValue(tz) : null;
-            set => TimeZone = value.ToString();
+            set => TimeZone = value?.ToString();
         }
 
         [JsonProperty(PropertyName = "srgf_version")]
