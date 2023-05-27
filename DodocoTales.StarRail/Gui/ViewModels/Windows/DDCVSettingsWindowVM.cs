@@ -32,7 +32,8 @@ namespace DodocoTales.SR.Gui.ViewModels.Windows
             MenuItems = new ObservableCollection<DDCVMainPanelItemModel>()
             {
                 //new DDCVMainPanelItemModel("用户","User", 0),
-                new DDCVMainPanelItemModel("关于","About",0)
+                new DDCVMainPanelItemModel("关于","About",0),
+                new DDCVMainPanelItemModel("更新日志","ChangeLog",0),
             };
         }
 
@@ -41,7 +42,8 @@ namespace DodocoTales.SR.Gui.ViewModels.Windows
             Navigater = navigator;
             //RegisterScreen("User", new DDCVSettingsWindowUsersScreen());
             RegisterScreen("About", new DDCVSettingsWindowAboutScreen());
-            MenuItems[0].IsSelected = true;
+            RegisterScreen("ChangeLog", new DDCVSettingsWindowChangeLogScreen());
+            SelectMenu("About");
         }
 
         public void RegisterScreen(string tag, DDCVSwapableScreen screen)
@@ -63,6 +65,12 @@ namespace DodocoTales.SR.Gui.ViewModels.Windows
             }
             Current = ns;
             Current.Visibility=Visibility.Visible;
+            Current.Refresh();
+        }
+
+        public void SelectMenu(string tag)
+        {
+            MenuItems.ToList().ForEach(x=>x.IsSelected = (x.Tag == tag));
         }
     }
 }

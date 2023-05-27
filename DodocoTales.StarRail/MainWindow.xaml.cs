@@ -66,7 +66,6 @@ namespace DodocoTales
 
             await DDCL.SettingsLib.LoadSettingsAsync();
 
-
             if (!versionchecked)
             {
                 Notice.Show("元数据更新检查失败，请检查网络连接。抽卡记录更新功能将被禁用。", "错误", MessageBoxIcon.Error);
@@ -75,17 +74,21 @@ namespace DodocoTales
             {
                 Notice.Show("卡池信息载入失败。", "错误", MessageBoxIcon.Error);
             }
-            VM.IsInUpdate = !(versionchecked && bannerlibloaded);
-
             if (bannerlibloaded && DDCL.UserDataLib.UserExists(DDCL.SettingsLib.LastUserUID))
             {
                 DDCL.CurrentUser.SwapUser(DDCL.SettingsLib.LastUserUID);
             }
             DDCV.RefreshAll();
+            if(DDCG.UpdateLoader.ChangeLog != null)
+            {
+                Console.WriteLine(DDCG.UpdateLoader.ChangeLog);
+            }
             if (DDCL.MetaVersionLib.FirstRunAfterUpdate)
             {
                 Notice.Show("应用更新完毕", "更新", MessageBoxIcon.Info);
+                DDCV.ShowWindowDialog(new DDCVSettingsWindow().SwapToChangeLogScreen());
             }
+            VM.IsInUpdate = !(versionchecked && bannerlibloaded);
         }
 
         private void MainPanel_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)

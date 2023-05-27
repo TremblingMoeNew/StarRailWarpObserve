@@ -185,6 +185,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Gui\Views\Screens\DDCVSettingsWindowChangeLogScreen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Gui\Views\Screens\DDCVSettingsWindowUsersScreen.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -241,6 +245,7 @@
     <Compile Include="Gui\ViewModels\Dialogs\DDCVImportDialogVM.cs" />
     <Compile Include="Gui\ViewModels\Screens\DDCVBannerViewScreenVM.cs" />
     <Compile Include="Gui\ViewModels\Screens\DDCVSettingsWindowAboutScreenVM.cs" />
+    <Compile Include="Gui\ViewModels\Screens\DDCVSettingsWindowChangeLogScreenVM.cs" />
     <Compile Include="Gui\ViewModels\Screens\DDCVVersionViewScreenVM.cs" />
     <Compile Include="Gui\ViewModels\Windows\DDCVSettingsWindowVM.cs" />
     <Compile Include="Gui\Views\Cards\DDCVHomeSceneCharEventCard.xaml.cs">
@@ -270,6 +275,9 @@
     </Compile>
     <Compile Include="Gui\Views\Screens\DDCVSettingsWindowAboutScreen.xaml.cs">
       <DependentUpon>DDCVSettingsWindowAboutScreen.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Gui\Views\Screens\DDCVSettingsWindowChangeLogScreen.xaml.cs">
+      <DependentUpon>DDCVSettingsWindowChangeLogScreen.xaml</DependentUpon>
     </Compile>
     <Compile Include="Gui\Views\Screens\DDCVSettingsWindowUsersScreen.xaml.cs">
       <DependentUpon>DDCVSettingsWindowUsersScreen.xaml</DependentUpon>

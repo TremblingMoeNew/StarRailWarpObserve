@@ -39,5 +39,11 @@ namespace DodocoTales.SR.Gui.Views.Windows
             if (item == MainPanel.SelectedItem)
                 VM.SwapScreen(item.Tag);
         }
+
+        public DDCVSettingsWindow SwapToChangeLogScreen()
+        {
+            VM.SelectMenu("ChangeLog");
+            return this;
+        }
     }
 }

@@ -22,6 +22,7 @@ namespace DodocoTales.SR.Loader
 
         private readonly string ddc_sr_api_meta = "https://sr-api.dodocotales.cc/v1/metadata/";
         private readonly string ddc_sr_api_client = "https://sr-api.dodocotales.cc/v1/download/";
+        private readonly string starwo_changelog = "https://starwo.dodocotales.cc/changelog.md";
         public string MetadataURL
         {
             get { return ddc_sr_api_meta; }
@@ -31,10 +32,16 @@ namespace DodocoTales.SR.Loader
             get { return ddc_sr_api_client; }
         }
 
+        public string ChangeLogURL
+        {
+            get => starwo_changelog;
+        }
         public readonly string LocalLibPath = "Library/";
         public readonly string BannerLibraryFileName = "BannerLibrary.json";
         public readonly string VersionFileName = "Version.json";
         public readonly string ClientFileName = "Release.zip";
+
+        public string ChangeLog { get; set; }   
 
         public DDCGUpdateLoader()
         {
@@ -119,7 +126,18 @@ namespace DodocoTales.SR.Loader
             }
         }
 
-
+        public async Task LoadChangeLog()
+        {
+            try
+            {
+                ChangeLog = await client.GetStringAsync(ChangeLogURL);
+                Console.WriteLine(ChangeLog);
+            }
+            catch
+            {
+                ChangeLog = null;
+            }
+        }
 
         public static readonly string UpdateStoragePath = "Update/";
         public static readonly string UpdateFilePath = "Update/Latest.zip";
