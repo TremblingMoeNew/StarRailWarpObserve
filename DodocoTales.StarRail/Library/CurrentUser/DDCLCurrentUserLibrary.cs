@@ -1,6 +1,7 @@
 ﻿using DodocoTales.SR.Common;
 using DodocoTales.SR.Common.Enums;
 using DodocoTales.SR.Library.CurrentUser.Models;
+using DodocoTales.SR.Library.Enums;
 using DodocoTales.SR.Library.UserDataLibrary.Models;
 using System;
 using System.Collections.Generic;
@@ -123,7 +124,7 @@ namespace DodocoTales.SR.Library.CurrentUser
             Logs.Clear();
 
 
-            foreach (var b in DDCL.BannerLib.Banners)
+            foreach (var b in DDCL.BannerLib.Banners.FindAll(x => x.ActivateStatus != DDCLActivateStatus.Incoming))
             {
                 DDCLBannerLogItem bannerlog = new DDCLBannerLogItem
                 {
