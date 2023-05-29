@@ -10,4 +10,5 @@
     <converter:DDCVVisibleByAvailableUIDConverter x:Key="VisByAvaliableUIDCon"/>
     <converter:DDCVClientTypeConverter x:Key="ClientTypeCon"/>
     <converter:DDCVTimeZoneConverter x:Key="TimeZoneCon"/>
+    <converter:DDCVItemNameColorConverter x:Key="ItemNameColor"/>
 </ResourceDictionary>

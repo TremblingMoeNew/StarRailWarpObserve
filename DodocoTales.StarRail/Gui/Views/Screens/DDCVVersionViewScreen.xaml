@@ -102,7 +102,7 @@
                                         <ItemsControl.ItemTemplate>
                                             <DataTemplate>
                                                 <StackPanel Margin="3 0 3 3" Orientation="Horizontal">
-                                                    <TextBlock FontSize="12">
+                                                    <TextBlock FontSize="12" Foreground="{Binding Name,Converter={StaticResource ItemNameColor}}">
                                                         <TextBlock.Text>
                                                             <MultiBinding StringFormat="{}{0}[{1}]">
                                                                 <Binding Path="Name"/>
