@@ -23,6 +23,7 @@ namespace DodocoTales.SR.Gui.ViewModels.Cards
             {
                 SoftPityActivated = true;
                 SoftPityChance = 0.008 + (currentBasicRountCount - 66) * 0.112 + (currentBasicRountCount>70 ? (currentBasicRountCount - 70) * -0.056 :0);
+                SoftPityChance *= (CurrentRoundCurrent == currentBasicRountCount) ? 0.75 : 1;
             }
             else
             {
