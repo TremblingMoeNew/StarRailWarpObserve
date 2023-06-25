@@ -159,7 +159,7 @@ namespace DodocoTales
         }
         private async void UpdateWishButton_Click(object sender, RoutedEventArgs e)
         {
-            await VM.WishLogUpdateAppended();
+            if (!VM.IsWaiting) await VM.WishLogUpdateAppended();
         }
         private async void UpdateWishFullModeButton_Click(object sender, RoutedEventArgs e)
         {

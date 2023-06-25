@@ -63,11 +63,29 @@
             <Button pu:ButtonHelper.ButtonStyle="Link"
                     BorderBrush="#963F3F3F"
                     Foreground="#961E1E1E"
+                    Background="#00FFFFFF"
+                    BorderThickness="0"
                     pu:ButtonHelper.HoverBrush="#1E1E1E"
                     FontFamily="Segoe MDL2 Assets"
                     FontSize="24"
                     Padding="5"
-                    Grid.Column="1" MouseRightButtonUp="UpdatePanelButton_Click" Click="UpdateWishButton_Click">&#xE72C;</Button>
+                    Grid.Column="1" MouseRightButtonUp="UpdatePanelButton_Click" Click="UpdateWishButton_Click">
+                <TextBlock>
+                    <TextBlock.Style>
+                        <Style TargetType="TextBlock">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsWaiting}" Value="True">
+                                    <Setter Property="Text" Value="&#xE8D8;"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                            <Style.Setters>
+                                <Setter Property="Text" Value="&#xE72C;"/>
+                            </Style.Setters>
+                        </Style>
+                    </TextBlock.Style>
+                    
+                </TextBlock>
+            </Button>
             <Button VerticalContentAlignment="Center" 
                    HorizontalContentAlignment="Center" 
                    Grid.Column="2"
