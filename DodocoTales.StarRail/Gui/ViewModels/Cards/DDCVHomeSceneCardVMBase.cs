@@ -20,6 +20,21 @@ namespace DodocoTales.SR.Gui.ViewModels.Cards
 {
     public class DDCVHomeSceneCardVMBase : ObservableObject
     {
+        private bool softPityActivated;
+        public bool SoftPityActivated
+        {
+            get => softPityActivated;
+            set => SetProperty(ref softPityActivated, value);
+        }
+
+        public double softPityChance;
+        public double SoftPityChance
+        {
+            get => softPityChance;
+            set => SetProperty(ref softPityChance, value);
+        }
+        protected int currentBasicRountCount;
+
         #region Properties_CurrentBanner_Title
 
         private string version;
@@ -239,6 +254,7 @@ namespace DodocoTales.SR.Gui.ViewModels.Cards
             DBVCBannerPermanent.Value = cbp;
             DBVCurrent.Value = cur;
             CurrentRoundCurrent = pbp + pbu + cbp + cur;
+            currentBasicRountCount = cur + (cbp > 0 ? 0 : pbu);
             RefreshCurrentRoundRemains();
         }
         public void RefreshCurrentRoundRemains()

@@ -126,15 +126,28 @@
                                 </TextBlock.Text>
                             </TextBlock>
                         </StackPanel>
-                        <Label HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,10">
-                            <TextBlock FontSize="14">
-                                <TextBlock.Text>
-                                    <MultiBinding StringFormat="{}总计：{0}">
-                                        <Binding Path="GlobalTotal"/>
-                                    </MultiBinding>
-                                </TextBlock.Text>
-                            </TextBlock>
-                        </Label>
+                        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,10" Orientation="Horizontal">
+                            <Label>
+                                <TextBlock FontSize="14">
+                                    <TextBlock.Text>
+                                        <MultiBinding StringFormat="{}总计：{0}">
+                                            <Binding Path="GlobalTotal"/>
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                            </Label>
+                            <Label Visibility="{Binding SoftPityActivated, Converter={StaticResource VisByBoolCon}}">
+                                <TextBlock FontSize="14">
+                                    <TextBlock.ToolTip>
+                                        <StackPanel>
+                                            <TextBlock>软保底机制已激活</TextBlock>
+                                            <TextBlock Text="{Binding SoftPityChance, StringFormat={}当前概率:{0:P2}}"/>
+                                        </StackPanel>
+                                    </TextBlock.ToolTip>
+                                    ↑
+                                </TextBlock>
+                            </Label>
+                        </StackPanel>
                     </Grid>
                 </StackPanel>
                 <Grid Margin="0 0 5 5" Grid.Column="1" Grid.Row="3" Grid.RowSpan="10" Grid.ColumnSpan="5" Name="Details" Visibility="Collapsed">

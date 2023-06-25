@@ -19,6 +19,15 @@ namespace DodocoTales.SR.Gui.ViewModels.Cards
             SetDBVRate(DBVGlobalR5Up, GlobalRank5Up, GlobalTotal, 0.6, 2.38);
             SetDBVRate(DBVGlobalR4, GlobalRank4, GlobalTotal, 9, 19.5);
             SetDBVRate(DBVGlobalR4Up, GlobalRank4Up, GlobalTotal, 5, 18.8);
+            if (currentBasicRountCount > 66)
+            {
+                SoftPityActivated = true;
+                SoftPityChance = 0.008 + (currentBasicRountCount - 66) * 0.112 + (currentBasicRountCount>70 ? (currentBasicRountCount - 70) * -0.056 :0);
+            }
+            else
+            {
+                SoftPityActivated = false;
+            }
         }
     }
 }
