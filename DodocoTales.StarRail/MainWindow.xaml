@@ -113,7 +113,8 @@
                            pu:ButtonHelper.HoverBrush="#000000"
                            pu:ButtonHelper.ButtonStyle="Link"
                            ToolTip="点击跳转到设置-用户管理"
-                            Content="{Binding CurrentUID,Converter={StaticResource UIDNormalCon}}"/>
+                            Content="{Binding CurrentUID,Converter={StaticResource UIDNormalCon}}"
+                            Click="UIDButton_Click"/>
                         <Label HorizontalContentAlignment="Right" Margin="0 0 20 0" Padding="0" Foreground="#333333" Visibility="{Binding CurrentUID, Converter={StaticResource VisByAvaliableUIDCon}}">
                             <TextBlock>
                                 <TextBlock.Text>

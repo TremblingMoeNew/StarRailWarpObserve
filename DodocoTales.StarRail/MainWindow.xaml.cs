@@ -196,5 +196,10 @@ namespace DodocoTales
             if (!InitializeCompleted) return;
             new DDCVImportDialog().Import();
         }
+
+        private void UIDButton_Click(object sender, RoutedEventArgs e)
+        {
+            DDCV.ShowWindowDialog(new DDCVSettingsWindow().SwapToUsersScreen());
+        }
     }
 }

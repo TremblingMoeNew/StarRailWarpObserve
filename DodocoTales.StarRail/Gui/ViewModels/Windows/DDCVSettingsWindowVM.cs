@@ -31,7 +31,7 @@ namespace DodocoTales.SR.Gui.ViewModels.Windows
 
             MenuItems = new ObservableCollection<DDCVMainPanelItemModel>()
             {
-                new DDCVMainPanelItemModel("用户","User", 0),
+                new DDCVMainPanelItemModel("用户","Users", 0),
                 new DDCVMainPanelItemModel("关于","About",0),
                 new DDCVMainPanelItemModel("更新日志","ChangeLog",0),
             };
@@ -40,7 +40,7 @@ namespace DodocoTales.SR.Gui.ViewModels.Windows
         public void Initialize(Grid navigator)
         {
             Navigater = navigator;
-            RegisterScreen("User", new DDCVSettingsWindowUsersScreen());
+            RegisterScreen("Users", new DDCVSettingsWindowUsersScreen());
             RegisterScreen("About", new DDCVSettingsWindowAboutScreen());
             RegisterScreen("ChangeLog", new DDCVSettingsWindowChangeLogScreen());
             SelectMenu("About");

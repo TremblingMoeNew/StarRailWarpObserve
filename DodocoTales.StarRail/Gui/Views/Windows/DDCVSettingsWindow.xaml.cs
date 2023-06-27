@@ -40,6 +40,12 @@ namespace DodocoTales.SR.Gui.Views.Windows
                 VM.SwapScreen(item.Tag);
         }
 
+        public DDCVSettingsWindow SwapToUsersScreen()
+        {
+            VM.SelectMenu("Users");
+            return this;
+        }
+
         public DDCVSettingsWindow SwapToChangeLogScreen()
         {
             VM.SelectMenu("ChangeLog");
