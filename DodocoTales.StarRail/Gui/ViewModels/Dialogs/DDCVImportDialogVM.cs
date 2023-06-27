@@ -254,11 +254,11 @@ namespace DodocoTales.SR.Gui.ViewModels.Dialogs
             { "star-rail-gacha" ,               "崩坏:星穹铁道抽卡导出工具 (DancingSnow0517)" },
             { "StarRailTools",                  "崩坏:星穹铁道跃迁记录导出工具 (cntvc)" },
             { "StarRailToolkit",                "《崩坏：星穹铁道》工具箱 (LittleNyima)" },
-            { "Asta",                           "Asta (AuroraZiling)" },
+            { "asta",                           "Asta (AuroraZiling)" },
             { "SRCat",                          "SRCat (BoxCatTeam)" },
             { "star-rail-gacha-export",         "「崩坏 · 星穹铁道」 跃迁记录导出脚本 (vikiboss)" },
             { "com.lgou2w.hoyo.gacha",          "HoYo.Gacha (lgou2w)" },
-            { "Starward (Scighost)",            "Starward" },
+            { "Starward",                       "Starward (Scighost)" },
             { "PaiGram",                        "PaiGram (PaiGramTeam)" },
         };
     }

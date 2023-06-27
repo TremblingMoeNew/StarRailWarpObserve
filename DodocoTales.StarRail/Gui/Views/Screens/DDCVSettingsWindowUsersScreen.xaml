@@ -12,6 +12,7 @@
         <Grid.DataContext>
             <vm:DDCVSettingsWindowUsersScreenVM x:Name="VM"/>
         </Grid.DataContext>
+        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
         <Grid Margin="10">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
@@ -103,5 +104,6 @@
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
         </Grid>
+        </ScrollViewer>
     </Grid>
 </local:DDCVSwapableScreen>
