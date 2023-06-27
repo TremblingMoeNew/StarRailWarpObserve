@@ -197,11 +197,11 @@
                     <Grid Grid.ColumnSpan="20">
                         <Rectangle Height="0.5" Fill="#999999" Margin="5 0"/>
                     </Grid>
-                    <Label Grid.Row="1" Grid.ColumnSpan="2" Margin="10 0 0 0">抽数总计：</Label>
-                    <Label Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" HorizontalContentAlignment="Left" Margin="0 0 0 0" Content="{Binding GlobalTotal}"/>
-                    <Label Grid.Row="2" Grid.Column="1" HorizontalContentAlignment="Right">五星：</Label>
-                    <Label Grid.Row="2" Grid.Column="2" Content="{Binding GlobalRank5}"/>
-                    <Label Grid.Row="2" Grid.Column="3">
+                    <Label Grid.Row="1" Grid.ColumnSpan="2" Margin="10 0 0 0" FontSize="14">抽数总计：</Label>
+                    <Label Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" HorizontalContentAlignment="Left" Margin="0 0 0 0" FontSize="14" Content="{Binding GlobalTotal}"/>
+                    <Label Grid.Row="2" Grid.Column="1" HorizontalContentAlignment="Right" FontSize="13">五星：</Label>
+                    <Label Grid.Row="2" Grid.Column="2" Content="{Binding GlobalRank5}" FontSize="13"/>
+                    <Label Grid.Row="2" Grid.Column="3" FontSize="13">
                         <TextBlock>
                             <TextBlock.Text>
                                 <MultiBinding Converter="{StaticResource PercentageCon}" StringFormat="{}[{0}]">
@@ -211,9 +211,9 @@
                             </TextBlock.Text>
                         </TextBlock>
                     </Label>
-                    <Label Grid.Row="3" Grid.Column="1" HorizontalContentAlignment="Right" Padding="6 0 6 6">UP：</Label>
-                    <Label Grid.Row="3" Grid.Column="2" Padding="5 0 0 0" Content="{Binding GlobalRank5Up}"/>
-                    <Label Grid.Row="3" Grid.Column="3" Padding="5 0 0 0">
+                    <Label Grid.Row="3" Grid.Column="1" HorizontalContentAlignment="Right" Padding="6 0 6 6" FontSize="13">UP：</Label>
+                    <Label Grid.Row="3" Grid.Column="2" Padding="5 0 0 0" Content="{Binding GlobalRank5Up}" FontSize="13"/>
+                    <Label Grid.Row="3" Grid.Column="3" Padding="5 0 0 0" FontSize="13">
                         <TextBlock>
                             <TextBlock.Text>
                                 <MultiBinding Converter="{StaticResource PercentageCon}" StringFormat="{}[{0}]">
@@ -223,9 +223,9 @@
                             </TextBlock.Text>
                         </TextBlock>
                     </Label>
-                    <Label Grid.Row="4" Grid.Column="1" HorizontalContentAlignment="Right">四星：</Label>
-                    <Label Grid.Row="4" Grid.Column="2" Content="{Binding GlobalRank4}"/>
-                    <Label Grid.Row="4" Grid.Column="3">
+                    <Label Grid.Row="4" Grid.Column="1" HorizontalContentAlignment="Right" FontSize="13">四星：</Label>
+                    <Label Grid.Row="4" Grid.Column="2" Content="{Binding GlobalRank4}" FontSize="13"/>
+                    <Label Grid.Row="4" Grid.Column="3" FontSize="13">
                         <TextBlock>
                             <TextBlock.Text>
                                 <MultiBinding Converter="{StaticResource PercentageCon}" StringFormat="{}[{0}]">
@@ -235,9 +235,9 @@
                             </TextBlock.Text>
                         </TextBlock>
                     </Label>
-                    <Label Grid.Row="5" Grid.Column="1" HorizontalContentAlignment="Right" Padding="6 0 6 6">UP：</Label>
-                    <Label Grid.Row="5" Grid.Column="2" Padding="5 0 0 0" Content="{Binding GlobalRank4Up}"/>
-                    <Label Grid.Row="5" Grid.Column="3" Padding="5 0 0 0">
+                    <Label Grid.Row="5" Grid.Column="1" HorizontalContentAlignment="Right" Padding="6 0 6 6" FontSize="13">UP：</Label>
+                    <Label Grid.Row="5" Grid.Column="2" Padding="5 0 0 0" Content="{Binding GlobalRank4Up}" FontSize="13"/>
+                    <Label Grid.Row="5" Grid.Column="3" Padding="5 0 0 0" FontSize="13">
                         <TextBlock>
                             <TextBlock.Text>
                                 <MultiBinding Converter="{StaticResource PercentageCon}" StringFormat="{}[{0}]">
@@ -249,16 +249,16 @@
                     </Label>
 
 
-                    <Label  VerticalContentAlignment="Bottom" Grid.Row="1" Grid.Column="5" Grid.ColumnSpan="2">当前卡池：</Label>
-                    <Label  VerticalContentAlignment="Bottom" Grid.Row="1" Grid.Column="7" Grid.ColumnSpan="1" HorizontalContentAlignment="Right" Content="{Binding CurrentTotal}"/>
-                    <Label Grid.Row="2" Grid.Column="6" HorizontalContentAlignment="Right">五星：</Label>
-                    <Label Grid.Row="2" Grid.Column="7" Content="{Binding CurrentRank5}"/>
-                    <Label Grid.Row="3" Grid.Column="6" HorizontalContentAlignment="Right" Padding="6 0 6 6">UP：</Label>
-                    <Label Grid.Row="3" Grid.Column="7" Padding="5 0 0 0" Content="{Binding CurrentRank5Up}"/>
-                    <Label Grid.Row="4" Grid.Column="6" HorizontalContentAlignment="Right">四星：</Label>
-                    <Label Grid.Row="4" Grid.Column="7" Content="{Binding CurrentRank4}"/>
-                    <Label Grid.Row="5" Grid.Column="6" HorizontalContentAlignment="Right" Padding="6 0 6 6">UP：</Label>
-                    <Label Grid.Row="5" Grid.Column="7" Padding="5 0 0 0" Content="{Binding CurrentRank4Up}"/>
+                    <Label  VerticalContentAlignment="Bottom" Grid.Row="1" Grid.Column="5" Grid.ColumnSpan="2" FontSize="14">当前卡池：</Label>
+                    <Label  VerticalContentAlignment="Bottom" Grid.Row="1" Grid.Column="7" Grid.ColumnSpan="1" FontSize="14" HorizontalContentAlignment="Right" Content="{Binding CurrentTotal}"/>
+                    <Label Grid.Row="2" Grid.Column="6" HorizontalContentAlignment="Right" FontSize="13">五星：</Label>
+                    <Label Grid.Row="2" Grid.Column="7" Content="{Binding CurrentRank5}" FontSize="13"/>
+                    <Label Grid.Row="3" Grid.Column="6" HorizontalContentAlignment="Right" Padding="6 0 6 6" FontSize="13">UP：</Label>
+                    <Label Grid.Row="3" Grid.Column="7" Padding="5 0 0 0" Content="{Binding CurrentRank5Up}" FontSize="13"/>
+                    <Label Grid.Row="4" Grid.Column="6" HorizontalContentAlignment="Right" FontSize="13">四星：</Label>
+                    <Label Grid.Row="4" Grid.Column="7" Content="{Binding CurrentRank4}" FontSize="13"/>
+                    <Label Grid.Row="5" Grid.Column="6" HorizontalContentAlignment="Right" Padding="6 0 6 6" FontSize="13">UP：</Label>
+                    <Label Grid.Row="5" Grid.Column="7" Padding="5 0 0 0" Content="{Binding CurrentRank4Up}" FontSize="13"/>
                     <Grid Grid.Row="1" Grid.RowSpan="6" Grid.Column="8" >
                         <Rectangle Width="0.5" Fill="#999999" Margin="0 5 10 0" HorizontalAlignment="Right"/>
                     </Grid>
