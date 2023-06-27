@@ -32,6 +32,8 @@ namespace DodocoTales
     /// </summary>
     public partial class MainWindow : Window
     {
+        public bool InitializeCompleted = false;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -80,10 +82,7 @@ namespace DodocoTales
                 DDCL.CurrentUser.SwapUser(DDCL.SettingsLib.LastUserUID);
             }
             DDCV.RefreshAll();
-            if(DDCG.UpdateLoader.ChangeLog != null)
-            {
-                Console.WriteLine(DDCG.UpdateLoader.ChangeLog);
-            }
+            InitializeCompleted = true;
             if (DDCL.MetaVersionLib.FirstRunAfterUpdate)
             {
                 Notice.Show("应用更新完毕", "更新", MessageBoxIcon.Info);
@@ -169,6 +168,7 @@ namespace DodocoTales
 
         private void OpenGameClientManagerWindowButton_Click(object sender, RoutedEventArgs e)
         {
+            if (!InitializeCompleted) return;
             DDCV.ShowWindowDialog(new DDCVGameClientManagerWindow());
         }
 
@@ -181,16 +181,19 @@ namespace DodocoTales
 
         private void SettingsButton_Click(object sender, RoutedEventArgs e)
         {
+            if (!InitializeCompleted) return;
             DDCV.ShowWindowDialog(new DDCVSettingsWindow());
         }
 
         private async void ExportLog_Click(object sender, RoutedEventArgs e)
         {
+            if (!InitializeCompleted) return;
             DDCV.ShowWindowDialog(new DDCVExportDialog());
         }
 
         private async void ImportLog_Click(object sender, RoutedEventArgs e)
         {
+            if (!InitializeCompleted) return;
             new DDCVImportDialog().Import();
         }
     }

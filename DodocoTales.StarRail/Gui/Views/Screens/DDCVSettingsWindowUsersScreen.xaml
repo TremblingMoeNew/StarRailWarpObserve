@@ -4,9 +4,104 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:DodocoTales.SR.Gui.Views.Screens"
+             xmlns:pu="clr-namespace:Panuon.UI.Silver;assembly=Panuon.UI.Silver" 
+             xmlns:vm="clr-namespace:DodocoTales.SR.Gui.ViewModels.Screens"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-            
+        <Grid.DataContext>
+            <vm:DDCVSettingsWindowUsersScreenVM x:Name="VM"/>
+        </Grid.DataContext>
+        <Grid Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Label FontSize="22">用户</Label>
+            <ItemsControl ItemsSource="{Binding Users}" Margin="20 10" Grid.Row="1">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border Margin="0 5" CornerRadius="5">
+                            <Border.Style>
+                                <Style TargetType="Border">
+                                    <Style.Setters>
+                                        <Setter Property="BorderBrush" Value="#88888888"/>
+                                        <Setter Property="BorderThickness" Value="1"/>
+                                        <Setter Property="Padding" Value="5"/>
+                                    </Style.Setters>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Trigger.Setters>
+                                                <Setter Property="BorderThickness" Value="3"/>
+                                                <Setter Property="Padding" Value="3"/>
+                                                <Setter Property="BorderBrush" Value="#55274A73"/>
+                                                <Setter Property="Background" Value="#30539CF2"/>
+                                            </Trigger.Setters>
+                                        </Trigger>
+                                        <DataTrigger Binding="{Binding IsSelected}" Value="True">
+                                            <DataTrigger.Setters>
+                                                <Setter Property="BorderThickness" Value="2"/>
+                                                <Setter Property="Padding" Value="4"/>
+                                                <Setter Property="BorderBrush" Value="#55942F25"/>
+                                                <Setter Property="Background" Value="#30FAB675"/>
+                                            </DataTrigger.Setters>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Border.Style>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition Width="Auto" MinWidth="120"/>
+                                    <ColumnDefinition Width="Auto" MinWidth="60"/>
+                                    <ColumnDefinition Width="Auto" MinWidth="60"/>
+                                    <ColumnDefinition Width="Auto" MinWidth="30"/>
+                                    <ColumnDefinition Width="Auto" MinWidth="30"/>
+
+                                </Grid.ColumnDefinitions>
+                                <Label FontSize="16" Content="{Binding UID}"/>
+                                <Label Grid.Column="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"  Content="{Binding ClientType, Converter={StaticResource ClientTypeCon}}"/>
+                                <Label Grid.Column="2" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Content="{Binding TimeZone, Converter={StaticResource TimeZoneCon}}"/>
+                                <Button Grid.Column="4"
+                            FontSize="13"
+                            Padding="0 0"
+                            Margin="0 0 0 0"
+                            Content="切换"
+                            DataContext="{Binding}"
+                            pu:ButtonHelper.ClickStyle="Sink"
+                            pu:ButtonHelper.ButtonStyle="Link"
+                            BorderBrush="#FFAB4CF8"
+                            Foreground="#FFB97DEA"
+                            pu:ButtonHelper.HoverBrush="#FF7942A6"
+                            pu:ButtonHelper.CornerRadius="5"
+                            IsEnabled="{Binding IsSelected, Converter={StaticResource BoolInverseConverter}}"
+                            Click="SwapButton_Click"/>
+
+                                <Button Grid.Column="5"
+                            FontSize="13"
+                            Padding="10 0"
+                            Margin="5 0 0 0"
+                            Content="删除"
+                            DataContext="{Binding}"
+                            pu:ButtonHelper.ClickStyle="Sink"
+                            pu:ButtonHelper.ButtonStyle="Link"
+                            BorderBrush="#FFDE5E5E"
+                            Foreground="#FFDE5E5E"
+                            pu:ButtonHelper.HoverBrush="#FF7C3232"
+                            pu:ButtonHelper.CornerRadius="5"
+                            IsEnabled="{Binding IsSelected, Converter={StaticResource BoolInverseConverter}}"
+                            Click="RemoveButton_Click"/>
+
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </Grid>
     </Grid>
 </local:DDCVSwapableScreen>

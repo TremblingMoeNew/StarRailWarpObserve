@@ -62,10 +62,21 @@ namespace DodocoTales.SR.Common
         public static void Emit_UserlogSaveFailed()
             => ExecCommonDelegate(UserlogSaveFailed);
 
-        public static DDCSUidParamDelegate V0StyleLogFileDetacted;
-        public static void Emit_V0StyleLogFileDetacted(long uid)
-            => ExecUidParamDelegate(V0StyleLogFileDetacted, uid);
+        public static DDCSCommonDelegate UserlogBackupCompleted;
+        public static void Emit_UserlogBackupCompleted()
+            => ExecCommonDelegate(UserlogBackupCompleted);
 
+        public static DDCSCommonDelegate UserlogBackupFailed;
+        public static void Emit_UserlogBackupFailed()
+            => ExecCommonDelegate(UserlogBackupFailed);
+
+        public static DDCSCommonDelegate UserlogRemoveCompleted;
+        public static void Emit_UserlogRemoveCompleted()
+            => ExecCommonDelegate(UserlogRemoveCompleted);
+
+        public static DDCSCommonDelegate UserlogRemoveFailed;
+        public static void Emit_UserlogRemoveFailed()
+            => ExecCommonDelegate(UserlogRemoveFailed);
 
         public static DDCSCommonDelegate GameClientLibReloadCompleted;
         public static void Emit_GameClientLibReloadCompleted()

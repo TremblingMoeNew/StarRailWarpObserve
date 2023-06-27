@@ -1,4 +1,5 @@
 ﻿using DodocoTales.SR.Common;
+using DodocoTales.SR.Gui.Models;
 using DodocoTales.SR.Library.UserDataLibrary.Models;
 using Newtonsoft.Json;
 using System;
@@ -17,7 +18,7 @@ namespace DodocoTales.SR.Library.UserDataLibrary
         public readonly string UserDataFileSearchPattern = "userlog_*.json";
         public readonly string UserDataFileRegexPattern = @"userlog_(\d+)\.json";
         public readonly string UserDataFileOpenPattern = "userdata/userlog_{0}.json";
-
+        public readonly string UserBackupFileOpenPattern = "userdata/backup_{0}_{1}.json";
         public Dictionary<long, DDCLUserGachaLog> U { get; set; }
 
         public DDCLUserDataLibrary()
@@ -90,7 +91,7 @@ namespace DodocoTales.SR.Library.UserDataLibrary
         public async Task SaveUserAsync(DDCLUserGachaLog userlog)
         {
             if (userlog == null) return;
-            string logfile = String.Format("userdata/userlog_{0}.json", userlog.UID);
+            string logfile = String.Format(UserDataFileOpenPattern, userlog.UID);
             // TODO: LibVersion Update
             try
             {
@@ -108,7 +109,28 @@ namespace DodocoTales.SR.Library.UserDataLibrary
                 DDCS.Emit_UserlogSaveFailed();
                 //DDCLog.Error(DCLN.Lib, String.Format("Failed to save userlog. UID:{0}", userlog.uid), e);
             }
+        }
 
+        public async Task BackupUserAsync(DDCLUserGachaLog userlog)
+        {
+            if (userlog == null) return;
+            string logfile = String.Format(UserBackupFileOpenPattern, userlog.UID, DateTime.Now);
+            try
+            {
+                var stream = File.Open(logfile, FileMode.Create, FileAccess.Write, FileShare.ReadWrite);
+                StreamWriter writer = new StreamWriter(stream);
+                var serialized = JsonConvert.SerializeObject(userlog, Formatting.Indented);
+                await writer.WriteAsync(serialized);
+                await writer.FlushAsync();
+                stream.Close();
+                DDCS.Emit_UserlogBackupCompleted();
+                //DDCLog.Info(DCLN.Lib, String.Format("Userlog successfully saved. UID:{0}", userlog.uid));
+            }
+            catch (Exception e)
+            {
+                DDCS.Emit_UserlogBackupFailed();
+                //DDCLog.Error(DCLN.Lib, String.Format("Failed to save userlog. UID:{0}", userlog.uid), e);
+            }
         }
 
         public DDCLUserGachaLog GetUserLogByUid(long uid)
@@ -120,6 +142,24 @@ namespace DodocoTales.SR.Library.UserDataLibrary
         public bool UserExists(long uid)
         {
             return U.ContainsKey(uid);
+        }
+
+        public async Task RemoveUserByUid(long uid)
+        {
+            if (!U.ContainsKey(uid)) return;
+            await BackupUserAsync(GetUserLogByUid(uid));
+            try
+            {
+                File.Delete(String.Format(UserDataFileOpenPattern, uid));
+            }
+            catch 
+            {
+                DDCS.Emit_UserlogRemoveFailed();
+                return;
+            }
+            U.Remove(uid);
+            DDCS.Emit_UserlogRemoveCompleted();
+
         }
     }
 }

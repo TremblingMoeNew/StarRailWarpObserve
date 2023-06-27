@@ -235,6 +235,7 @@
     <Compile Include="Gui\Models\DDCVMainPanelItemModel.cs" />
     <Compile Include="Gui\Models\DDCVRoundItemModel.cs" />
     <Compile Include="Gui\Models\DDCVUnitIndicatorModel.cs" />
+    <Compile Include="Gui\Models\DDCVUserlogItem.cs" />
     <Compile Include="Gui\Models\DDCVVersionItemModel.cs" />
     <Compile Include="Gui\ViewModels\Cards\DDCVHomeSceneCardVMBase.cs" />
     <Compile Include="Gui\ViewModels\Cards\DDCVHomeSceneCharEventCardVM.cs" />
@@ -247,6 +248,7 @@
     <Compile Include="Gui\ViewModels\Screens\DDCVBannerViewScreenVM.cs" />
     <Compile Include="Gui\ViewModels\Screens\DDCVSettingsWindowAboutScreenVM.cs" />
     <Compile Include="Gui\ViewModels\Screens\DDCVSettingsWindowChangeLogScreenVM.cs" />
+    <Compile Include="Gui\ViewModels\Screens\DDCVSettingsWindowUsersScreenVM.cs" />
     <Compile Include="Gui\ViewModels\Screens\DDCVVersionViewScreenVM.cs" />
     <Compile Include="Gui\ViewModels\Windows\DDCVSettingsWindowVM.cs" />
     <Compile Include="Gui\Views\Cards\DDCVHomeSceneCharEventCard.xaml.cs">
