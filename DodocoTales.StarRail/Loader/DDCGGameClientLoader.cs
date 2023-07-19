@@ -163,7 +163,8 @@ namespace DodocoTales.SR.Loader
 
         public void RemoveCacheFile(DDCLGameClientItem client)
         {
-            string path = client.Path + WebCachePath;
+            string path = GetNewestWebCache(client.Path);
+            if (path != null)
             try
             {
                 File.Delete(path);
