@@ -18,7 +18,7 @@ namespace DodocoTales.SR.Library.UserDataLibrary
         public readonly string UserDataFileSearchPattern = "userlog_*.json";
         public readonly string UserDataFileRegexPattern = @"userlog_(\d+)\.json";
         public readonly string UserDataFileOpenPattern = "userdata/userlog_{0}.json";
-        public readonly string UserBackupFileOpenPattern = "userdata/backup_{0}_{1}.json";
+        public readonly string UserBackupFileOpenPattern = "userdata/backup_{0}_{1:yyyyMMddhhmmss}.json";
         public Dictionary<long, DDCLUserGachaLog> U { get; set; }
 
         public DDCLUserDataLibrary()

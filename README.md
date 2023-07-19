@@ -1,34 +1,22 @@
 # 星穹铁道跃迁观测工具
 
-基于开发中止的原神祈愿记录导出工具[“嘟嘟可故事集”(重制版本)](https://github.com/TremblingMoeNew/DodocoTales) 开发的崩坏：星穹铁道跃迁(抽卡)记录导出工具。
+星穹铁道跃迁观测工具（Star Rail Warp Observe）， 简称Starwo，是一款针对游戏《崩坏：星穹铁道》开发的抽卡历史记录导出与管理工具。
 
-正式名称“星穹铁道跃迁观测工具” （Star Rail Warp Observe），代号*DodocoTales - Star Rail*。
+*本工具为基于为游戏《原神》所设计、但开发暂停的祈愿记录导出工具[“嘟嘟可故事集”重制版本](https://github.com/TremblingMoeNew/DodocoTales)所改造而来的姊妹版本。Codename: DodocoTales.StarRail.*
 
+本工具的主要特色为，采用游戏版本-卡池-轮次的三级结构对玩家的跃迁历史记录进行整理与展示，帮助玩家更好的梳理抽取概率提升的五星单位的过程中的抽取情况。同时，仪表盘中也对您的四星与五星单位抽取概率相对于期望值的高低进行了展示。
 
+本工具仅支持简体中文语言的界面及跃迁历史记录项。
 
-由于其基于的原始代码并未完成“设置 - 用户管理”页面以及导入导出界面，本工具在早期版本将不具备用户切换以及导入导出功能。
-
-当前仅简体中文语言。
-
-
-
-## 迁移状态
-
-- [ ] ~~单位数据库（移除）~~
-- [x] 卡池数据库
-- [x] 从缓存获取Authkey
-- [x] 代理模式获取Authkey
-- [x] 通过历史记录页API获取用户跃迁记录并保存
-- [x] 首页UI
-- [x] 按版本统计页
-- [x] 卡池抽取情况详情页
-- [x] （迁移完毕）
 ---
 
-- [x] 自动更新
-- [x] 跃迁记录导入
-- [x] 跃迁记录导出
-- [x] 国际服支持（未测试）
----
+本工具基于.NET Framework 4.7.2构建，依赖以下项目：
 
-- [ ] 记录账号管理（待开发）
+- [JamesNK/Newtonsoft.Json](https://github.com/JamesNK/Newtonsoft.Json)  
+- [Mochengvia/PanuonUI.Silver](https://github.com/Mochengvia/PanuonUI.Silver)  
+- [beto-rodriguez/LiveCharts2](https://github.com/beto-rodriguez/LiveCharts2)  
+- [CommunityToolkit/dotnet](https://github.com/CommunityToolkit/dotnet)  
+- [CommunityToolkit/WindowsCommunityToolkit](https://github.com/CommunityToolkit/WindowsCommunityToolkit)  
+- [justcoding121/titanium-web-proxy](https://github.com/justcoding121/Titanium-Web-Proxy)  
+
+本工具为[UIGF组织](https://uigf.org/zh)的成员。

@@ -250,16 +250,17 @@ namespace DodocoTales.SR.Gui.ViewModels.Dialogs
         private Dictionary<string, string> KnownApplication = new Dictionary<string, string>
         {
             { "DodocoTales.StarRail",           "星穹铁道跃迁观测工具" },
-            { "star-rail-warp-export",          "崩坏:星穹铁道跃迁记录导出工具 (biuuu)" },
-            { "star-rail-gacha" ,               "崩坏:星穹铁道抽卡导出工具 (DancingSnow0517)" },
-            { "StarRailTools",                  "崩坏:星穹铁道跃迁记录导出工具 (cntvc)" },
+            { "star-rail-warp-export",          "崩坏：星穹铁道跃迁记录导出工具 (biuuu)" },
+            { "star-rail-gacha" ,               "崩坏：星穹铁道抽卡导出工具 (DancingSnow0517)" },
+            { "StarRailTools",                  "崩坏：星穹铁道跃迁记录导出工具 (cntvc)" },
             { "StarRailToolkit",                "《崩坏：星穹铁道》工具箱 (LittleNyima)" },
             { "asta",                           "Asta (AuroraZiling)" },
             { "SRCat",                          "SRCat (BoxCatTeam)" },
-            { "star-rail-gacha-export",         "「崩坏 · 星穹铁道」 跃迁记录导出脚本 (vikiboss)" },
+            { "star-rail-gacha-export",         "「崩坏·星穹铁道」 跃迁记录导出脚本 (vikiboss)" },
             { "com.lgou2w.hoyo.gacha",          "HoYo.Gacha (lgou2w)" },
             { "Starward",                       "Starward (Scighost)" },
             { "PaiGram",                        "PaiGram (PaiGramTeam)" },
+            { "SRTools",                        "星轨工具箱 (JamXi233)" },
         };
     }
 }

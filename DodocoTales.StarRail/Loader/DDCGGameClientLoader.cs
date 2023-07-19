@@ -1,6 +1,7 @@
 ﻿using DodocoTales.SR.Library;
 using DodocoTales.SR.Library.Enums;
 using DodocoTales.SR.Library.GameClient.Models;
+using Microsoft.Extensions.FileSystemGlobbing;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -101,15 +102,24 @@ namespace DodocoTales.SR.Loader
         }
 
 
-        readonly string WebCachePath = @"/webCaches/Cache/Cache_Data/data_2";
+        readonly string WebCachePath = @"./webCaches/**/Cache_Data/data_2";
         // 用CN API强行获取OS或反之，会获得缺失name、item_type与rank_type的记录，造成解析错误
         readonly string authkey_pattern_cn = @"1/0/\S+\?(\S+&game_biz=hkrpg_cn)";
         readonly string authkey_pattern_os = @"1/0/\S+\?(\S+&game_biz=hkrpg_global)";
 
+        public string GetNewestWebCache(string dirpath)
+        {
+            Matcher matcher = new Matcher();
+            matcher.AddInclude(WebCachePath);
+            return matcher.GetResultsInFullPath(dirpath).Select(x => new { Path = x, LastModifiedTime = new FileInfo(x).LastWriteTimeUtc })
+                .OrderByDescending(x => x.LastModifiedTime).FirstOrDefault()?.Path ?? null;
+        }
+
         public string GetAuthkeyFromWebCache(DDCLGameClientItem client)
         {
             string authkey = null;
-            string path = client.Path + WebCachePath;
+            string path = GetNewestWebCache(client.Path);
+            if (path == null) return null;
             string authkey_pattern;
             switch (client.ClientType)
             {
