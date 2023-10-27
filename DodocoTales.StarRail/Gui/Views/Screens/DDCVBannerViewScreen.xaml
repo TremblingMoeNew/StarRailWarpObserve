@@ -400,6 +400,13 @@
                                                                                                 </MultiBinding>
                                                                                             </TextBlock.Text>
                                                                                         </TextBlock>
+                                                                                        <StackPanel Visibility="{Binding Imported, Converter={StaticResource VisByBoolCon}}">
+                                                                                            <StackPanel Orientation="Horizontal">
+                                                                                                <TextBlock Text="外部导入数据"/>
+                                                                                                <TextBlock Text="/不受信任" Visibility="{Binding Untrusted, Converter={StaticResource VisByBoolCon}}"/>
+                                                                                            </StackPanel>
+                                                                                            <TextBlock Margin="10 0 0 0" Text="{Binding ImportApplication}"/>
+                                                                                        </StackPanel>
                                                                                     </StackPanel>
                                                                                     <TextBlock Margin="10 2 10 5" Text="无记录" Name="TooltipDefault" Visibility="Collapsed"/>
 

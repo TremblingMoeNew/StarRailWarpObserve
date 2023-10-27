@@ -63,6 +63,9 @@ namespace DodocoTales
             bool versionchecked = await DDCG.UpdateLoader.CheckVersion();
 
             bool bannerlibloaded = await DDCL.BannerLib.LoadLibraryAsync();
+
+            await DDCL.ExportersLib.LoadLibraryAsync();
+
             await DDCL.UserDataLib.LoadLocalGachaLogsAsync();
 
             await DDCL.GameClientLib.LoadLibraryAsync();

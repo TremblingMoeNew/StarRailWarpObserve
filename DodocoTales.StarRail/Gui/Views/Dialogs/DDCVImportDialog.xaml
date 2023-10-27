@@ -69,7 +69,14 @@
                         pu:TextBoxHelper.FocusedBorderBrush="#FF008C"
                         pu:TextBoxHelper.FocusedShadowColor="#FF008C"
                         IsReadOnly="True"
-                        Text="{Binding Application}" Cursor="IBeam" Grid.ColumnSpan="4" IsEnabled="False"/>
+                        Cursor="IBeam" Grid.ColumnSpan="4" IsEnabled="False">
+                        <TextBox.Text>
+                            <MultiBinding StringFormat="{}{0} ({1})">
+                                <Binding Path="Application.ApplicationNameChinese"/>
+                                <Binding Path="Application.Author"/>
+                            </MultiBinding>
+                        </TextBox.Text>
+                    </TextBox>
                     <Label FontSize="14" Grid.Row="4" Grid.Column="6">版本:</Label>
                     <TextBox Grid.Row="4" Grid.Column="7"
                             BorderBrush="#88F4D4E6"
@@ -114,6 +121,35 @@
                             Text="{Binding TimeZone, Converter={StaticResource TimeZoneCon}}" Cursor="IBeam"/>
                 </Grid>
             </Border>
+            <StackPanel Orientation="Vertical" Margin="15 2 10 0">
+                <TextBlock Foreground="#FF2A88D1" Visibility="{Binding Application.SRGFPartnership, Converter={StaticResource VisByBoolCon}}">
+                    UIGF组织成员，受认证的SRGF合作项目。
+                </TextBlock>
+                <TextBlock>
+                    <TextBlock.Style>
+                        <Style TargetType="TextBlock">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Application.ExporterType}" Value="Unknown">
+                                    <Setter Property="Text" Value="该工具并未被记录在Starwo的已知导出工具列表之中。"/>
+                                    <Setter Property="Foreground" Value="#FFD19B16"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Application.ExporterType}" Value="Untested">
+                                    <Setter Property="Text" Value="该工具并未进行过与Starwo的导入兼容性测试。"/>
+                                    <Setter Property="Foreground" Value="#FF9671E9"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Application.ExporterType}" Value="Trusted">
+                                    <Setter Property="Text" Value="该工具所导出的数据与Starwo确认兼容。"/>
+                                    <Setter Property="Foreground" Value="#FF4EB40A"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Application.ExporterType}" Value="Blacklist">
+                                    <Setter Property="Text" Value="警告：来自于该工具的数据有存在可靠性问题的可能性，或是无法通过Starwo导入测试。&#x0a;Starwo不对合并造成的任何问题负责，且该部分数据将无法导出。"/>
+                                    <Setter Property="Foreground" Value="#FFEF4C33"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+            </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 5">
                 <Button  Height="30"
                 Width="80"

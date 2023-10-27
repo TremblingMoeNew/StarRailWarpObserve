@@ -368,6 +368,14 @@ namespace DodocoTales.SR.Gui.ViewModels.Screens
                     else
                         model.IndicatorType = DDCVUnitIndicatorType.Rank5PermanentLC;
                 }
+                if(item.Imported)
+                {
+                    model.Imported = true;
+                    model.Untrusted = item.Untrusted;
+                    var app = DDCL.ExportersLib.GetExporter(item.ImportApplication);
+                    model.ImportApplication = $"{app.ApplicationNameChinese}({app.Author})";
+                }
+
             }
         }
 

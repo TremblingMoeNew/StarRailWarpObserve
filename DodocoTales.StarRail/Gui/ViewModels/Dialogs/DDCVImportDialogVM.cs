@@ -3,6 +3,7 @@ using DodocoTales.SR.Common;
 using DodocoTales.SR.Gui.Enums;
 using DodocoTales.SR.Library;
 using DodocoTales.SR.Library.Enums;
+using DodocoTales.SR.Library.TrustedExporters.Models;
 using DodocoTales.SR.Loader;
 using DodocoTales.SR.Loader.Models;
 using Newtonsoft.Json;
@@ -83,8 +84,8 @@ namespace DodocoTales.SR.Gui.ViewModels.Dialogs
             set => SetProperty(ref exportTime, value);
         }
 
-        private string application;
-        public string Application
+        private DDCLTrustedExporter application;
+        public DDCLTrustedExporter Application
         {
             get => application;
             set => SetProperty(ref application, value);
@@ -177,8 +178,8 @@ namespace DodocoTales.SR.Gui.ViewModels.Dialogs
                     }
                         
                 }
-                
-                Application = GetApplicationName(Info.Application);
+
+                Application = DDCL.ExportersLib.GetExporter(Info.Application);
                 ApplicationVersion = Info.ApplicationVersion;
                 StandardVersion = Info.StandardVersion;
             }
@@ -227,40 +228,48 @@ namespace DodocoTales.SR.Gui.ViewModels.Dialogs
 
         public string GetApplicationName(string code)
         {
-            return KnownApplication.ContainsKey(code) ? KnownApplication[code] : code + " (Unknown)";
+            var exporter = DDCL.ExportersLib.GetExporter(code);
+
+            return $"{exporter.ApplicationNameChinese} ({exporter.Author})";
         }
 
+        private int comfirmCounter = 0;
         public bool IsImportReady()
         {
-            return SelectedClientType != DDCLGameClientType.Unknown;
+            if (SelectedClientType == DDCLGameClientType.Unknown)
+            {
+                Notice.Show($"请先选择该UID所属的客户端类型（国服或国际服）。", "跃迁记录导入", Panuon.UI.Silver.MessageBoxIcon.Error);
+                return false;
+            }
+            else if (Application.ExporterType == DDCLExporterType.Blacklist && comfirmCounter == 0)
+            {
+                comfirmCounter++;
+                Notice.Show($"若确认要从不可靠来源继续导入数据，请再次点击“导入”键。\n本次导入的数据将无法被导出。Starwo不对任何可能产生的错误负责。", "从不可靠来源导入数据", Panuon.UI.Silver.MessageBoxIcon.Warning);
+                return false;
+            }
+            return true;
         }
 
-        public void Import()
+        public async Task Import()
         {
             var list = DDCG.UFImporter.ConvertList(UFlog.List);
             var available_cnt = list.Count;
             var failed_cnt = UFlog.List.Count - available_cnt;
-            var added_cnt = DDCG.UFImporter.Import(SelectedUID, list, SelectedClientType, TimeZone);
+            if (Application.ExporterType == DDCLExporterType.Blacklist)
+            {
+                if(DDCL.UserDataLib.UserExists(SelectedUID))
+                {
+                    await DDCL.UserDataLib.BackupUserAsync(DDCL.UserDataLib.GetUserLogByUid(SelectedUID));
+                }
+                list.ForEach(x => x.Untrusted = true);
+                Notice.Show($"用户{SelectedUID}原有跃迁记录文件已经备份。\n本次导入的数据将无法被导出。", "从不可靠来源导入数据", Panuon.UI.Silver.MessageBoxIcon.Info);
+            }
+            var added_cnt = DDCG.UFImporter.Import(SelectedUID, list, SelectedClientType, TimeZone, Application.Application);
             Notice.Show($"跃迁记录导入完毕。\n{available_cnt}个记录项读取成功，{failed_cnt}个记录项读取失败。\n用户{SelectedUID}新增{added_cnt}个跃迁记录项。", "跃迁记录导入", Panuon.UI.Silver.MessageBoxIcon.Success);
             DDCL.CurrentUser.SwapUser(SelectedUID);
             DDCS.Emit_CurUserUpdateCompleted();
         }
 
 
-        private Dictionary<string, string> KnownApplication = new Dictionary<string, string>
-        {
-            { "DodocoTales.StarRail",           "星穹铁道跃迁观测工具" },
-            { "star-rail-warp-export",          "崩坏：星穹铁道跃迁记录导出工具 (biuuu)" },
-            { "star-rail-gacha" ,               "崩坏：星穹铁道抽卡导出工具 (DancingSnow0517)" },
-            { "StarRailTools",                  "崩坏：星穹铁道跃迁记录导出工具 (cntvc)" },
-            { "StarRailToolkit",                "《崩坏：星穹铁道》工具箱 (LittleNyima)" },
-            { "asta",                           "Asta (AuroraZiling)" },
-            { "SRCat",                          "SRCat (BoxCatTeam)" },
-            { "star-rail-gacha-export",         "「崩坏·星穹铁道」 跃迁记录导出脚本 (vikiboss)" },
-            { "com.lgou2w.hoyo.gacha",          "HoYo.Gacha (lgou2w)" },
-            { "Starward",                       "Starward (Scighost)" },
-            { "PaiGram",                        "PaiGram (PaiGramTeam)" },
-            { "SRTools",                        "星轨工具箱 (JamXi233)" },
-        };
     }
 }

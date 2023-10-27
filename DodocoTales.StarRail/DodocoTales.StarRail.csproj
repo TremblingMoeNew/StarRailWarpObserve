@@ -314,6 +314,8 @@
     <Compile Include="Library\MetadataLibrary\Models\DDCLMetadataVersion.cs" />
     <Compile Include="Library\Settings\DDCLSettingsLibrary.cs" />
     <Compile Include="Library\Settings\Models\DDCLSettingsInfo.cs" />
+    <Compile Include="Library\TrustedExporters\DDCLTrustedExportersLibrary.cs" />
+    <Compile Include="Library\TrustedExporters\Models\DDCLTrustedExporters.cs" />
     <Compile Include="Library\UserDataLibrary\DDCLUserDataLibrary.cs" />
     <Compile Include="Library\UserDataLibrary\Models\DDCLGachaLogItem.cs" />
     <Compile Include="Library\UserDataLibrary\Models\DDCLUserGachaLog.cs" />

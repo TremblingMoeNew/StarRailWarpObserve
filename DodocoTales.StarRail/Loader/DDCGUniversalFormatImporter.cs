@@ -98,7 +98,7 @@ namespace DodocoTales.SR.Loader
             return res.Values.ToList();
         }
 
-        public int Import(long uid, List<DDCLGachaLogItem> loglist, DDCLGameClientType clientType, int timezone)
+        public int Import(long uid, List<DDCLGachaLogItem> loglist, DDCLGameClientType clientType, int timezone,string export_app)
         {
             var userlog = DDCL.UserDataLib.GetUserLogByUid(uid);
             var merger = new DDCGGachaLogMerger(userlog);
@@ -107,7 +107,8 @@ namespace DodocoTales.SR.Loader
                 userlog.ClientType = clientType;
                 merger.SetTimeZone(timezone);
             }
-           return merger.Merge(loglist, false);
+            loglist.ForEach(log => { log.Imported = true; log.ImportApplication = export_app; });
+            return merger.Merge(loglist, false);
         }
     }
 }

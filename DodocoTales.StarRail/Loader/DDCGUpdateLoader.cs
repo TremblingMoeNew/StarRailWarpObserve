@@ -38,6 +38,7 @@ namespace DodocoTales.SR.Loader
         }
         public readonly string LocalLibPath = "Library/";
         public readonly string BannerLibraryFileName = "BannerLibrary.json";
+        public readonly string ExportersFileName = "Exporters.json";
         public readonly string VersionFileName = "Version.json";
         public readonly string ClientFileName = "Release.zip";
 
@@ -91,6 +92,25 @@ namespace DodocoTales.SR.Loader
             }
         }
 
+        public async Task<bool> UpdateExportersLibrary()
+        {
+            try
+            {
+                var lib = await GetMetadataFile(ExportersFileName);
+                var libPath = LocalLibPath + ExportersFileName;
+                var stream = File.Open(libPath, FileMode.Create, FileAccess.Write, FileShare.ReadWrite);
+                StreamWriter writer = new StreamWriter(stream);
+                await writer.WriteAsync(lib);
+                await writer.FlushAsync();
+                stream.Close();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
         public async Task<bool> CheckVersion()
         {
             try
@@ -111,6 +131,19 @@ namespace DodocoTales.SR.Loader
                     }
                     DDCL.MetaVersionLib.BannerLibraryVersion = lib.BannerLibraryVersion;
                 }
+
+                var exporterliboldver = DDCL.MetaVersionLib.ConvertLibraryVersionToInt64(DDCL.MetaVersionLib.ExportersLibraryVersion);
+                var exporterlibnewver = DDCL.MetaVersionLib.ConvertLibraryVersionToInt64(lib.ExportersLibraryVersion);
+                if (exporterliboldver < exporterlibnewver)
+                {
+                    if (!await UpdateExportersLibrary())
+                    {
+                        return false;
+                    }
+                    DDCL.MetaVersionLib.ExportersLibraryVersion = lib.ExportersLibraryVersion;
+                }
+
+
                 var clientoldver = DDCL.MetaVersionLib.ConvertClientVersionToInt64(DDCL.MetaVersionLib.ClientVersion);
                 var clientnewver = DDCL.MetaVersionLib.ConvertClientVersionToInt64(lib.ClientVersion);
 

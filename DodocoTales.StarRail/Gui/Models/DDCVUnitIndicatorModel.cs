@@ -67,5 +67,23 @@ namespace DodocoTales.SR.Gui.Models
             get => id;
             set => SetProperty(ref id, value);
         }
+        private bool imported;
+        public bool Imported
+        {
+            get => imported;
+            set => SetProperty(ref imported, value);
+        }
+        private bool untrusted;
+        public bool Untrusted
+        {
+            get => untrusted;
+            set => SetProperty(ref untrusted, value);
+        }
+        private string application;
+        public string ImportApplication
+        {
+            get => application;
+            set => SetProperty(ref application, value);
+        }
     }
 }

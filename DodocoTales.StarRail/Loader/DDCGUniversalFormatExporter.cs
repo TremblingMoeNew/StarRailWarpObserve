@@ -32,6 +32,7 @@ namespace DodocoTales.SR.Loader
             };
             foreach(var item in userlog.Logs)
             {
+                if(item.Untrusted) continue;
                 res.List.Add(ConvertToUFItem(item, anonymous));
             }
             return res;

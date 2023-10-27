@@ -315,6 +315,6 @@ namespace DodocoTales.SR.Library.CurrentUser
             return OriginalLogs.TimeZone;
         }
         public bool IsCurrentUser(long uid)
-            => uid == OriginalLogs.UID;
+            => uid == OriginalLogs?.UID;
     }
 }

@@ -40,7 +40,7 @@ namespace DodocoTales.SR.Loader
             int cnt = 0;
             foreach(var item in imported)
             {
-                if(replace || !GachaLogSet.ContainsKey(item.ID))
+                if((replace && !item.Untrusted) || !GachaLogSet.ContainsKey(item.ID) || (!item.Untrusted && GachaLogSet[item.ID].Untrusted))
                 {
                     GachaLogSet[item.ID] = item;
                     cnt++;

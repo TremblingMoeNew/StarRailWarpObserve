@@ -26,6 +26,15 @@ namespace DodocoTales.SR.Library.UserDataLibrary.Models
 
         public DDCLGachaLogItemRawData Raw { get; set; }
 
+        [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
+        public bool Imported;
+
+        [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
+        public string ImportApplication;
+
+        [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
+        public bool Untrusted;
+
     }
     public class DDCLGachaLogItemRawData
     {

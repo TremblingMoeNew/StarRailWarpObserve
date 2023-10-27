@@ -34,11 +34,11 @@ namespace DodocoTales.SR.Gui.Views.Dialogs
         {
         }
 
-        private void ImportButton_Click(object sender, RoutedEventArgs e)
+        private async void ImportButton_Click(object sender, RoutedEventArgs e)
         {
             if (VM.IsImportReady())
             {
-                VM.Import();
+                await VM.Import();
                 Close();
             }
         }

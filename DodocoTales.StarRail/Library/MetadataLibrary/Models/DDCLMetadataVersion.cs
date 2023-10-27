@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,5 +11,7 @@ namespace DodocoTales.SR.Library.MetadataLibrary.Models
     {
         public string ClientVersion { get; set; }
         public string BannerLibraryVersion { get; set; }
+        [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
+        public string ExportersLibraryVersion { get; set; }
     }
 }
