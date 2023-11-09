@@ -434,7 +434,7 @@
                                                                                 <Setter TargetName="Main" Property="Width" Value="14"/>
                                                                                 <Setter TargetName="Main" Property="Height" Value="14"/>
                                                                             </DataTrigger>
-                                                                            <DataTrigger Binding="{Binding ElementName=VM, Path=GreaterRoundType}" Value="WeaponEvent">
+                                                                            <DataTrigger Binding="{Binding ElementName=VM, Path=GreaterRoundType}" Value="LCEvent">
                                                                                 <Setter TargetName="Main" Property="Width" Value="15"/>
                                                                                 <Setter TargetName="Main" Property="Height" Value="15"/>
                                                                             </DataTrigger>
