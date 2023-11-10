@@ -3,16 +3,20 @@ using DodocoTales.SR.Gui;
 using DodocoTales.SR.Gui.Models;
 using DodocoTales.SR.Gui.Views;
 using DodocoTales.SR.Gui.Views.Dialogs;
+using DodocoTales.SR.Gui.Views.Screens;
 using DodocoTales.SR.Gui.Views.Windows;
 using DodocoTales.SR.Library;
 using DodocoTales.SR.Loader;
 using Newtonsoft.Json;
 using Panuon.UI.Silver;
+using SkiaSharp.Internals;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -39,15 +43,32 @@ namespace DodocoTales
             InitializeComponent();
             DDCV.MainWindow = this;
             DDCV.MainNavigater = MainNavigator;
-            DDCV.RegisterMainScreens();
+
             DDCS.CurUserSwapCompleted += OnUIDSwapCompleted;
             DDCS.CurUserUpdateCompleted += OnCurrentUserUpdateCompleted;
             DDCS.ProxyCaptured += OnProxyCaptured;
             DDCS.ClientNeedsUpdate += OnClientUpdateDownloadStart;
             DDCS.ClientUpdateDownloadCompleted += OnClientUpdateDownloadCompleted;
+            DDCS.ClientUpdateDownloadFailed += OnClientUpdateDownloadFailed;
             AppDomain.CurrentDomain.ProcessExit += CurrentDomain_ProcessExit;
 
-            Initialize();
+
+            var arch = PlatformConfiguration.Is64Bit
+                    ? PlatformConfiguration.IsArm ? "arm64" : "x64"
+                    : PlatformConfiguration.IsArm ? "arm" : "x86";
+
+            if (!DDCG.UpdateLoader.DependencyExist(arch))
+            {
+                Notice.Show("当前平台的SkiaSharp原生依赖库缺失，正在自动下载", "依赖补全", MessageBoxIcon.Error);
+                DDCV.RegisterMainScreen("DownloadDependcies", new DDCVDependenciesDownloadScreen());
+                DDCS.DependencyUpdateDownloadCompleted += OnDependencyUpdateCompleted;
+                DDCG.UpdateLoader.DownloadDependency(arch);
+            }
+            else
+            {
+                DDCV.RegisterMainScreens();
+                Initialize();
+            }  
         }
 
         private void CurrentDomain_ProcessExit(object sender, EventArgs e)
@@ -159,6 +180,26 @@ namespace DodocoTales
             };
             await Dispatcher.BeginInvoke(action, DispatcherPriority.ApplicationIdle);
         }
+
+        private async void OnClientUpdateDownloadFailed()
+        {
+            Action action = async () => {
+                Notice.Show("更新下载失败", "更新", MessageBoxIcon.Error);
+            };
+            await Dispatcher.BeginInvoke(action, DispatcherPriority.ApplicationIdle);
+        }
+
+        private async void OnDependencyUpdateCompleted()
+        {
+            Action action = () => {
+                DDCV.RegisterMainScreens();
+                DDCV.SwapMainScreen("Home");
+                Notice.Show("当前平台的SkiaSharp原生依赖库补全完毕，程序继续启动", "依赖补全", MessageBoxIcon.Success);
+                Initialize();
+            };
+            await Dispatcher.BeginInvoke(action, DispatcherPriority.ApplicationIdle);
+        }
+
         private async void UpdateWishButton_Click(object sender, RoutedEventArgs e)
         {
             UpdatePanel.IsOpen = true;

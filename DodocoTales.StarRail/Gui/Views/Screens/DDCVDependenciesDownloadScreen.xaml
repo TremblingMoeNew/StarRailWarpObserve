@@ -1,0 +1,21 @@
+﻿<local:DDCVSwapableScreen x:Class="DodocoTales.SR.Gui.Views.Screens.DDCVDependenciesDownloadScreen"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DodocoTales.SR.Gui.Views.Screens" xmlns:vm="clr-namespace:DodocoTales.SR.Gui.ViewModels.Screens"
+                          mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.DataContext>
+            <vm:DDCVDependenciesDownloadScreenVM  x:Name="VM"/>
+        </Grid.DataContext>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Label FontSize="16" HorizontalContentAlignment="Center" Margin="10">当前平台的SkiaSharp依赖库缺失，正在自动下载……</Label>
+            <Border Height="30" Width="{Binding ProgressBarMaxLength}" BorderThickness="1" BorderBrush="Black">
+                <Rectangle Height="30" Width="{Binding ProgressBarLength}" Fill="Black" HorizontalAlignment="Left"></Rectangle>
+            </Border>
+            <Label FontSize="14" HorizontalContentAlignment="Center" Content="{Binding DownloadHint}"/>
+        </StackPanel>
+    </Grid>
+</local:DDCVSwapableScreen>

@@ -9,6 +9,7 @@ using DodocoTales.SR.Common.Signals;
 namespace DodocoTales.SR.Common.Signals
 {
     public delegate void DDCSImportStatusDelegate(DDCCPoolType type, int idx);
+    public delegate void DDCSDownloadStatusDelegate(dynamic var);
 }
 
 namespace DodocoTales.SR.Common
@@ -19,9 +20,20 @@ namespace DodocoTales.SR.Common
         {
             if (dele != null)
             {
-                foreach (DDCSImportStatusDelegate method in dele.GetInvocationList())
+                foreach (DDCSImportStatusDelegate method in dele.GetInvocationList().Cast<DDCSImportStatusDelegate>())
                 {
                     method.BeginInvoke(type, idx, null, null);
+                }
+            }
+        }
+
+        public static void ExecDownloadStatusDelegate(DDCSDownloadStatusDelegate dele, dynamic var)
+        {
+            if (dele != null)
+            {
+                foreach (DDCSDownloadStatusDelegate method in dele.GetInvocationList().Cast<DDCSDownloadStatusDelegate>())
+                {
+                    method.BeginInvoke(var, null, null);
                 }
             }
         }
@@ -50,5 +62,19 @@ namespace DodocoTales.SR.Common
         public static DDCSCommonDelegate ClientUpdateDownloadCompleted;
         public static void Emit_ClientUpdateDownloadCompleted()
             => ExecCommonDelegate(ClientUpdateDownloadCompleted);
+        public static DDCSCommonDelegate ClientUpdateDownloadFailed;
+        public static void Emit_ClientUpdateDownloadFailed()
+            => ExecCommonDelegate(ClientUpdateDownloadFailed);
+
+        public static DDCSDownloadStatusDelegate ClientUpdateDownloadStatusReport;
+        public static void Emit_ClientUpdateDownloadStatusReport(dynamic var)
+            => ExecDownloadStatusDelegate(ClientUpdateDownloadStatusReport, var);
+
+        public static DDCSCommonDelegate DependencyUpdateDownloadCompleted;
+        public static void Emit_DependencyUpdateDownloadCompleted()
+            => ExecCommonDelegate(DependencyUpdateDownloadCompleted);
+        public static DDCSCommonDelegate DependencyUpdateDownloadFailed;
+        public static void Emit_DependencyUpdateDownloadFailed()
+            => ExecCommonDelegate(DependencyUpdateDownloadFailed);
     }
 }

@@ -180,6 +180,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Gui\Views\Screens\DDCVDependenciesDownloadScreen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Gui\Views\Screens\DDCVHomeScreen.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -249,6 +253,7 @@
     <Compile Include="Gui\ViewModels\Dialogs\DDCVGameClientManagerWindowEditDialogVM.cs" />
     <Compile Include="Gui\ViewModels\Dialogs\DDCVImportDialogVM.cs" />
     <Compile Include="Gui\ViewModels\Screens\DDCVBannerViewScreenVM.cs" />
+    <Compile Include="Gui\ViewModels\Screens\DDCVDependenciesDownloadScreenVM.cs" />
     <Compile Include="Gui\ViewModels\Screens\DDCVSettingsWindowAboutScreenVM.cs" />
     <Compile Include="Gui\ViewModels\Screens\DDCVSettingsWindowChangeLogScreenVM.cs" />
     <Compile Include="Gui\ViewModels\Screens\DDCVSettingsWindowUsersScreenVM.cs" />
@@ -275,6 +280,9 @@
     </Compile>
     <Compile Include="Gui\Views\Screens\DDCVBannerViewScreen.xaml.cs">
       <DependentUpon>DDCVBannerViewScreen.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Gui\Views\Screens\DDCVDependenciesDownloadScreen.xaml.cs">
+      <DependentUpon>DDCVDependenciesDownloadScreen.xaml</DependentUpon>
     </Compile>
     <Compile Include="Gui\Views\Screens\DDCVHomeScreen.xaml.cs">
       <DependentUpon>DDCVHomeScreen.xaml</DependentUpon>
@@ -327,6 +335,7 @@
     <Compile Include="Loader\DDCGUniversalFormatImporter.cs" />
     <Compile Include="Loader\DDCGUpdateLoader.cs" />
     <Compile Include="Loader\DDCGWebGachaLogLoader.cs" />
+    <Compile Include="Loader\Models\DDCGDownloadTask.cs" />
     <Compile Include="Loader\Models\DDCGGachaLogResponse.cs" />
     <Compile Include="Loader\Models\DDCGGachaLogResponseItem.cs" />
     <Compile Include="Loader\Models\DDCGUniversalFormatLog.cs" />
