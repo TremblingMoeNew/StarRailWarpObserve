@@ -236,6 +236,7 @@
     <Compile Include="Gui\Converters\DDCVVisibleByBooleanConverter.cs" />
     <Compile Include="Gui\DDCV.cs" />
     <Compile Include="Gui\Enums\DDCVGreaterRoundType.cs" />
+    <Compile Include="Gui\Enums\DDCVHintBannerStatus.cs" />
     <Compile Include="Gui\Enums\DDCVSupportedGachaLogFormat.cs" />
     <Compile Include="Gui\Enums\DDCVUnitIndicatorType.cs" />
     <Compile Include="Gui\Models\DDCVBannerItemModel.cs" />

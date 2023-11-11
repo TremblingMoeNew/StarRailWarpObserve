@@ -185,5 +185,40 @@
 
         </Popup>
         <Grid Grid.Column="1" x:Name="MainNavigator"/>
+        <StackPanel Grid.Column="1" VerticalAlignment="Bottom" Margin="7 0 0 0" >
+            <Label>
+                <Label.Style>
+                    <Style TargetType="Label">
+                        <Style.Setters>
+                            <Setter Property="Visibility" Value="Collapsed"/>
+                            
+                        </Style.Setters>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding HintBannerStatus}" Value="Updating">
+                                <DataTrigger.Setters>
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                    <Setter Property="Background" Value="#BBFFFFB2"/>
+                                    <Setter Property="Content" Value="{Binding HintBannerContentUpdating}"/>
+                                </DataTrigger.Setters>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding HintBannerStatus}" Value="FetchingGachaLog">
+                                <DataTrigger.Setters>
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                    <Setter Property="Background" Value="#BBDFF6E7"/>
+                                    <Setter Property="Content" Value="{Binding HintBannerContentFetchingGachaLog}"/>
+                                </DataTrigger.Setters>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding HintBannerStatus}" Value="Error">
+                                <DataTrigger.Setters>
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                    <Setter Property="Background" Value="#BBFFC6C6"/>
+                                    <Setter Property="Content" Value="{Binding HintBannerContentError}"/>
+                                </DataTrigger.Setters>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Label.Style>
+            </Label>
+        </StackPanel>
     </Grid>
 </Window>

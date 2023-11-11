@@ -54,7 +54,7 @@ namespace DodocoTales.SR.Gui.ViewModels.Screens
         {
             DDCGDownloadTask task = var;
 
-            DownloadHint = $"{task.LocalFileName}  {task.DownloadedSize / 1024.0:F2}KB/{task.FileSize / 1024.0:F2}KB {task.EstSpeed / 1024:F2}B/s EST:{(task.FileSize - task.DownloadedSize) / task.EstSpeed:F2}s";
+            DownloadHint = $"{task.LocalFileName}  {task.DownloadedSize / 1024.0:F2}KB/{task.FileSize / 1024.0:F2}KB {task.EstSpeed / 1024:F2}KB/s EST:{(task.FileSize - task.DownloadedSize) / task.EstSpeed:F2}s";
             ProgressBarLength = Convert.ToInt32(ProgressBarMaxLength * (1.0 * task.DownloadedSize / task.FileSize));
         }
 

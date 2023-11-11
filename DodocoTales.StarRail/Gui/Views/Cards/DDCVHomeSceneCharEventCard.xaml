@@ -16,7 +16,7 @@
         <Border BorderThickness="1" BorderBrush="#CCCCCC" CornerRadius="5" VerticalAlignment="Top">
             <Border.Style>
                 <Style TargetType="Border">
-                    <Setter Property="Margin" Value="20 20 20 5"/>
+                    <Setter Property="Margin" Value="10 20 20 5"/>
                 </Style>
             </Border.Style>
             <Grid Margin="5 5 10 5">
