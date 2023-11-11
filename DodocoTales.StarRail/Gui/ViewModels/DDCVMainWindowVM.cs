@@ -58,9 +58,13 @@ namespace DodocoTales.SR.Gui.ViewModels
             {
                 if (value)
                 {
-                    IsWaiting = value;
-                    DDCG.ProxyLoader.StartProxy();
-                    Notice.Show("代理模式已启动，请在游戏中重新打开跃迁历史记录页面", "代理模式", MessageBoxIcon.Info);
+                    if (!isProxyModeOn)
+                    {
+                        IsWaiting = value;
+                        DDCG.ProxyLoader.StartProxy();
+                        Notice.Show("代理模式已启动，请在游戏中重新打开跃迁历史记录页面", "代理模式", MessageBoxIcon.Info);
+                        OnProxyModeOn();
+                    }
                 }
                 else
                 {
@@ -68,7 +72,11 @@ namespace DodocoTales.SR.Gui.ViewModels
                     IsWaiting = false;
                     IsInProxyUpdateAppended = false;
                     IsInProxyUpdateFull = false;
-                    if (isProxyModeOn) Notice.Show("代理模式已终止", "代理模式", MessageBoxIcon.Info);
+                    if (isProxyModeOn)
+                    {
+                        Notice.Show("代理模式已终止", "代理模式", MessageBoxIcon.Info);
+                        OnProxyModeOff();
+                    }
                 }
                 SetProperty(ref isProxyModeOn, value);
             }
@@ -503,6 +511,16 @@ namespace DodocoTales.SR.Gui.ViewModels
             HintBannerContentUpdating = null;
         }
         private void OnFetchGachaLogSucceed()
+        {
+            HintBannerContentFetchingGachaLog = null;
+        }
+
+        private void OnProxyModeOn()
+        {
+            HintBannerContentFetchingGachaLog = "代理模式启用中，请在游戏中重新打开跃迁历史记录页面";
+        }
+
+        private void OnProxyModeOff()
         {
             HintBannerContentFetchingGachaLog = null;
         }
