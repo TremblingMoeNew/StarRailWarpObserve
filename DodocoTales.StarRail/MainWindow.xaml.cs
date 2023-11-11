@@ -107,6 +107,7 @@ namespace DodocoTales
             }
             DDCV.RefreshAll();
             InitializeCompleted = true;
+            MainPanel.IsEnabled = true;
             if (DDCL.MetaVersionLib.FirstRunAfterUpdate)
             {
                 Notice.Show("应用更新完毕", "更新", MessageBoxIcon.Info);
@@ -202,11 +203,13 @@ namespace DodocoTales
 
         private async void UpdateWishButton_Click(object sender, RoutedEventArgs e)
         {
+            if (!InitializeCompleted) return;
             UpdatePanel.IsOpen = true;
             if (!VM.IsWaiting) await VM.WishLogUpdateAppended();
         }
         private async void UpdateWishFullModeButton_Click(object sender, RoutedEventArgs e)
         {
+            if (!InitializeCompleted) return;
             await VM.WishLogUpdateFull();
         }
 
@@ -219,7 +222,7 @@ namespace DodocoTales
         private void Window_Unloaded(object sender, RoutedEventArgs e)
         {
             // Proxy Ensure Stopped
-
+            VM.IsProxyModeOn = false;
             Application.Current.Shutdown();
         }
 
@@ -243,6 +246,7 @@ namespace DodocoTales
 
         private void UIDButton_Click(object sender, RoutedEventArgs e)
         {
+            if (!InitializeCompleted) return;
             DDCV.ShowWindowDialog(new DDCVSettingsWindow().SwapToUsersScreen());
         }
     }

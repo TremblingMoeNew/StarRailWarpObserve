@@ -26,6 +26,7 @@
                   pu:TreeViewHelper.SelectedBackground="#22FF0035" 
                   BorderBrush="#FF0035"
                   SelectedItemChanged="MainPanel_SelectedItemChanged"
+                  IsEnabled="False"
                   >
 
             <TreeView.ItemContainerStyle>
