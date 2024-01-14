@@ -2,6 +2,7 @@
 using DodocoTales.SR.Common.Enums;
 using DodocoTales.SR.Gui.Models;
 using DodocoTales.SR.Library;
+using DodocoTales.SR.Library.CurrentUser.Models;
 using DodocoTales.SR.Library.Enums;
 using DodocoTales.SR.Library.UserDataLibrary.Models;
 using LiveChartsCore;
@@ -424,6 +425,7 @@ namespace DodocoTales.SR.Gui.ViewModels.Cards
 
         public void LoadCurrentBanner()
         {
+            DDCLBannerLogItem currentlog = null;
             var banners = DDCL.BannerLib.GetBannersByType(PoolType);
             var current = banners.FirstOrDefault(x => x.ActivateStatus == DDCLActivateStatus.Activating);
             if (current == null)
@@ -431,7 +433,7 @@ namespace DodocoTales.SR.Gui.ViewModels.Cards
                 Version = "---";
                 BannerTitle = "---";
                 CurrentBannerExists = false;
-                return;
+                goto label_current_round;
             }
             Version = DDCL.BannerLib.GetVersion(current.VersionID).Version;
             BannerTitle = current.Name;
@@ -472,10 +474,10 @@ namespace DodocoTales.SR.Gui.ViewModels.Cards
             CurrentBannerExists = true;
 
 
-            var currentlog = DDCL.CurrentUser.GetBanner(current.InternalID);
+            currentlog = DDCL.CurrentUser.GetBanner(current.InternalID);
             if (currentlog == null)
             {
-                return;
+                goto label_current_round;
             }
             CurrentTotal = currentlog.Logs.Count;
 
@@ -514,15 +516,19 @@ namespace DodocoTales.SR.Gui.ViewModels.Cards
             }
 
 
+
             CurrentRoundIndex = currentlog.GreaterRounds.Count;
 
-            var curround = currentlog.GreaterRounds.Last();
+        label_current_round:
+
+            var curround = DDCL.CurrentUser.GetLastGreaterRoundByCategorizedType(PoolType);
+            if (curround == null) curround = new DDCLRoundLogItem { Logs = new List<DDCLGachaLogItem>() };
 
             int prevr5p = 0, prev = 0, curr5p = 0, cur = 0;
 
             foreach (var item in curround.Logs)
             {
-                if (item.BannerInternalID != curround.BannerInternalID)
+                if (item.BannerInternalID != currentlog?.BannerInternalID)
                 {
                     prev++;
                     if (item.Rank == 5)

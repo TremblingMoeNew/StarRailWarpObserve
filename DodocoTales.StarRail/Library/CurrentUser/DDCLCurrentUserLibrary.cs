@@ -46,9 +46,12 @@ namespace DodocoTales.SR.Library.CurrentUser
         public List<DDCLBannerLogItem> GetBannersByVersionAndType(ulong versionid, DDCCPoolType type)
             => Banners.FindAll(x => x.VersionID == versionid && x.CategorizedGachaType == type);
         // GreaterRounds
+
+        public DDCLRoundLogItem GetLastGreaterRoundByCategorizedType(DDCCPoolType type)
+            => GreaterRounds.Last(x => x.CategorizedGachaType == type);
         // BasicRounds
 
-        
+
         // Logs
         public DDCLGachaLogItem GetItem(ulong internalid)
             => Logs[internalid];
