@@ -11,7 +11,11 @@ namespace DodocoTales.SR.Gui.ViewModels.Cards
     {
         public DDCVHomeSceneLCEventCardVM()
         {
-            InitializeDashboard(DDCCPoolType.LCEvent, 160);
+            InitializeDashboard(DDCCPoolType.LCEvent, 160, 80);
+            softPityThreshold = 66;
+            brLuckyLimit = 48;
+            rndLuckyLimit = 50;
+            rndUnluckyLimit = 80;
         }
         public override void RefreshGlobalDashboard()
         {
@@ -19,15 +23,17 @@ namespace DodocoTales.SR.Gui.ViewModels.Cards
             SetDBVRate(DBVGlobalR5Up, GlobalRank5Up, GlobalTotal, 0.6, 2.38);
             SetDBVRate(DBVGlobalR4, GlobalRank4, GlobalTotal, 9, 19.5);
             SetDBVRate(DBVGlobalR4Up, GlobalRank4Up, GlobalTotal, 5, 18.8);
-            if (currentBasicRountCount > 66)
+            if (CurrentBasicRoundCount > softPityThreshold)
             {
                 SoftPityActivated = true;
-                SoftPityChance = 0.008 + (currentBasicRountCount - 66) * 0.112 + (currentBasicRountCount>70 ? (currentBasicRountCount - 70) * -0.056 :0);
-                SoftPityChance *= (CurrentRoundCurrent == currentBasicRountCount) ? 0.75 : 1;
+                SoftPityChance = 0.008 + (CurrentBasicRoundCount - softPityThreshold) * 0.112 + (CurrentBasicRoundCount>70 ? (CurrentBasicRoundCount - 70) * -0.056 :0);
+                SoftPityChance *= (CurrentRoundCurrent == CurrentBasicRoundCount) ? 0.75 : 1;
             }
             else
             {
                 SoftPityActivated = false;
+                SoftPityChance = 0.008;
+                SoftPityChance *= (CurrentRoundCurrent == CurrentBasicRoundCount) ? 0.75 : 1;
             }
         }
     }

@@ -7,15 +7,15 @@
              xmlns:cards="clr-namespace:DodocoTales.SR.Gui.Views.Cards"
              mc:Ignorable="d" 
              d:DesignHeight="800" d:DesignWidth="800">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-        <cards:DDCVHomeSceneCharEventCard Grid.Row="0" x:Name="CharEvent"/>
-        <cards:DDCVHomeSceneLCEventCard Grid.Row="1" x:Name="LCEvent"/>
-        <cards:DDCVHomeScenePermanentCard Grid.Row="2" x:Name="Permanant"/>
+    <Grid Margin="5">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <cards:DDCVHomeSceneCharEventCard  x:Name="CharEvent"/>
+       
+        <cards:DDCVHomeScenePermanentCard  x:Name="Permanant" Grid.Column="1"/>
+        <cards:DDCVHomeSceneLCEventCard x:Name="LCEvent" Grid.Column="2"/>
     </Grid>
 </local:DDCVSwapableScreen>

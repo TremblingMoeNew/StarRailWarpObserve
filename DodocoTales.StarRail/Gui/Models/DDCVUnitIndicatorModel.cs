@@ -85,5 +85,53 @@ namespace DodocoTales.SR.Gui.Models
             get => application;
             set => SetProperty(ref application, value);
         }
+
+        private int brMax;
+        public int BrMax
+        {
+            get => brMax;
+            set => SetProperty(ref brMax, value);
+        }
+        private int rndMax;
+        public int RndMax
+        {
+            get => rndMax;
+            set => SetProperty(ref rndMax, value);
+        }
+        private bool brlucky;
+        public bool BrLucky
+        {
+            get => brlucky;
+            set => SetProperty(ref brlucky, value);
+        }
+
+        private bool brunlucky;
+        public bool BrUnlucky
+        {
+            get => brunlucky;
+            set => SetProperty(ref brunlucky, value);
+        }
+
+        private bool rndlucky;
+        public bool RndLucky
+        {
+            get => rndlucky;
+            set => SetProperty(ref rndlucky, value);
+        }
+
+        private bool rndunlucky;
+        public bool RndUnlucky
+        {
+            get => rndunlucky;
+            set => SetProperty(ref rndunlucky, value);
+        }
+
+        private int rndcount;
+        public int RndCount
+        {
+            get => rndcount;
+            set => SetProperty(ref rndcount, value);
+        }
+
     }
 }

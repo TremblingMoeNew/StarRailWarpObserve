@@ -32,21 +32,13 @@ namespace DodocoTales.SR.Gui.Views.Cards
             VM.ReloadData();
         }
 
-        private void InfoPanelStatusIndicator_Checked(object sender, RoutedEventArgs e)
+        private void RadioButton_Checked(object sender, RoutedEventArgs e)
         {
-            if (InfoPanelStatusIndicator.IsChecked == true)
+            var btn = sender as RadioButton;
+            if (btn != null)
             {
-                AnimationHelper.SetFadeOut(Dashboard, true);
-                Dashboard.Visibility = Visibility.Collapsed;
-                Details.Visibility = Visibility.Visible;
-                AnimationHelper.SetFadeIn(Details, true);
-            }
-            else
-            {
-                AnimationHelper.SetFadeOut(Details, true);
-                Details.Visibility = Visibility.Collapsed;
-                Dashboard.Visibility = Visibility.Visible;
-                AnimationHelper.SetFadeIn(Dashboard, true);
+                var idx = Convert.ToInt32(btn.Tag);
+                VM.UnitIndicatorCurrentPageIndex = idx;
             }
         }
     }

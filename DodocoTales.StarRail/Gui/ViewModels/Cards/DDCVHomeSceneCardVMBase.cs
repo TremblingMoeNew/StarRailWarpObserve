@@ -27,13 +27,17 @@ namespace DodocoTales.SR.Gui.ViewModels.Cards
             set => SetProperty(ref softPityActivated, value);
         }
 
+        protected int softPityThreshold;
+        protected int brLuckyLimit;
+        protected int rndLuckyLimit;
+        protected int rndUnluckyLimit;
+
         public double softPityChance;
         public double SoftPityChance
         {
             get => softPityChance;
             set => SetProperty(ref softPityChance, value);
         }
-        protected int currentBasicRountCount;
 
         #region Properties_CurrentBanner_Title
 
@@ -75,6 +79,19 @@ namespace DodocoTales.SR.Gui.ViewModels.Cards
         {
             get => currentBannerExists;
             set => SetProperty(ref currentBannerExists, value);
+        }
+
+        private ObservableCollection<string> upRank5s;
+        public ObservableCollection<string> UpRank5s
+        {
+            get => upRank5s;
+            set => SetProperty(ref upRank5s, value);
+        }
+        private ObservableCollection<string> upRank4s;
+        public ObservableCollection<string> UpRank4s
+        {
+            get => upRank4s;
+            set => SetProperty(ref upRank4s, value);
         }
         #endregion
 
@@ -123,42 +140,47 @@ namespace DodocoTales.SR.Gui.ViewModels.Cards
             get => rank5List;
             set => SetProperty(ref rank5List, value);
         }
-
+        private ObservableCollection<DDCVUnitIndicatorModel> rank5UpList = new ObservableCollection<DDCVUnitIndicatorModel>();
+        public ObservableCollection<DDCVUnitIndicatorModel> Rank5UpList
+        {
+            get => rank5UpList;
+            set => SetProperty(ref rank5UpList, value);
+        }
         #endregion
 
         #region Properties_Current
-        private string currentTotal;
-        public string CurrentTotal
+        private int currentTotal;
+        public int CurrentTotal
         {
             get => currentTotal;
             set => SetProperty(ref currentTotal, value);
         }
-        private string currentRank5;
-        public string CurrentRank5
+        private int currentRank5;
+        public int CurrentRank5
         {
             get => currentRank5;
             set => SetProperty(ref currentRank5, value);
         }
-        private string currentRank5Up;
-        public string CurrentRank5Up
+        private int currentRank5Up;
+        public int CurrentRank5Up
         {
             get => currentRank5Up;
             set => SetProperty(ref currentRank5Up, value);
         }
-        private string currentRank4;
-        public string CurrentRank4
+        private int currentRank4;
+        public int CurrentRank4
         {
             get => currentRank4;
             set => SetProperty(ref currentRank4, value);
         }
-        private string currentRank4Up;
-        public string CurrentRank4Up
+        private int currentRank4Up;
+        public int CurrentRank4Up
         {
             get => currentRank4Up;
             set => SetProperty(ref currentRank4Up, value);
         }
-        private string currentRank3;
-        public string CurrentRank3
+        private int currentRank3;
+        public int CurrentRank3
         {
             get => currentRank3;
             set => SetProperty(ref currentRank3, value);
@@ -217,7 +239,8 @@ namespace DodocoTales.SR.Gui.ViewModels.Cards
         public ObservableValue DBVPBannerUnaligned = new ObservableValue(0);
         public ObservableValue DBVCBannerPermanent = new ObservableValue(0);
         public ObservableValue DBVCurrent = new ObservableValue(0);
-        public ObservableValue DBVRemains = new ObservableValue(240);
+        public ObservableValue DBVRemains = new ObservableValue(160);
+        public ObservableValue DBVUnavailable = new ObservableValue(0);
 
         private int currentRoundIndex;
         public int CurrentRoundIndex
@@ -243,32 +266,53 @@ namespace DodocoTales.SR.Gui.ViewModels.Cards
                 RefreshCurrentRoundRemains();
             }
         }
+
+        private int currentBasicRoundCount;
+        public int CurrentBasicRoundCount
+        {
+            get => currentBasicRoundCount;
+            set => SetProperty(ref currentBasicRoundCount, value);
+        }
+
+        private int basicRoundTotal;
+        public int BasicRoundTotal
+        {
+            get => basicRoundTotal;
+            set
+            {
+                SetProperty(ref basicRoundTotal, value);
+            }
+        }
+
         public static PieSeries<ObservableValue> CreatePieSeries(ObservableValue value, string name, string color, double innerrradius = 50, bool hoverable = true)
         {
             return new PieSeries<ObservableValue> { Values = new ObservableValue[] { value }, InnerRadius = innerrradius, HoverPushout = 0, Name = name, Fill = new SolidColorPaint(SKColor.Parse(color)), IsHoverable = hoverable };
         }
         public void SetCurrentRoundValues(int pbp, int pbu, int cbp, int cur)
         {
+            CurrentRoundCurrent = pbp + pbu + cbp + cur;
+            CurrentBasicRoundCount = cur + (cbp > 0 ? 0 : pbu);
+
             DBVPBannerPermanent.Value = pbp;
             DBVPBannerUnaligned.Value = pbu;
             DBVCBannerPermanent.Value = cbp;
             DBVCurrent.Value = cur;
-            CurrentRoundCurrent = pbp + pbu + cbp + cur;
-            currentBasicRountCount = cur + (cbp > 0 ? 0 : pbu);
+            DBVUnavailable.Value = (pbp > 0 || cbp > 0) ? BasicRoundTotal - (CurrentRoundCurrent - CurrentBasicRoundCount) : 0;
+
             RefreshCurrentRoundRemains();
         }
         public void RefreshCurrentRoundRemains()
         {
-            DBVRemains.Value = CurrentRoundTotal - CurrentRoundCurrent;
+            DBVRemains.Value = CurrentRoundTotal - CurrentRoundCurrent - DBVUnavailable.Value;
         }
 
-        public void InitializeDashboard(DDCCPoolType poolType, int roundTotal)
+        public void InitializeDashboard(DDCCPoolType poolType, int roundTotal, int basicRound = 90)
         {
             SeriesGlobalR5 = new GaugeBuilder()
-                .WithInnerRadius(36)
-                .WithBackgroundInnerRadius(36)
-                .AddValue(DBVGlobalR5Up, "", SKColor.Parse("#D0BA6FD9"))
-                .AddValue(DBVGlobalR5, "", SKColor.Parse("#048CFF"))
+                .WithInnerRadius(32)
+                .WithBackgroundInnerRadius(32)
+                .AddValue(DBVGlobalR5Up, "", SKColor.Parse("#B0FC6500"))
+                .AddValue(DBVGlobalR5, "", SKColor.Parse("#D0DF1000"))
                 .WithLabelsSize(0)
                 .BuildSeries();
             foreach (var ser in SeriesGlobalR5)
@@ -276,10 +320,10 @@ namespace DodocoTales.SR.Gui.ViewModels.Cards
                 ser.IsHoverable = false;
             }
             SeriesGlobalR4 = new GaugeBuilder()
-                .WithInnerRadius(36)
-                .WithBackgroundInnerRadius(36)
-                .AddValue(DBVGlobalR4Up, "", SKColor.Parse("#D0BA6FD9"))
-                .AddValue(DBVGlobalR4, "", SKColor.Parse("#048CFF"))
+                .WithInnerRadius(32)
+                .WithBackgroundInnerRadius(32)
+                .AddValue(DBVGlobalR4Up, "", SKColor.Parse("#B08C46F5"))
+                .AddValue(DBVGlobalR4, "", SKColor.Parse("#D0411BE2"))
                 .WithLabelsSize(0)
                 .BuildSeries();
             foreach (var ser in SeriesGlobalR4)
@@ -293,14 +337,30 @@ namespace DodocoTales.SR.Gui.ViewModels.Cards
                 CreatePieSeries(DBVCBannerPermanent,"本卡池（常驻）","#B0D67593",45),
                 CreatePieSeries(DBVCurrent,"本卡池（当前）","#048CFF",45),
                 CreatePieSeries(DBVRemains,"","#EEEEEE",45,false),
+                CreatePieSeries(DBVUnavailable,"","#555555",45,false),
             };
             PoolType = poolType;
             CurrentRoundTotal = roundTotal;
+            BasicRoundTotal = basicRound;
         }
 
 
         #endregion
 
+
+
+
+        #region UnitIndicator
+        private int unitIndicatorCurrentPageIndex;
+        public int UnitIndicatorCurrentPageIndex
+        {
+            get => unitIndicatorCurrentPageIndex;
+            set
+            {
+                SetProperty(ref unitIndicatorCurrentPageIndex, value);
+            }
+        }
+        #endregion
 
         private DDCCPoolType PoolType;
 
@@ -308,12 +368,9 @@ namespace DodocoTales.SR.Gui.ViewModels.Cards
         {
             Version = "---";
             BannerTitle = "---";
-            CurrentTotal = "---";
-            CurrentRank5 = "---";
-            CurrentRank5Up = "---";
-            CurrentRank4 = "---";
-            CurrentRank4Up = "---";
             CurrentBannerExists = false;
+            UpRank4s = new ObservableCollection<string> { null, null, null };
+            UpRank5s = new ObservableCollection<string> { null, null, null };
         }
 
 
@@ -374,11 +431,6 @@ namespace DodocoTales.SR.Gui.ViewModels.Cards
                 Version = "---";
                 BannerTitle = "---";
                 CurrentBannerExists = false;
-                CurrentTotal = "---";
-                CurrentRank5 = "---";
-                CurrentRank5Up = "---";
-                CurrentRank4 = "---";
-                CurrentRank4Up = "---";
                 return;
             }
             Version = DDCL.BannerLib.GetVersion(current.VersionID).Version;
@@ -395,6 +447,25 @@ namespace DodocoTales.SR.Gui.ViewModels.Cards
                 upunit += string.Format(" {0}", r4up);
             }
             UpUnits = upunit;
+
+            var upr5 = new ObservableCollection<string>(current.Rank5Up);
+            if (upr5.Count > 0)
+            {
+                if (upr5.Count < 3) upr5.Insert(1, null);
+                if (upr5.Count < 3) upr5.Insert(0, null);
+            }
+
+            UpRank5s = upr5;
+
+            var upr4 = new ObservableCollection<string>(current.Rank4Up);
+            if (upr4.Count > 0) 
+            {
+                if (upr4.Count < 3) upr4.Insert(1, null);
+                if (upr4.Count < 3) upr4.Insert(0, null);
+            }
+            
+            UpRank4s = upr4;
+
             var tz = DDCL.CurrentUser.GetActivatingTimeZone();
             BeginTime = DDCL.GetBannerTimeOffset(current.BeginTime, current.BeginTimeSync, tz).ToLocalTime();
             EndTime = DDCL.GetBannerTimeOffset(current.EndTime, current.EndTimeSync, tz).ToLocalTime();
@@ -406,39 +477,39 @@ namespace DodocoTales.SR.Gui.ViewModels.Cards
             {
                 return;
             }
-            CurrentTotal = currentlog.Logs.Count.ToString();
+            CurrentTotal = currentlog.Logs.Count;
 
 
-            CurrentRank5Up = CurrentRank5 = CurrentRank4Up = CurrentRank4 = CurrentRank3 = "0";
+            CurrentRank5Up = CurrentRank5 = CurrentRank4Up = CurrentRank4 = CurrentRank3 = 0;
             foreach (var grp in currentlog.Logs.GroupBy(x => x.Rank))
             {
                 var rank = grp.First().Rank;
                 if (rank == 5)
                 {
                     var r5 = grp.ToList();
-                    CurrentRank5 = r5.Count.ToString();
+                    CurrentRank5 = r5.Count;
                     int upc = 0;
                     foreach (var item in r5)
                     {
                         if (current.Rank5Up.Contains(item.Name)) upc++;
                     }
-                    CurrentRank5Up = upc.ToString();
+                    CurrentRank5Up = upc;
                 }
                 if (rank == 4)
                 {
                     var r4 = grp.ToList();
-                    CurrentRank4 = r4.Count.ToString();
+                    CurrentRank4 = r4.Count;
                     int upc = 0;
                     foreach (var item in r4)
                     {
                         if (current.Rank4Up.Contains(item.Name)) upc++;
                     }
-                    CurrentRank4Up = upc.ToString();
+                    CurrentRank4Up = upc;
                 }
                 if (rank == 3)
                 {
                     var r3 = grp.ToList();
-                    CurrentRank3 = r3.Count.ToString();
+                    CurrentRank3 = r3.Count;
                 }
             }
 
@@ -483,7 +554,10 @@ namespace DodocoTales.SR.Gui.ViewModels.Cards
         {
             var rounds = logs.GroupBy(x => x.RoundID);
             var ls = new List<DDCVUnitIndicatorModel>();
+            var upls = new List<DDCVUnitIndicatorModel>();
             var tz = DDCL.CurrentUser.GetActivatingTimeZone();
+            int idx = 1;
+            int upc = 0;
             foreach (var rnd in rounds)
             {
                 var rndl = rnd.ToList();
@@ -491,18 +565,46 @@ namespace DodocoTales.SR.Gui.ViewModels.Cards
                 {
                     var last = rndl.Last();
                     if (last.Rank < 5) continue;
-                    ls.Add(new DDCVUnitIndicatorModel
+                    var item = new DDCVUnitIndicatorModel
                     {
                         Name = last.Name,
                         Time = DDCL.GetTimeOffset(last.Time, tz).ToLocalTime(),
                         Version = DDCL.BannerLib.GetVersion(last.VersionID).Version,
                         Banner = DDCL.BannerLib.GetBanner(last.BannerInternalID).Name,
-                        Count = rndl.Count
-                    });
+                        Count = rndl.Count,
+                        Index = idx,
+                        BrMax = BasicRoundTotal,
+                    };
+                    item.BrLucky = brLuckyLimit > item.Count;
+                    item.BrUnlucky = item.Count > softPityThreshold;
+
+                    ls.Add(item);
+
+                    var banner = DDCL.BannerLib.GetBanner(last.BannerInternalID);
+                    if(banner.Rank5Up.Count > 0)
+                    {
+                        upc += item.Count;
+                        if (banner.Rank5Up.Contains(item.Name))
+                        {
+                            item.RndCount = upc;
+                            item.RndLucky = rndLuckyLimit > item.RndCount;
+                            item.RndUnlucky = item.RndCount > rndUnluckyLimit;
+                            item.RndMax = CurrentRoundTotal;
+                            upc = 0;
+                            idx++;
+                            upls.Add(item);
+                        }
+                    }
+                    else
+                    {
+                        idx++;
+                    }
                 }
             }
             ls.Reverse();
+            upls.Reverse();
             Rank5List = new ObservableCollection<DDCVUnitIndicatorModel>(ls);
+            Rank5UpList = new ObservableCollection<DDCVUnitIndicatorModel>(upls);
         }
 
 

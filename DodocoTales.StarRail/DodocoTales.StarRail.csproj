@@ -148,6 +148,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Gui\Resources\DDCVResources.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Gui\Resources\Styles\DDCVListViewItemStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -229,11 +233,15 @@
     <Compile Include="Gui\Converters\DDCVItemNameColorConverter.cs" />
     <Compile Include="Gui\Converters\DDCVPercentageConverter.cs" />
     <Compile Include="Gui\Converters\DDCVPoolTypeConverter.cs" />
+    <Compile Include="Gui\Converters\DDCVProgressConverter.cs" />
+    <Compile Include="Gui\Converters\DDCVSegmentPercentageConverter.cs" />
+    <Compile Include="Gui\Converters\DDCVTimeProgressConverter.cs" />
     <Compile Include="Gui\Converters\DDCVTimeZoneConverter.cs" />
     <Compile Include="Gui\Converters\DDCVUidAnonymousConverter.cs" />
     <Compile Include="Gui\Converters\DDCVUidNormalConverter.cs" />
     <Compile Include="Gui\Converters\DDCVVisibleByAvailableUIDConverter.cs" />
     <Compile Include="Gui\Converters\DDCVVisibleByBooleanConverter.cs" />
+    <Compile Include="Gui\Converters\DDCVVisibleByNotNullConverter.cs" />
     <Compile Include="Gui\DDCV.cs" />
     <Compile Include="Gui\Enums\DDCVGreaterRoundType.cs" />
     <Compile Include="Gui\Enums\DDCVHintBannerStatus.cs" />
@@ -365,6 +373,8 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <Resource Include="Gui\Resources\Digiface_Regular.ttf" />
+    <Resource Include="Gui\Resources\Segment7Standard.otf" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

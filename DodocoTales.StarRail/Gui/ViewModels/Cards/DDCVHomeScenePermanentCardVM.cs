@@ -22,20 +22,25 @@ namespace DodocoTales.SR.Gui.ViewModels.Cards
     {
         public DDCVHomeScenePermanentCardVM()
         {
-            InitializeDashboard(DDCCPoolType.Permanent, 90);
+            InitializeDashboard(DDCCPoolType.Permanent, 90, 90);
+            softPityThreshold = 72;
+            brLuckyLimit = 50;
+            rndLuckyLimit = 50;
+            rndUnluckyLimit = 72;
         }
         public override void RefreshGlobalDashboard()
         {
             SetDBVRate(DBVGlobalR5, GlobalRank5, GlobalTotal, 1.1, 2.1);
             SetDBVRate(DBVGlobalR4, GlobalRank4, GlobalTotal, 8, 18);
-            if (currentBasicRountCount > 72)
+            if (CurrentBasicRoundCount > softPityThreshold)
             {
                 SoftPityActivated = true;
-                SoftPityChance = 0.006 + (currentBasicRountCount - 72) * 0.06;
+                SoftPityChance = 0.006 + (CurrentBasicRoundCount - softPityThreshold) * 0.06;
             }
             else
             {
                 SoftPityActivated = false;
+                SoftPityChance = 0.006;
             }
         }
     }

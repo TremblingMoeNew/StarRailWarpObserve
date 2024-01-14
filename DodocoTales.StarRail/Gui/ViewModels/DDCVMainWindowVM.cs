@@ -126,7 +126,7 @@ namespace DodocoTales.SR.Gui.ViewModels
         {
             MenuItems = new ObservableCollection<DDCVMainPanelItemModel>()
             {
-                new DDCVMainPanelItemModel("首页","Home", 0){ IsSelected = true },
+                new DDCVMainPanelItemModel("首页","Home", 0) { IsSelected = true },
                 new DDCVMainPanelItemModel("统计","Version",0)
                 {
                     /*

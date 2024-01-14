@@ -4,6 +4,7 @@
                     xmlns:converter="clr-namespace:DodocoTales.SR.Gui.Converters">
     <converter:DDCVVisibleByBooleanConverter x:Key="VisByBoolCon"/>
     <converter:DDCVPercentageConverter x:Key="PercentageCon"/>
+    <converter:DDCVSegmentPercentageConverter x:Key="SegPercentageCon"/>
     <converter:DDCVPoolTypeConverter x:Key="PoolTypeCon"/>
     <converter:DDCVUidAnonymousConverter x:Key="UIDAnonyCon"/>
     <converter:DDCVUidNormalConverter x:Key="UIDNormalCon"/>
@@ -11,4 +12,7 @@
     <converter:DDCVClientTypeConverter x:Key="ClientTypeCon"/>
     <converter:DDCVTimeZoneConverter x:Key="TimeZoneCon"/>
     <converter:DDCVItemNameColorConverter x:Key="ItemNameColor"/>
+    <converter:DDCVProgressConverter x:Key="ProgressCon"/>
+    <converter:DDCVTimeProgressConverter x:Key="TimeProgressCon"/>
+    <converter:DDCVVisibleByNotNullConverter x:Key="VisByNotNullCon"/>
 </ResourceDictionary>

@@ -13,301 +13,792 @@
         <Grid.DataContext>
             <vm:DDCVHomeSceneCharEventCardVM x:Name="VM"/>
         </Grid.DataContext>
-        <Border BorderThickness="1" BorderBrush="#CCCCCC" CornerRadius="5" VerticalAlignment="Top">
-            <Border.Style>
-                <Style TargetType="Border">
-                    <Setter Property="Margin" Value="10 20 20 5"/>
-                </Style>
-            </Border.Style>
-            <Grid Margin="5 5 10 5">
+        <Border BorderThickness="1" BorderBrush="#CCCCCC" CornerRadius="5"  Margin="5">
+            <Grid Margin="0 5 0 0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
                     <RowDefinition/>
+                    
                 </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="15"/>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-                <Label FontSize="18" Grid.ColumnSpan="5" Grid.RowSpan="2">角色活动跃迁</Label>
-                <TextBlock Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="5" FontSize="13" >
-                    <TextBlock.Text>
-                        <MultiBinding StringFormat="{}{0} - {1}">
-                            <Binding Path="Version"/>
-                            <Binding Path="BannerTitle"/>
-                        </MultiBinding>
-                    </TextBlock.Text>
-                </TextBlock>
-                <TextBlock Grid.Row="1" Grid.Column="5" Grid.ColumnSpan="2" 
-                           VerticalAlignment="Bottom" 
-                           HorizontalAlignment="Right" FontSize="13" 
-                           Text="{Binding UpUnits}"
-                           Visibility="{Binding CurrentBannerExists,Converter={StaticResource VisByBoolCon}}"/>
-                <TextBlock Grid.Row="2" Grid.Column="5" Grid.ColumnSpan="2" 
-                           HorizontalAlignment="Right" FontSize="13"
-                           Visibility="{Binding CurrentBannerExists,Converter={StaticResource VisByBoolCon}}">
-                    <TextBlock.Text>
-                        <MultiBinding StringFormat="{}{0:yyyy-MM-dd HH:mm:ss} - {1:yyyy-MM-dd HH:mm:ss}">
-                            <Binding Path="BeginTime"/>
-                            <Binding Path="EndTime"/>
-                        </MultiBinding>
-                    </TextBlock.Text>
-                </TextBlock>
 
-                <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.ColumnSpan="5" Grid.Row="2" Grid.RowSpan="10" Name="Dashboard" >
-                    <StackPanel.Style>
-                        <Style TargetType="StackPanel">
-                            <Setter Property="HorizontalAlignment" Value="Center"/>
-                        </Style>
-                    </StackPanel.Style>
+                <Label Grid.Row="0" FontSize="18" HorizontalAlignment="Center">角色活动跃迁</Label>
+                <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Center">
                     <Grid>
-                        <lvc:PieChart Series="{Binding SeriesGlobalR5}" Width="180" Height="180" Total="1.0" MaxAngle="270" InitialRotation="135"/>
-                        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" >
-                            <TextBlock  HorizontalAlignment="Center" FontSize="20">
-                                <TextBlock.Text>
-                                    <MultiBinding Converter="{StaticResource PercentageCon}" StringFormat="{}{0}">
-                                        <Binding Path="GlobalRank5"/>
-                                        <Binding Path="GlobalTotal"/>
-                                    </MultiBinding>
-                                </TextBlock.Text>
-                            </TextBlock>
-                            <TextBlock HorizontalAlignment="Center" >
-                                <TextBlock.Text>
-                                    <MultiBinding Converter="{StaticResource PercentageCon}" StringFormat="{}{0}">
-                                        <Binding Path="GlobalRank5Up"/>
-                                        <Binding Path="GlobalTotal"/>
-                                    </MultiBinding>
-                                </TextBlock.Text>
-                            </TextBlock>
-                        </StackPanel>
-                        <StackPanel VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,10">
-                            <Label  HorizontalAlignment="Center">
-                                <TextBlock FontSize="14">
-                                    <TextBlock.Text>
-                                        <MultiBinding StringFormat="{}五星：{0} / UP：{1}">
-                                            <Binding Path="GlobalRank5"/>
-                                            <Binding Path="GlobalRank5Up"/>
-                                        </MultiBinding>
-                                    </TextBlock.Text>
-                                </TextBlock>
-                            </Label>
-                        </StackPanel>
-
+                        <TextBlock FontSize="50" FontFamily="{StaticResource Segment7}" HorizontalAlignment="Right" Foreground="#EEEEEE">88888</TextBlock>
+                        <TextBlock FontSize="50" FontFamily="{StaticResource Segment7}" HorizontalAlignment="Right" Text="{Binding GlobalTotal}"/>
                     </Grid>
-                    <Grid>
-                        <lvc:PieChart Series="{Binding SeriesGlobalR4}" Width="180" Height="180" Total="1.0" MaxAngle="270" InitialRotation="135"/>
-                        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" >
-                            <TextBlock HorizontalAlignment="Center" FontSize="20">
-                                <TextBlock.Text>
-                                    <MultiBinding Converter="{StaticResource PercentageCon}" StringFormat="{}{0}">
-                                        <Binding Path="GlobalRank4"/>
-                                        <Binding Path="GlobalTotal"/>
-                                    </MultiBinding>
-                                </TextBlock.Text>
-                            </TextBlock>
-                            <TextBlock HorizontalAlignment="Center" >
-                                <TextBlock.Text>
-                                    <MultiBinding Converter="{StaticResource PercentageCon}" StringFormat="{}{0}">
-                                        <Binding Path="GlobalRank4Up"/>
-                                        <Binding Path="GlobalTotal"/>
-                                    </MultiBinding>
-                                </TextBlock.Text>
-                            </TextBlock>
-                        </StackPanel>
-                        <Label HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,10">
-                            <TextBlock FontSize="14">
-                                <TextBlock.Text>
-                                    <MultiBinding StringFormat="{}四星：{0} / UP：{1}">
-                                        <Binding Path="GlobalRank4"/>
-                                        <Binding Path="GlobalRank4Up"/>
-                                    </MultiBinding>
-                                </TextBlock.Text>
-                            </TextBlock>
-                        </Label>
-                    </Grid>
-                    <Grid>
-                        <lvc:PieChart Series="{Binding SeriesCurrentRound}" Width="180" Height="140" MaxAngle="270" InitialRotation="135" Total="{Binding CurrentRoundTotal}" Margin="0" Padding="0"/>
-                        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" >
-                            <TextBlock  HorizontalAlignment="Center" FontSize="20">
-                                <TextBlock.Text>
-                                    <MultiBinding StringFormat="{}{0}/{1}">
-                                        <Binding Path="CurrentRoundCurrent"/>
-                                        <Binding Path="CurrentRoundTotal"/>
-                                    </MultiBinding>
-                                </TextBlock.Text>
-                            </TextBlock>
-                            <TextBlock  HorizontalAlignment="Center" >
-                                <TextBlock.Text>
-                                    <MultiBinding StringFormat="{}第 {0} 轮">
-                                        <Binding Path="CurrentRoundIndex"/>
-                                    </MultiBinding>
-                                </TextBlock.Text>
-                            </TextBlock>
-                        </StackPanel>
-                        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,10" Orientation="Horizontal">
-                            <Label>
-                                <TextBlock FontSize="14">
-                                    <TextBlock.Text>
-                                        <MultiBinding StringFormat="{}总计：{0}">
-                                            <Binding Path="GlobalTotal"/>
-                                        </MultiBinding>
-                                    </TextBlock.Text>
-                                </TextBlock>
-                            </Label>
-                            <Label Visibility="{Binding SoftPityActivated, Converter={StaticResource VisByBoolCon}}">
-                                <TextBlock FontSize="14">
-                                    <TextBlock.ToolTip>
-                                        <StackPanel>
-                                            <TextBlock>软保底机制已激活</TextBlock>
-                                            <TextBlock Text="{Binding SoftPityChance, StringFormat={}当前概率:{0:P2}}"/>
-                                        </StackPanel>
-                                    </TextBlock.ToolTip>
-                                    ↑
-                                </TextBlock>
-                            </Label>
-                        </StackPanel>
-                    </Grid>
+                    <Label FontFamily="{StaticResource Digiface}" VerticalContentAlignment="Bottom" FontSize="14">抽</Label>
                 </StackPanel>
-                <Grid Margin="0 0 5 5" Grid.Column="1" Grid.Row="3" Grid.RowSpan="10" Grid.ColumnSpan="5" Name="Details" Visibility="Collapsed">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="15"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition />
-                    </Grid.RowDefinitions>
+
+
+                <Grid Margin="0 10 0 0" Grid.Row="2">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="30"/>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="50"/>
+                        <ColumnDefinition/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <Grid Grid.ColumnSpan="20">
-                        <Rectangle Height="0.5" Fill="#999999" Margin="5 0"/>
-                    </Grid>
-                    <Label Grid.Row="1" Grid.ColumnSpan="2" Margin="10 0 0 0" FontSize="14" >抽数总计：</Label>
-                    <Label Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" FontSize="14" HorizontalContentAlignment="Left" Margin="0 0 0 0" Content="{Binding GlobalTotal}"/>
-                    <Label Grid.Row="2" Grid.Column="1" HorizontalContentAlignment="Right" FontSize="13">五星：</Label>
-                    <Label Grid.Row="2" Grid.Column="2" Content="{Binding GlobalRank5}" FontSize="13"/>
-                    <Label Grid.Row="2" Grid.Column="3" FontSize="13">
-                        <TextBlock>
-                            <TextBlock.Text>
-                                <MultiBinding Converter="{StaticResource PercentageCon}" StringFormat="{}[{0}]">
-                                    <Binding Path="GlobalRank5"/>
-                                    <Binding Path="GlobalTotal"/>
-                                </MultiBinding>
-                            </TextBlock.Text>
-                        </TextBlock>
-                    </Label>
-                    <Label Grid.Row="3" Grid.Column="1" HorizontalContentAlignment="Right" Padding="6 0 6 6" FontSize="13">UP：</Label>
-                    <Label Grid.Row="3" Grid.Column="2" Padding="5 0 0 0" Content="{Binding GlobalRank5Up}" FontSize="13"/>
-                    <Label Grid.Row="3" Grid.Column="3" Padding="5 0 0 0" FontSize="13">
-                        <TextBlock>
-                            <TextBlock.Text>
-                                <MultiBinding Converter="{StaticResource PercentageCon}" StringFormat="{}[{0}]">
-                                    <Binding Path="GlobalRank5Up"/>
-                                    <Binding Path="GlobalTotal"/>
-                                </MultiBinding>
-                            </TextBlock.Text>
-                        </TextBlock>
-                    </Label>
-                    <Label Grid.Row="4" Grid.Column="1" HorizontalContentAlignment="Right" FontSize="13">四星：</Label>
-                    <Label Grid.Row="4" Grid.Column="2" Content="{Binding GlobalRank4}" FontSize="13"/>
-                    <Label Grid.Row="4" Grid.Column="3" FontSize="13">
-                        <TextBlock>
-                            <TextBlock.Text>
-                                <MultiBinding Converter="{StaticResource PercentageCon}" StringFormat="{}[{0}]">
-                                    <Binding Path="GlobalRank4"/>
-                                    <Binding Path="GlobalTotal"/>
-                                </MultiBinding>
-                            </TextBlock.Text>
-                        </TextBlock>
-                    </Label>
-                    <Label Grid.Row="5" Grid.Column="1" HorizontalContentAlignment="Right" Padding="6 0 6 6" FontSize="13">UP：</Label>
-                    <Label Grid.Row="5" Grid.Column="2" Padding="5 0 0 0" Content="{Binding GlobalRank4Up}" FontSize="13"/>
-                    <Label Grid.Row="5" Grid.Column="3" Padding="5 0 0 0" FontSize="13">
-                        <TextBlock>
-                            <TextBlock.Text>
-                                <MultiBinding Converter="{StaticResource PercentageCon}" StringFormat="{}[{0}]">
-                                    <Binding Path="GlobalRank4Up"/>
-                                    <Binding Path="GlobalTotal"/>
-                                </MultiBinding>
-                            </TextBlock.Text>
-                        </TextBlock>
-                    </Label>
-
-
-                    <Label  VerticalContentAlignment="Bottom" Grid.Row="1" Grid.Column="5" Grid.ColumnSpan="2" FontSize="14">当前卡池：</Label>
-                    <Label  VerticalContentAlignment="Bottom" Grid.Row="1" Grid.Column="7" Grid.ColumnSpan="1" FontSize="14" HorizontalContentAlignment="Right" Content="{Binding CurrentTotal}"/>
-                    <Label Grid.Row="2" Grid.Column="6" HorizontalContentAlignment="Right" FontSize="13">五星：</Label>
-                    <Label Grid.Row="2" Grid.Column="7" Content="{Binding CurrentRank5}" FontSize="13"/>
-                    <Label Grid.Row="3" Grid.Column="6" HorizontalContentAlignment="Right" Padding="6 0 6 6" FontSize="13">UP：</Label>
-                    <Label Grid.Row="3" Grid.Column="7" Padding="5 0 0 0" Content="{Binding CurrentRank5Up}" FontSize="13"/>
-                    <Label Grid.Row="4" Grid.Column="6" HorizontalContentAlignment="Right" FontSize="13">四星：</Label>
-                    <Label Grid.Row="4" Grid.Column="7" Content="{Binding CurrentRank4}" FontSize="13"/>
-                    <Label Grid.Row="5" Grid.Column="6" HorizontalContentAlignment="Right" Padding="6 0 6 6" FontSize="13">UP：</Label>
-                    <Label Grid.Row="5" Grid.Column="7" Padding="5 0 0 0" Content="{Binding CurrentRank4Up}" FontSize="13"/>
-                    <Grid Grid.Row="1" Grid.RowSpan="6" Grid.Column="8" >
-                        <Rectangle Width="0.5" Fill="#999999" Margin="0 5 10 0" HorizontalAlignment="Right"/>
-                    </Grid>
-                    <ItemsControl ItemsSource="{Binding Rank5List}" Grid.Row="1" Grid.RowSpan="6" Grid.Column="9"  Margin="5 5 5 25" MaxHeight="90">
-                        <ItemsControl.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <WrapPanel />
-                            </ItemsPanelTemplate>
-                        </ItemsControl.ItemsPanel>
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel Margin="0 0 5 3" Orientation="Horizontal">
-                                    <TextBlock FontSize="12" Foreground="{Binding Name,Converter={StaticResource ItemNameColor}}">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                        <StackPanel VerticalAlignment="Center" Margin="0 5 2 0">
+                            <Grid Margin="0 0 5 2">
+                                <Grid.ToolTip>
+                                    <TextBlock>
                                         <TextBlock.Text>
-                                            <MultiBinding StringFormat="{}{0}[{1}]">
-                                                <Binding Path="Name"/>
-                                                <Binding Path="Count"/>
+                                            <MultiBinding StringFormat="{}五星总数：{0}">
+                                                <Binding Path="GlobalRank5"/>
                                             </MultiBinding>
                                         </TextBlock.Text>
                                     </TextBlock>
-                                    <StackPanel.ToolTip>
-                                        <StackPanel>
-                                            <TextBlock>
-                                                <TextBlock.Text>
-                                                    <MultiBinding StringFormat="{}{0} - {1}">
-                                                        <Binding Path="Version"/>
-                                                        <Binding Path="Banner"/>
-                                                    </MultiBinding>
-                                                </TextBlock.Text>
-                                            </TextBlock>
-                                            <TextBlock Text="{Binding Time,StringFormat={}{0:yyyy-MM-dd HH:mm:ss}}" />
-                                        </StackPanel>
+                                </Grid.ToolTip>
+                                <TextBlock FontSize="32" FontFamily="{StaticResource Segment7}" HorizontalAlignment="Right" Foreground="#22999999">8888</TextBlock>
+                                <TextBlock FontSize="32" FontFamily="{StaticResource Segment7}" HorizontalAlignment="Right" Text="{Binding GlobalRank5}"/>
+                            </Grid>
 
-                                    </StackPanel.ToolTip>
+                            <Grid>
+                                <Grid.ToolTip>
+                                    <TextBlock>
+                                        <TextBlock.Text>
+                                            <MultiBinding StringFormat="{}UP五星：{0}">
+                                                <Binding Path="GlobalRank5Up"/>
+                                            </MultiBinding>
+                                        </TextBlock.Text>
+                                    </TextBlock>
+                                </Grid.ToolTip>
+                                <TextBlock FontSize="24" FontFamily="{StaticResource Segment7}" HorizontalAlignment="Right" Foreground="#22AAAAAA">8888</TextBlock>
+                                <TextBlock FontSize="24" FontFamily="{StaticResource Segment7}" HorizontalAlignment="Right" Text="{Binding GlobalRank5Up}"/>
+                            </Grid>
+                        </StackPanel>
+
+                        <Grid Width="90" Height="90"  HorizontalAlignment="Right" Margin="2 0 3 0">
+                            <Grid.ToolTip>
+                                <StackPanel>
+                                    <TextBlock>
+                                        <TextBlock.Text>
+                                            <MultiBinding Converter="{StaticResource PercentageCon}" StringFormat="{}五星概率：{0}（外圈）">
+                                                <Binding Path="GlobalRank5"/>
+                                                <Binding Path="GlobalTotal"/>
+                                            </MultiBinding>
+                                        </TextBlock.Text>
+                                    </TextBlock>
+                                    <TextBlock>
+                                        <TextBlock.Text>
+                                            <MultiBinding Converter="{StaticResource PercentageCon}" StringFormat="{}UP概率：{0}（内圈）">
+                                                <Binding Path="GlobalRank5Up"/>
+                                                <Binding Path="GlobalTotal"/>
+                                            </MultiBinding>
+                                        </TextBlock.Text>
+                                    </TextBlock>
                                 </StackPanel>
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-                    </ItemsControl>
+                            </Grid.ToolTip>
+                            <lvc:PieChart Series="{Binding SeriesGlobalR5}"  HorizontalAlignment="Center" VerticalAlignment="Center" Width="130" Height="130" Total="1.0" MaxAngle="270" InitialRotation="135"/>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 0 0 5" >
+                                <Grid VerticalAlignment="Bottom">
+                                    <TextBlock FontFamily="{StaticResource Segment7}" FontSize="22" Foreground="#22999999">888</TextBlock>
+                                    <TextBlock FontFamily="{StaticResource Segment7}" FontSize="22" >
+                                        <TextBlock.Text>
+                                            <MultiBinding Converter="{StaticResource SegPercentageCon}" StringFormat="{}{0}">
+                                                <Binding Path="GlobalRank5"/>
+                                                <Binding Path="GlobalTotal"/>
+                                            </MultiBinding>
+                                        </TextBlock.Text>
+                                    </TextBlock>
+                                </Grid>
+                                <TextBlock VerticalAlignment="Bottom" FontFamily="{StaticResource Digiface}" FontSize="18"  Padding="0 0 0 2">%</TextBlock>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0 0 0 15">
+                                <Grid VerticalAlignment="Bottom">
+                                    <TextBlock FontFamily="{StaticResource Segment7}" FontSize="15" Foreground="#22AAAAAA">888</TextBlock>
+                                    <TextBlock FontFamily="{StaticResource Segment7}" FontSize="15"  Foreground="#333333">
+                                        <TextBlock.Text>
+                                            <MultiBinding Converter="{StaticResource SegPercentageCon}" StringFormat="{}{0}">
+                                                <Binding Path="GlobalRank5Up"/>
+                                                <Binding Path="GlobalTotal"/>
+                                            </MultiBinding>
+                                        </TextBlock.Text>
+                                    </TextBlock>
+                                </Grid>
+                                <TextBlock VerticalAlignment="Bottom" FontFamily="{StaticResource Digiface}" FontSize="12"  Padding="0 0 0 1">%</TextBlock>
+                            </StackPanel>
+                        </Grid>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Grid.Column="1">
+                        <Grid Width="90" Height="90"  HorizontalAlignment="Left" Margin="3 0 2 0">
+                            <Grid.ToolTip>
+                                <StackPanel>
+                                    <TextBlock>
+                                        <TextBlock.Text>
+                                            <MultiBinding Converter="{StaticResource PercentageCon}" StringFormat="{}四星概率：{0}（外圈）">
+                                                <Binding Path="GlobalRank4"/>
+                                                <Binding Path="GlobalTotal"/>
+                                            </MultiBinding>
+                                        </TextBlock.Text>
+                                    </TextBlock>
+                                    <TextBlock>
+                                        <TextBlock.Text>
+                                            <MultiBinding Converter="{StaticResource PercentageCon}" StringFormat="{}UP概率：{0}（内圈）">
+                                                <Binding Path="GlobalRank4Up"/>
+                                                <Binding Path="GlobalTotal"/>
+                                            </MultiBinding>
+                                        </TextBlock.Text>
+                                    </TextBlock>
+                                </StackPanel>
+                            </Grid.ToolTip>
+                            <lvc:PieChart Series="{Binding SeriesGlobalR4}"  HorizontalAlignment="Center" VerticalAlignment="Center" Width="130" Height="130" Total="1.0" MaxAngle="270" InitialRotation="135"/>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 0 0 5" >
+                                <Grid VerticalAlignment="Bottom">
+                                    <TextBlock FontFamily="{StaticResource Segment7}" FontSize="22" Foreground="#22999999">888</TextBlock>
+                                    <TextBlock FontFamily="{StaticResource Segment7}" FontSize="22" >
+                                        <TextBlock.Text>
+                                            <MultiBinding Converter="{StaticResource SegPercentageCon}" StringFormat="{}{0}">
+                                                <Binding Path="GlobalRank4"/>
+                                                <Binding Path="GlobalTotal"/>
+                                            </MultiBinding>
+                                        </TextBlock.Text>
+                                    </TextBlock>
+                                </Grid>
+                                <TextBlock VerticalAlignment="Bottom" FontFamily="{StaticResource Digiface}" FontSize="18"  Padding="0 0 0 2">%</TextBlock>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0 0 0 15">
+                                <Grid VerticalAlignment="Bottom">
+                                    <TextBlock FontFamily="{StaticResource Segment7}" FontSize="15" Foreground="#22AAAAAA">888</TextBlock>
+                                    <TextBlock FontFamily="{StaticResource Segment7}" FontSize="15"  Foreground="#333333">
+                                        <TextBlock.Text>
+                                            <MultiBinding Converter="{StaticResource SegPercentageCon}" StringFormat="{}{0}">
+                                                <Binding Path="GlobalRank4Up"/>
+                                                <Binding Path="GlobalTotal"/>
+                                            </MultiBinding>
+                                        </TextBlock.Text>
+                                    </TextBlock>
+                                </Grid>
+                                <TextBlock VerticalAlignment="Bottom" FontFamily="{StaticResource Digiface}" FontSize="12"  Padding="0 0 0 1">%</TextBlock>
+                            </StackPanel>
+                        </Grid>
+                        <StackPanel VerticalAlignment="Center" Margin="2 5 0 0">
+                            <Grid Margin="5 0 0 2">
+                                <Grid.ToolTip>
+                                    <TextBlock>
+                                        <TextBlock.Text>
+                                            <MultiBinding StringFormat="{}四星总数：{0}">
+                                                <Binding Path="GlobalRank4"/>
+                                            </MultiBinding>
+                                        </TextBlock.Text>
+                                    </TextBlock>
+                                </Grid.ToolTip>
+                                <TextBlock FontSize="30" FontFamily="{StaticResource Segment7}" HorizontalAlignment="Left" Foreground="#22999999">8888</TextBlock>
+                                <TextBlock FontSize="30" FontFamily="{StaticResource Segment7}" HorizontalAlignment="Left" Text="{Binding GlobalRank4}"/>
+                            </Grid>
+
+                            <Grid>
+                                <Grid.ToolTip>
+                                    <TextBlock>
+                                        <TextBlock.Text>
+                                            <MultiBinding StringFormat="{}UP四星：{0}">
+                                                <Binding Path="GlobalRank4Up"/>
+                                            </MultiBinding>
+                                        </TextBlock.Text>
+                                    </TextBlock>
+                                </Grid.ToolTip>
+                                <TextBlock FontSize="24" FontFamily="{StaticResource Segment7}" HorizontalAlignment="Left" Foreground="#22AAAAAA">8888</TextBlock>
+                                <TextBlock FontSize="24" FontFamily="{StaticResource Segment7}" HorizontalAlignment="Left" Text="{Binding GlobalRank4Up}"/>
+                            </Grid>
+                        </StackPanel>
+                    </StackPanel>
+
                 </Grid>
-                <StackPanel Orientation="Vertical" Grid.Row="4" Grid.Column="3" HorizontalAlignment="Right" VerticalAlignment="Bottom" Height="Auto" Margin="0 5">
-                    <CheckBox  Height="20"
-                            Name="InfoPanelStatusIndicator"
-                            Content="仪表"
-                            Background="#AB8DFF"
-                            Foreground="#FFFFFF"
-                            pu:CheckBoxHelper.CheckBoxStyle="Button"
-                            pu:CheckBoxHelper.CheckedBackground="#0096FF"
-                            pu:CheckBoxHelper.CheckedContent="详细" Checked="InfoPanelStatusIndicator_Checked" Unchecked="InfoPanelStatusIndicator_Checked"/>
+
+                <Rectangle Height="0.5" Fill="#999999" Margin="10 5" Grid.Row="3"/>
+
+                <Label Grid.Row="4" FontSize="16" Margin="5 0">
+                    <TextBlock>
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="{}{0} - {1}">
+                                <Binding Path="Version"/>
+                                <Binding Path="BannerTitle"/>
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                </Label>
+
+                <Border Grid.Row="5" BorderThickness="1" BorderBrush="#55FF0000" CornerRadius="3" Margin="20 2">
+                    <Grid>
+                        <Grid.Resources>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="Text" Value="无正在进行中的卡池"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding CurrentBannerExists}" Value="True">
+                                        <Setter Property="Text">
+                                            <Setter.Value>
+                                                <MultiBinding StringFormat="{}{0:yyyy-MM-dd HH:mm:ss} - {1:yyyy-MM-dd HH:mm:ss}">
+                                                    <Binding Path="BeginTime"/>
+                                                    <Binding Path="EndTime"/>
+                                                </MultiBinding>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                            <Style TargetType="ProgressBar">
+                                <Setter Property="pu:ProgressBarHelper.AnimateTo" Value="0"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding CurrentBannerExists}" Value="True">
+                                        <Setter Property="pu:ProgressBarHelper.AnimateTo">
+                                            <Setter.Value>
+                                                <MultiBinding Converter="{StaticResource TimeProgressCon}">
+                                                    <Binding Path="BeginTime"/>
+                                                    <Binding Path="EndTime"/>
+                                                </MultiBinding>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Grid.Resources>
+                        <ProgressBar Background="#05FF0000" Foreground="#10FF0000" BorderThickness="0"/>
+                        <TextBlock FontSize="13" HorizontalAlignment="Center" Margin="2"/>
+                    </Grid>
+                </Border>
+                <StackPanel Grid.Row="6">
+
+                    <Grid Margin="5 0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition MinWidth="10" MaxWidth="10"/>
+                            <ColumnDefinition MinWidth="90" MaxWidth="90"/>
+                            <ColumnDefinition MinWidth="10" MaxWidth="10"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.ColumnSpan="2">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition />
+                                <RowDefinition  Height="Auto" MinHeight="6"/>
+                                <RowDefinition  />
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock FontSize="28" FontFamily="{StaticResource Digiface}" HorizontalAlignment="Right" Margin="0 5 0 0">
+                                <TextBlock.Style>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="Text" Value="---"/>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding CurrentBannerExists}" Value="True">
+                                                <Setter Property="Text">
+                                                    <Setter.Value>
+                                                        <MultiBinding StringFormat="{}{0:D3}">
+                                                            <Binding Path="CurrentRank5"/>
+                                                        </MultiBinding>
+                                                    </Setter.Value>
+                                                </Setter>
+                                                <Setter Property="ToolTip">
+                                                    <Setter.Value>
+                                                        <TextBlock>
+                                                            <TextBlock.Text>
+                                                                <MultiBinding StringFormat="{}当前卡池获得的五星：{0}">
+                                                                    <Binding Path="CurrentRank5"/>
+                                                                </MultiBinding>
+                                                            </TextBlock.Text>
+                                                        </TextBlock>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
+
+                            <Border Grid.Row="1" VerticalAlignment="Bottom" BorderBrush="#E0FFA169" BorderThickness="1" Padding="2" CornerRadius="3" Margin="6 2 10 2" Background="#20FFA169" Visibility="{Binding UpRank5s[0], Converter={StaticResource VisByNotNullCon}}">
+                                <TextBlock  FontSize="13" HorizontalAlignment="Center" Foreground="#F3603E" Text="{Binding UpRank5s[0]}"/>
+                            </Border>
+                            <Border Grid.Row="2"  VerticalAlignment="Center"  BorderBrush="#E0FFA169" BorderThickness="1" Padding="2" CornerRadius="3" Margin="0 2 16 2" Background="#20FFA169" Visibility="{Binding UpRank5s[1], Converter={StaticResource VisByNotNullCon}}">
+                                <TextBlock FontSize="13" HorizontalAlignment="Center" Foreground="#F3603E" Text="{Binding UpRank5s[1]}"/>
+                            </Border>
+                            <Border Grid.Row="3" VerticalAlignment="Top" BorderBrush="#E0FFA169" BorderThickness="1" Padding="2" CornerRadius="3" Margin="3 2 13 2" Background="#20FFA169"  Visibility="{Binding UpRank5s[2], Converter={StaticResource VisByNotNullCon}}">
+                                <TextBlock FontSize="13" HorizontalAlignment="Center" Foreground="#F3603E" Text="{Binding UpRank5s[2]}"/>
+                            </Border>
+                            <TextBlock VerticalAlignment="Bottom" Grid.Row="4" FontSize="20" FontFamily="{StaticResource Digiface}" HorizontalAlignment="Right" Margin="0 0 5 2">
+                                <TextBlock.Style>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="Text" Value="---"/>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding CurrentBannerExists}" Value="True">
+                                                <Setter Property="Text">
+                                                    <Setter.Value>
+                                                        <MultiBinding StringFormat="{}{0:D3}">
+                                                            <Binding Path="CurrentRank5Up"/>
+                                                        </MultiBinding>
+                                                    </Setter.Value>
+                                                </Setter>
+                                                <Setter Property="ToolTip">
+                                                    <Setter.Value>
+                                                        <TextBlock>
+                                                            <TextBlock.Text>
+                                                                <MultiBinding StringFormat="{}当前卡池获得的UP五星：{0}">
+                                                                    <Binding Path="CurrentRank5Up"/>
+                                                                </MultiBinding>
+                                                            </TextBlock.Text>
+                                                        </TextBlock>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
+                        </Grid>
+                        <Grid Grid.Column="3" Grid.ColumnSpan="2">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition />
+                                <RowDefinition  Height="Auto" MinHeight="6"/>
+                                <RowDefinition  />
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Grid.Row="0" FontSize="28" FontFamily="{StaticResource Digiface}" HorizontalAlignment="Left" Margin="0 5 0 0">
+                                <TextBlock.Style>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="Text" Value="---"/>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding CurrentBannerExists}" Value="True">
+                                                <Setter Property="Text">
+                                                    <Setter.Value>
+                                                        <MultiBinding StringFormat="{}{0:D3}">
+                                                            <Binding Path="CurrentRank4"/>
+                                                        </MultiBinding>
+                                                    </Setter.Value>
+                                                </Setter>
+                                                <Setter Property="ToolTip">
+                                                    <Setter.Value>
+                                                        <TextBlock>
+                                                            <TextBlock.Text>
+                                                                <MultiBinding StringFormat="{}当前卡池获得的四星：{0}">
+                                                                    <Binding Path="CurrentRank4"/>
+                                                                </MultiBinding>
+                                                            </TextBlock.Text>
+                                                        </TextBlock>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
+
+                            <Border Grid.Row="1" VerticalAlignment="Bottom" BorderBrush="#E0E3B0F8" BorderThickness="1" Padding="2" CornerRadius="3" Margin="10 2 6 2" Background="#20E3B0F8" Visibility="{Binding UpRank4s[0], Converter={StaticResource VisByNotNullCon}}">
+                                <TextBlock FontSize="13" HorizontalAlignment="Center" Foreground="#8673DF" Text="{Binding UpRank4s[0]}"/>
+                            </Border>
+                            <Border Grid.Row="2" VerticalAlignment="Center" BorderBrush="#E0E3B0F8" BorderThickness="1" Padding="2" CornerRadius="3" Margin="16 2 0 2" Background="#20E3B0F8" Visibility="{Binding UpRank4s[1], Converter={StaticResource VisByNotNullCon}}">
+                                <TextBlock FontSize="13" HorizontalAlignment="Center" Foreground="#8673DF" Text="{Binding UpRank4s[1]}"/>
+                            </Border>
+                            <Border Grid.Row="3" VerticalAlignment="Top" BorderBrush="#E0E3B0F8" BorderThickness="1" Padding="2" CornerRadius="3" Margin="13 2 3 2" Background="#20E3B0F8" Visibility="{Binding UpRank4s[2], Converter={StaticResource VisByNotNullCon}}">
+                                <TextBlock FontSize="13" HorizontalAlignment="Center" Foreground="#8673DF" Text="{Binding UpRank4s[2]}"/>
+                            </Border>
+                            <TextBlock VerticalAlignment="Bottom" Grid.Row="4" FontSize="20"  FontFamily="{StaticResource Digiface}" HorizontalAlignment="Left" Margin="5 0 0 2">
+                                <TextBlock.Style>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="Text" Value="---"/>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding CurrentBannerExists}" Value="True">
+                                                <Setter Property="Text">
+                                                    <Setter.Value>
+                                                        <MultiBinding StringFormat="{}{0:D3}">
+                                                            <Binding Path="CurrentRank4Up"/>
+                                                        </MultiBinding>
+                                                    </Setter.Value>
+                                                </Setter>
+                                                <Setter Property="ToolTip">
+                                                    <Setter.Value>
+                                                        <TextBlock>
+                                                            <TextBlock.Text>
+                                                                <MultiBinding StringFormat="{}当前卡池获得的UP四星：{0}">
+                                                                    <Binding Path="CurrentRank4Up"/>
+                                                                </MultiBinding>
+                                                            </TextBlock.Text>
+                                                        </TextBlock>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
+                        </Grid>
+                        <StackPanel  Grid.Column="1" Grid.ColumnSpan="3" VerticalAlignment="Top">
+                            <TextBlock HorizontalAlignment="Center" FontFamily="{StaticResource Digiface}"  FontSize="30" Margin="0 0 0 0">
+                                <TextBlock.Style>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="Text" Value="----"/>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding CurrentBannerExists}" Value="True">
+                                                <Setter Property="Text">
+                                                    <Setter.Value>
+                                                        <MultiBinding StringFormat="{}{0:D4}">
+                                                            <Binding Path="CurrentTotal"/>
+                                                        </MultiBinding>
+                                                    </Setter.Value>
+                                                </Setter>
+                                                <Setter Property="ToolTip">
+                                                    <Setter.Value>
+                                                        <TextBlock>
+                                                            <TextBlock.Text>
+                                                                <MultiBinding StringFormat="{}当前卡池获得的角色总数：{0}">
+                                                                    <Binding Path="CurrentRank5Up"/>
+                                                                </MultiBinding>
+                                                            </TextBlock.Text>
+                                                        </TextBlock>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
+                            <Grid>
+                                <Grid.Resources>
+                                    <Style TargetType="TextBlock">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding SoftPityActivated}" Value="True">
+                                                <Setter Property="Foreground" Value="#A50542"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Grid.Resources>
+                                <Grid.ToolTip>
+                                    <StackPanel>
+                                        <TextBlock>
+                                            <TextBlock.Text>
+                                                <MultiBinding StringFormat="{}当前轮次保底进度：{0}/{1}">
+                                                    <Binding Path="CurrentRoundCurrent"/>
+                                                    <Binding Path="CurrentRoundTotal"/>
+                                                </MultiBinding>
+                                            </TextBlock.Text>
+                                        </TextBlock>
+                                        <TextBlock>
+                                            <TextBlock.Text>
+                                                <MultiBinding StringFormat="{}下一五星保底进度：{0}/{1}">
+                                                    <Binding Path="CurrentBasicRoundCount"/>
+                                                    <Binding Path="BasicRoundTotal"/>
+                                                </MultiBinding>
+                                            </TextBlock.Text>
+                                        </TextBlock>
+                                        <TextBlock Visibility="{Binding SoftPityActivated, Converter={StaticResource VisByBoolCon}}">软保底机制已激活</TextBlock>
+                                        <TextBlock Text="{Binding SoftPityChance, StringFormat={}当前目标五星概率：{0:P2}}"/>
+                                    </StackPanel>
+                                </Grid.ToolTip>
+                                <lvc:PieChart Series="{Binding SeriesCurrentRound}" Width="110" Height="110" MaxAngle="270" InitialRotation="135" Total="{Binding CurrentRoundTotal}" Margin="0" Padding="0"/>
+                                <TextBlock  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 0 3 15" FontSize="24" FontFamily="{StaticResource Digiface}">
+                                    <TextBlock.Text>
+                                        <MultiBinding StringFormat="{}{0}/{1}">
+                                            <Binding Path="CurrentRoundCurrent"/>
+                                            <Binding Path="CurrentRoundTotal"/>
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0 0 0 28" FontSize="18" FontFamily="{StaticResource Digiface}">
+                                    <TextBlock.Text>
+                                        <MultiBinding StringFormat="{}{0}/{1}">
+                                            <Binding Path="CurrentBasicRoundCount"/>
+                                            <Binding Path="BasicRoundTotal"/>
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                            </Grid>
+                        </StackPanel>
+                    </Grid>
+
                 </StackPanel>
+                <Rectangle Grid.Row="7" Height="0.5" Fill="#999999" Margin="5 0"/>
+
+
+                <Grid Grid.Row="8" Height="30" Margin="5 0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <RadioButton IsChecked="True" 
+                                pu:RadioButtonHelper.RadioButtonStyle="Button"
+                            pu:RadioButtonHelper.CheckedBackground="#503F3F3F"
+                                Checked="RadioButton_Checked"
+                                Tag="0">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock FontFamily="Segoe MDL2 Assets" Margin="2">&#xEA37;</TextBlock>
+                            <TextBlock>所有五星</TextBlock>
+                        </StackPanel>
+                    </RadioButton>
+                    <RadioButton Grid.Column="1"
+                                pu:RadioButtonHelper.RadioButtonStyle="Button"
+                                pu:RadioButtonHelper.CheckedBackground="#503F3F3F"
+                                Checked="RadioButton_Checked"
+                                Tag="1">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock FontFamily="Segoe MDL2 Assets" Margin="2">&#xE734;</TextBlock>
+                            <TextBlock>UP 五星</TextBlock>
+                        </StackPanel>
+                    </RadioButton>
+                    <RadioButton Grid.Column="2"
+                                pu:RadioButtonHelper.RadioButtonStyle="Button"
+                                pu:RadioButtonHelper.CheckedBackground="#503F3F3F"
+                                Checked="RadioButton_Checked"
+                                Tag="2">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock FontFamily="Segoe MDL2 Assets" Margin="2">&#xE8A9;</TextBlock>
+                            <TextBlock>紧凑显示</TextBlock>
+                        </StackPanel>
+                    </RadioButton>
+                </Grid>
+                <TabControl Grid.Row="9" SelectedIndex="{Binding UnitIndicatorCurrentPageIndex}" Margin="5 0 5 5">
+                    <TabControl.ItemContainerStyle>
+                        <Style TargetType="TabItem">
+                            <Setter Property="Visibility" Value="Collapsed"/>
+                        </Style>
+                    </TabControl.ItemContainerStyle>
+                    <TabItem >
+                        <ScrollViewer pu:ScrollViewerHelper.ScrollBarThickness="5" VerticalScrollBarVisibility="Visible">
+                            <ItemsControl ItemsSource="{Binding Rank5List}">
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <StackPanel Margin="3 2 2 0" />
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border CornerRadius="2" BorderThickness="1"  Margin="1 3 1 0">
+                                            <Border.Resources>
+                                                <Style TargetType="Border">
+                                                    <Setter Property="BorderBrush" Value="#55048CFF"/>
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding BrUnlucky}" Value="True">
+                                                            <Setter Property="BorderBrush" Value="#55FF0000"/>
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding BrLucky}" Value="True">
+                                                            <Setter Property="BorderBrush" Value="#550B8911"/>
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                                <Style TargetType="ProgressBar">
+                                                    <Setter Property="Background" Value="#05048CFF"/>
+                                                    <Setter Property="Foreground" Value="#10048CFF"/>
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding BrUnlucky}" Value="True">
+                                                            <Setter Property="Background" Value="#05FF0000"/>
+                                                            <Setter Property="Foreground" Value="#10FF0000"/>
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding BrLucky}" Value="True">
+                                                            <Setter Property="Background" Value="#050B8911"/>
+                                                            <Setter Property="Foreground" Value="#100B8911"/>
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Border.Resources>
+                                            <Grid>
+                                                <Grid.ToolTip>
+                                                    <StackPanel>
+                                                        <TextBlock>
+                                                            <TextBlock.Text>
+                                                                <MultiBinding StringFormat="{}{0} - {1}">
+                                                                    <Binding Path="Version"/>
+                                                                    <Binding Path="Banner"/>
+                                                                </MultiBinding>
+                                                            </TextBlock.Text>
+                                                        </TextBlock>
+                                                        <TextBlock Text="{Binding Time,StringFormat={}{0:yyyy-MM-dd HH:mm:ss}}" />
+                                                    </StackPanel>
+                                                </Grid.ToolTip>
+                                                <ProgressBar BorderThickness="0">
+                                                    <pu:ProgressBarHelper.AnimateTo>
+                                                        <MultiBinding Converter="{StaticResource ProgressCon}">
+                                                            <Binding Path="Count"/>
+                                                            <Binding Path="BrMax"/>
+                                                        </MultiBinding>
+                                                    </pu:ProgressBarHelper.AnimateTo>
+                                                </ProgressBar>
+                                                <Label Foreground="{Binding Name,Converter={StaticResource ItemNameColor}}">
+                                                    <TextBlock>
+                                                        <TextBlock.Text>
+                                                            <MultiBinding StringFormat="{}#{0:D3} {1}">
+                                                                <Binding Path="Index"/>
+                                                                <Binding Path="Name"/>
+                                                            </MultiBinding>
+                                                        </TextBlock.Text>
+                                                    </TextBlock>
+                                                </Label>
+                                                <Label Foreground="{Binding Name,Converter={StaticResource ItemNameColor}}" HorizontalAlignment="Right" >
+                                                    <TextBlock Text="{Binding Count}"/>
+                                                </Label>
+                                            </Grid>
+                                        </Border>
+
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </ScrollViewer>
+                    </TabItem>
+                    <TabItem>
+                        <ScrollViewer pu:ScrollViewerHelper.ScrollBarThickness="5" VerticalScrollBarVisibility="Visible">
+                            <ItemsControl ItemsSource="{Binding Rank5UpList}">
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <StackPanel Margin="3 2 2 0" />
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border CornerRadius="2" BorderThickness="1"  Margin="1 3 1 0">
+                                            <Border.Resources>
+                                                <Style TargetType="Border">
+                                                    <Setter Property="BorderBrush" Value="#55048CFF"/>
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding RndUnlucky}" Value="True">
+                                                            <Setter Property="BorderBrush" Value="#55FF0000"/>
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding RndLucky}" Value="True">
+                                                            <Setter Property="BorderBrush" Value="#550B8911"/>
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                                <Style TargetType="ProgressBar">
+                                                    <Setter Property="Background" Value="#05048CFF"/>
+                                                    <Setter Property="Foreground" Value="#10048CFF"/>
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding RndUnlucky}" Value="True">
+                                                            <Setter Property="Background" Value="#05FF0000"/>
+                                                            <Setter Property="Foreground" Value="#10FF0000"/>
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding RndLucky}" Value="True">
+                                                            <Setter Property="Background" Value="#050B8911"/>
+                                                            <Setter Property="Foreground" Value="#100B8911"/>
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Border.Resources>
+                                            <Grid>
+                                                <Grid.ToolTip>
+                                                    <StackPanel>
+                                                        <TextBlock>
+                                                            <TextBlock.Text>
+                                                                <MultiBinding StringFormat="{}{0} - {1}">
+                                                                    <Binding Path="Version"/>
+                                                                    <Binding Path="Banner"/>
+                                                                </MultiBinding>
+                                                            </TextBlock.Text>
+                                                        </TextBlock>
+                                                        <TextBlock Text="{Binding Time,StringFormat={}{0:yyyy-MM-dd HH:mm:ss}}" />
+                                                    </StackPanel>
+                                                </Grid.ToolTip>
+                                                <ProgressBar BorderThickness="0">
+                                                    <pu:ProgressBarHelper.AnimateTo>
+                                                        <MultiBinding Converter="{StaticResource ProgressCon}">
+                                                            <Binding Path="RndCount"/>
+                                                            <Binding Path="RndMax"/>
+                                                        </MultiBinding>
+                                                    </pu:ProgressBarHelper.AnimateTo>
+                                                </ProgressBar>
+                                                <Label Foreground="{Binding Name,Converter={StaticResource ItemNameColor}}">
+                                                    <TextBlock>
+                                                        <TextBlock.Text>
+                                                            <MultiBinding StringFormat="{}#{0:D3} {1}">
+                                                                <Binding Path="Index"/>
+                                                                <Binding Path="Name"/>
+                                                            </MultiBinding>
+                                                        </TextBlock.Text>
+                                                    </TextBlock>
+                                                </Label>
+                                                <Label Foreground="{Binding Name,Converter={StaticResource ItemNameColor}}" HorizontalAlignment="Right" >
+                                                    <TextBlock Text="{Binding RndCount}"/>
+                                                </Label>
+                                            </Grid>
+                                        </Border>
+
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </ScrollViewer>
+
+                    </TabItem>
+                    <TabItem>
+                        <ScrollViewer pu:ScrollViewerHelper.ScrollBarThickness="5" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Disabled">
+                            <ItemsControl ItemsSource="{Binding Rank5List}">
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <WrapPanel Margin="3 2 2 0" />
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border CornerRadius="2" BorderThickness="1"  Margin="2 3 2 0">
+                                            <Border.Resources>
+                                                <Style TargetType="Border">
+                                                    <Setter Property="BorderBrush" Value="#55048CFF"/>
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding BrUnlucky}" Value="True">
+                                                            <Setter Property="BorderBrush" Value="#55FF0000"/>
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding BrLucky}" Value="True">
+                                                            <Setter Property="BorderBrush" Value="#550B8911"/>
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                                <Style TargetType="ProgressBar">
+                                                    <Setter Property="Background" Value="#05048CFF"/>
+                                                    <Setter Property="Foreground" Value="#10048CFF"/>
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding BrUnlucky}" Value="True">
+                                                            <Setter Property="Background" Value="#05FF0000"/>
+                                                            <Setter Property="Foreground" Value="#10FF0000"/>
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding BrLucky}" Value="True">
+                                                            <Setter Property="Background" Value="#050B8911"/>
+                                                            <Setter Property="Foreground" Value="#100B8911"/>
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Border.Resources>
+                                            <Grid>
+                                                <Grid.ToolTip>
+                                                    <StackPanel>
+                                                        <TextBlock>
+                                                            <TextBlock.Text>
+                                                                <MultiBinding StringFormat="{}{0} - {1}">
+                                                                    <Binding Path="Version"/>
+                                                                    <Binding Path="Banner"/>
+                                                                </MultiBinding>
+                                                            </TextBlock.Text>
+                                                        </TextBlock>
+                                                        <TextBlock Text="{Binding Time,StringFormat={}{0:yyyy-MM-dd HH:mm:ss}}" />
+                                                    </StackPanel>
+                                                </Grid.ToolTip>
+                                                <ProgressBar BorderThickness="0">
+                                                    <pu:ProgressBarHelper.AnimateTo>
+                                                        <MultiBinding Converter="{StaticResource ProgressCon}">
+                                                            <Binding Path="Count"/>
+                                                            <Binding Path="BrMax"/>
+                                                        </MultiBinding>
+                                                    </pu:ProgressBarHelper.AnimateTo>
+                                                </ProgressBar>
+
+                                                <StackPanel HorizontalAlignment="Center" Margin="10 1">
+                                                    <TextBlock  Foreground="{Binding Name,Converter={StaticResource ItemNameColor}}" Text="{Binding Name}"/>
+                                                    <TextBlock  Foreground="{Binding Name,Converter={StaticResource ItemNameColor}}" HorizontalAlignment="Center" Text="{Binding Count}"/>
+                                                </StackPanel>
+                                            </Grid>
+                                        </Border>
+
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </ScrollViewer>
+
+
+                    </TabItem>
+                </TabControl>
+
             </Grid>
         </Border>
     </Grid>
