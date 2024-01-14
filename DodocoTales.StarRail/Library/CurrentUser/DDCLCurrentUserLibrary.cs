@@ -48,7 +48,7 @@ namespace DodocoTales.SR.Library.CurrentUser
         // GreaterRounds
 
         public DDCLRoundLogItem GetLastGreaterRoundByCategorizedType(DDCCPoolType type)
-            => GreaterRounds.Last(x => x.CategorizedGachaType == type);
+            => GreaterRounds.LastOrDefault(x => x.CategorizedGachaType == type);
         // BasicRounds
 
 
