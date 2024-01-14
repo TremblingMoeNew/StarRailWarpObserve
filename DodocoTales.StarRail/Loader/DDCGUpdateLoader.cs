@@ -26,7 +26,8 @@ namespace DodocoTales.SR.Loader
 
         private readonly string ddc_sr_api_meta = "https://sr-api.dodocotales.cc/v1/metadata/";
         private readonly string ddc_sr_api_client = "https://sr-api.dodocotales.cc/v1/download/";
-        private readonly string starwo_changelog = "https://starwo.dodocotales.cc/changelog.md";
+        //private readonly string starwo_changelog = "https://starwo.dodocotales.cc/changelog.md";
+        private readonly string starwo_changelog = "https://cdn.jsdelivr.net/gh/TremblingMoeNew/StarRailWarpObserve@main/CHANGELOG.md";
         public string MetadataURL
         {
             get { return ddc_sr_api_meta; }
