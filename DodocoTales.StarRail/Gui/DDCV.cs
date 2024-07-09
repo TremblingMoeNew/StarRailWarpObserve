@@ -22,6 +22,7 @@ namespace DodocoTales.SR.Gui
         {
             RegisterMainScreen("Home", new DDCVHomeScreen());
             RegisterMainScreen("Version", new DDCVVersionViewScreen());
+            RegisterMainScreen("Prediction", new DDCVGachaPredictionScreen());
         }
 
 

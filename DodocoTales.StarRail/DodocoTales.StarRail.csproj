@@ -188,6 +188,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Gui\Views\Screens\DDCVGachaPredictionScreen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Gui\Views\Screens\DDCVHomeScreen.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -226,6 +230,9 @@
     </Compile>
     <Compile Include="Common\Enums\DDCCPoolType.cs" />
     <Compile Include="Common\Enums\DDCCUnitType.cs" />
+    <Compile Include="Common\Models\DDCCPredictTargetItem.cs" />
+    <Compile Include="Common\Services\DDCCChanceProvider.cs" />
+    <Compile Include="Common\Services\DDCCGachaPredictor.cs" />
     <Compile Include="Common\Signals\DDCS_Core.cs" />
     <Compile Include="Common\Signals\DDCS_Lib.cs" />
     <Compile Include="Common\Signals\DDCS_Loader.cs" />
@@ -292,6 +299,9 @@
     </Compile>
     <Compile Include="Gui\Views\Screens\DDCVDependenciesDownloadScreen.xaml.cs">
       <DependentUpon>DDCVDependenciesDownloadScreen.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Gui\Views\Screens\DDCVGachaPredictionScreen.xaml.cs">
+      <DependentUpon>DDCVGachaPredictionScreen.xaml</DependentUpon>
     </Compile>
     <Compile Include="Gui\Views\Screens\DDCVHomeScreen.xaml.cs">
       <DependentUpon>DDCVHomeScreen.xaml</DependentUpon>

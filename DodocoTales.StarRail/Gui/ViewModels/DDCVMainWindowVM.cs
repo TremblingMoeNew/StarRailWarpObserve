@@ -136,7 +136,8 @@ namespace DodocoTales.SR.Gui.ViewModels
                         new DDCVMainPanelItemModel("按照类型","PoolType",1),
                     }
                     */
-                }
+                },
+                //new DDCVMainPanelItemModel("预测", "Prediction", 0),
             };
             CurrentUID = -1;
             HintBannerInitialize();
