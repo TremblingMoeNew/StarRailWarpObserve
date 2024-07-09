@@ -12,7 +12,7 @@ namespace DodocoTales.SR.Gui.ViewModels.Cards
         public DDCVHomeSceneCharEventCardVM()
         {
             InitializeDashboard(DDCCPoolType.CharacterEvent, 180, 90);
-            softPityThreshold = 72;
+            softPityThreshold = 73;
             brLuckyLimit = 50;
             rndLuckyLimit = 72;
             rndUnluckyLimit = 130;
@@ -26,14 +26,14 @@ namespace DodocoTales.SR.Gui.ViewModels.Cards
             if (CurrentBasicRoundCount > softPityThreshold)
             {
                 SoftPityActivated = true;
-                SoftPityChance = 0.006 + (CurrentBasicRoundCount - softPityThreshold) * 0.06;
-                SoftPityChance *= (CurrentRoundCurrent == CurrentBasicRoundCount) ? 0.5 : 1;
+                SoftPityChance = Math.Max(0.006 + (CurrentBasicRoundCount - softPityThreshold) * 0.06, 1);
+                SoftPityChance *= (CurrentRoundCurrent == CurrentBasicRoundCount) ? 0.5625 : 1;
             }
             else
             {
                 SoftPityActivated = false;
                 SoftPityChance = 0.006;
-                SoftPityChance *= (CurrentRoundCurrent == CurrentBasicRoundCount) ? 0.5 : 1;
+                SoftPityChance *= (CurrentRoundCurrent == CurrentBasicRoundCount) ? 0.5625 : 1;
             }
         }
     }

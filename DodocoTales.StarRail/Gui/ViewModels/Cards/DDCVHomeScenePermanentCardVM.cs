@@ -23,7 +23,7 @@ namespace DodocoTales.SR.Gui.ViewModels.Cards
         public DDCVHomeScenePermanentCardVM()
         {
             InitializeDashboard(DDCCPoolType.Permanent, 90, 90);
-            softPityThreshold = 72;
+            softPityThreshold = 73;
             brLuckyLimit = 50;
             rndLuckyLimit = 50;
             rndUnluckyLimit = 72;
@@ -35,7 +35,7 @@ namespace DodocoTales.SR.Gui.ViewModels.Cards
             if (CurrentBasicRoundCount > softPityThreshold)
             {
                 SoftPityActivated = true;
-                SoftPityChance = 0.006 + (CurrentBasicRoundCount - softPityThreshold) * 0.06;
+                SoftPityChance = Math.Max(0.006 + (CurrentBasicRoundCount - softPityThreshold) * 0.06, 1);
             }
             else
             {

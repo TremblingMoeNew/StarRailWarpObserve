@@ -448,7 +448,7 @@
                                                         <TextBlock>
                                                             <TextBlock.Text>
                                                                 <MultiBinding StringFormat="{}当前卡池获得的角色总数：{0}">
-                                                                    <Binding Path="CurrentRank5Up"/>
+                                                                    <Binding Path="CurrentTotal"/>
                                                                 </MultiBinding>
                                                             </TextBlock.Text>
                                                         </TextBlock>
@@ -488,7 +488,7 @@
                                             </TextBlock.Text>
                                         </TextBlock>
                                         <TextBlock Visibility="{Binding SoftPityActivated, Converter={StaticResource VisByBoolCon}}">软保底机制已激活</TextBlock>
-                                        <TextBlock Text="{Binding SoftPityChance, StringFormat={}当前目标五星概率：{0:P2}}"/>
+                                        <TextBlock Text="{Binding SoftPityChance, StringFormat={}当前目标五星概率：{0:P3}}"/>
                                     </StackPanel>
                                 </Grid.ToolTip>
                                 <lvc:PieChart Series="{Binding SeriesCurrentRound}" Width="110" Height="110" MaxAngle="270" InitialRotation="135" Total="{Binding CurrentRoundTotal}" Margin="0" Padding="0"/>
