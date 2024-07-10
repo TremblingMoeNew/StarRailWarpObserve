@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -31,6 +32,11 @@ namespace DodocoTales.SR.Gui.Views.Dialogs
 
         private async void ExportButton_Click(object sender, RoutedEventArgs e)
         {
+            VM.SelectedUIDMulti.Clear();
+            foreach(KeyValuePair<long, bool> x in MultiUIDSelect.SelectedItems)
+            {
+                VM.SelectedUIDMulti.Add(x.Key);
+            }
             if(await VM.Export())
                 Close();
         }

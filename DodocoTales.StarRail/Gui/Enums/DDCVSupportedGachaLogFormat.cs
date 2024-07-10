@@ -12,5 +12,7 @@ namespace DodocoTales.SR.Gui.Enums
         StarRailGachaLogFormat = 100,
         //StarRailGachaLogFormatAnonymous = 101,
         //StarwoWorkbookExportFormat = 200,
+        NewUniversalGachaLogFormat = 300,
+        DualFormat_NewUIGF_SRGF = 301,
     }
 }

@@ -360,6 +360,7 @@
     <Compile Include="Loader\Models\DDCGUniversalFormatLog.cs" />
     <Compile Include="Loader\Models\DDCGUniversalFormatLogInfo.cs" />
     <Compile Include="Loader\Models\DDCGUniversalFormatLogItem.cs" />
+    <Compile Include="Loader\Models\DDCGUniversalFormatLogSRSection.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

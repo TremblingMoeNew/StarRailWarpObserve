@@ -181,7 +181,7 @@ namespace DodocoTales.SR.Gui.ViewModels.Dialogs
 
                 Application = DDCL.ExportersLib.GetExporter(Info.Application);
                 ApplicationVersion = Info.ApplicationVersion;
-                StandardVersion = Info.StandardVersion;
+                StandardVersion = Info.LegacyStandardVersion;
             }
             catch
             {

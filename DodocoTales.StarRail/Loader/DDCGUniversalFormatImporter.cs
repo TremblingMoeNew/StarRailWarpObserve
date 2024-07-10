@@ -31,7 +31,7 @@ namespace DodocoTales.SR.Loader
         }
 
         public bool IsAcceptableFormat(DDCGUniversalFormatLog log)
-            => ((log?.Info?.StandardVersion != null && log?.Info.UID != null) || (log?.Info?.AnonymousExport == "true")) && log?.List != null;
+            => ((log?.Info?.LegacyStandardVersion != null && log?.Info.UID != null) || (log?.Info?.AnonymousExport == "true")) && log?.List != null;
 
         public bool IsAcceptableLanguage(DDCGUniversalFormatLog log)
              => log?.Info?.Language == "zh-cn";

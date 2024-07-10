@@ -11,7 +11,7 @@
         SizeToContent="Height"
         ResizeMode="NoResize"
         WindowStartupLocation="CenterOwner"
-        Title="跃迁记录导出"  Width="630">
+        Title="跃迁记录导出"  Width="700">
     <Grid>
         <Grid.DataContext>
             <vm:DDCVExportDialogVM x:Name="VM"/>
@@ -24,12 +24,13 @@
                         <RowDefinition Height="5"/>
                         <RowDefinition/>
                         <RowDefinition/>
+                        <RowDefinition/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition />
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
                     <Label FontSize="14" Grid.Column="0">保存路径: </Label>
                     <TextBox Grid.Row="0" Grid.Column="1"
@@ -42,10 +43,99 @@
                          pu:TextBoxHelper.Watermark="请先选择需要导出的UID以及导出格式"
                          Text="{Binding ExportPath}" Cursor="IBeam" Grid.ColumnSpan="3" ToolTip="双击以修改路径"/>
                     <Label FontSize="14" Grid.Row="2" Grid.Column="0">导出格式:</Label>
-                    <ComboBox Width="340" Grid.Row="2" Grid.Column="1" Padding="5 0 25 0" BorderThickness="0 0 0 2" BorderBrush="#88F4D4E6" ItemsSource="{Binding FormatOptions}" DisplayMemberPath="Key" SelectedValuePath="Value" SelectedValue="{Binding FormatType}" pu:ComboBoxHelper.HoverBackground="#1EFF0026" pu:ComboBoxHelper.SelectedBackground="#32FF0026"/>
-                    <Label FontSize="14"  Grid.Row="2" Grid.Column="2" Margin="20 0 0 0">UID: </Label>
-                    <ComboBox Width="120"  Grid.Row="2" Grid.Column="3" Padding="5 0 25 0" BorderThickness="0 0 0 2" BorderBrush="#88F4D4E6" ItemsSource="{Binding UIDOptions}" SelectedValue="{Binding SelectedUID}" pu:ComboBoxHelper.HoverBackground="#1EFF0026" pu:ComboBoxHelper.SelectedBackground="#32FF0026"/>
-                    <TextBlock TextWrapping="Wrap" Grid.Row="3" Margin="30 10 0 2" Grid.ColumnSpan="4" FontSize="11" Foreground="#888888"><Run Text="星穹铁道抽卡记录格式(SRGF)是由UIGF组织所提出的通用跃迁历史记录格式标准，用于数据交换。"/><LineBreak/><Run Text="若您需要进行数据备份或向其他工具导入，请选择以该格式导出。请勿手动修改导出的文件。"/></TextBlock>
+                    <ComboBox Grid.Row="2" Grid.Column="1" Padding="5 0 25 0" BorderThickness="0 0 0 2" BorderBrush="#88F4D4E6" ItemsSource="{Binding FormatOptions}" DisplayMemberPath="Key" SelectedValuePath="Value" SelectedValue="{Binding FormatType}" pu:ComboBoxHelper.HoverBackground="#1EFF0026" pu:ComboBoxHelper.SelectedBackground="#32FF0026"/>
+                    <Label FontSize="14"  Margin="20 0 0 0">
+                        <Label.Style>
+                            <Style TargetType="Label">
+                                <Setter Property="Grid.Row" Value="2"/>
+                                <Setter Property="Grid.Column" Value="2"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding FormatType}" Value="NewUniversalGachaLogFormat">
+                                        <Setter Property="Grid.Row" Value="3"/>
+                                        <Setter Property="Grid.Column" Value="0"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Label.Style>
+                        UID: 
+                    </Label>
+                    <Grid Width="120"  Grid.Row="2" Grid.Column="3">
+                        <Grid.Style>
+                            <Style TargetType="Grid">
+                                <Setter Property="Visibility" Value="Visible"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding FormatType}" Value="NewUniversalGachaLogFormat">
+                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Grid.Style>
+                        <ComboBox Padding="5 0 25 0"  BorderThickness="0 0 0 2" BorderBrush="#88F4D4E6" ItemsSource="{Binding UIDOptions}" SelectedValue="{Binding SelectedUID}" pu:ComboBoxHelper.HoverBackground="#1EFF0026" pu:ComboBoxHelper.SelectedBackground="#32FF0026"/>
+                    </Grid>
+                    <Grid Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3">
+                        <Grid.Style>
+                            <Style TargetType="Grid">
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding FormatType}" Value="NewUniversalGachaLogFormat">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Grid.Style>
+                        <pu:MultiComboBox Name="MultiUIDSelect" Padding="5 0 25 0"  BorderThickness="0 0 0 2" BorderBrush="#88F4D4E6" ItemsSource="{Binding UIDOptionsMulti}" Watermark="请选择UID" DisplayMemberPath="Key"/>
+                    </Grid>
+                    <TextBlock TextWrapping="Wrap" Grid.Row="4" Margin="20 10 0 2" Grid.ColumnSpan="4" FontSize="11" Foreground="#888888">
+                        <TextBlock.Style>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding FormatType}" Value="StarRailGachaLogFormat">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                        
+                        <Run Text="星穹铁道抽卡记录格式(SRGF)是由UIGF组织所提出的通用跃迁历史记录格式标准，用于数据交换。请勿手动修改导出的文件。"/><LineBreak/>
+                        <Run Text="若您需要进行数据备份或向其他工具导入，且对应工具尚未支持UIGF v4.0+，请选择以该格式导出。"/><LineBreak/>
+                        <Run Foreground="Red" Text="该格式已被新版通用可交换抽卡记录格式(New UIGF)替代。UIGF v4.0+为中断性更新，无法向前兼容SRGF导入。"/>
+                    </TextBlock>
+
+                    <TextBlock TextWrapping="Wrap" Grid.Row="4" Margin="20 10 0 2" Grid.ColumnSpan="4" FontSize="11" Foreground="#888888">
+                        <TextBlock.Style>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding FormatType}" Value="NewUniversalGachaLogFormat">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                        
+                        <Run Text="新版通用抽卡记录格式(New UIGF)是由UIGF组织所提出的通用抽卡历史记录格式标准，用于数据交换。请勿手动修改文件。"/><LineBreak/>
+                        <Run Text="UIGF v4.0+合并了原先原神(UIGF)、星穹铁道(SRGF)及绝区零等的抽卡记录格式，且支持单文件内导出多UID、多游戏抽卡记录"/><LineBreak/>
+                        <Run Foreground="Red" Text="UIGF v4.0+为中断性更新，无法向前兼容SRGF及原UIGF的导入机制。请确保目标工具支持以该格式进行导入。"/><LineBreak/>
+                        <Run Foreground="Red" Text="若目标导入工具尚不支持UIGF v4.0+，或您期望保留更多的兼容性，请选择以SRGF格式或双重格式导出。"/>
+                    </TextBlock>
+                    <TextBlock TextWrapping="Wrap" Grid.Row="4" Margin="20 10 0 2" Grid.ColumnSpan="4" FontSize="11" Foreground="#888888">
+                        <TextBlock.Style>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding FormatType}" Value="DualFormat_NewUIGF_SRGF">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                        
+                        <Run Text="生成同时支持UIGF v4.0+与SRGF v1.0+的抽卡记录导出文件。请勿手动修改文件。"/><LineBreak/>
+                        <Run Text="该选项将造成导出文件大小翻倍，且不支持New UIGF提供的多UID同步导出功能。"/><LineBreak/>
+                        <Run Foreground="Red" Text="一般而言，该选项的兼容性与以SRGFv1.0进行导出并无有意义的区别，建议您使用后者进行导出。"/>
+
+                    </TextBlock>
                 </Grid>
             </Border>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 5">
