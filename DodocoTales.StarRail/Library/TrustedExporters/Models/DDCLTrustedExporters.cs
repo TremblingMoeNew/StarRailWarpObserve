@@ -36,6 +36,9 @@ namespace DodocoTales.SR.Library.TrustedExporters.Models
         [JsonProperty(PropertyName = "srgf-partnership", DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         public bool SRGFPartnership { get; set; }
 
+        [JsonProperty(PropertyName = "new-uigf-partnership", DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
+        public bool NUIGFPartnership { get; set; }
+
         [JsonIgnore]
         public DDCLExporterType ExporterType { get; set; }
 

@@ -38,8 +38,10 @@ namespace DodocoTales.SR.Gui.Views.Dialogs
         {
             if (VM.IsImportReady())
             {
-                await VM.Import();
-                Close();
+                if (await VM.Import())
+                {
+                    Close();
+                }
             }
         }
 

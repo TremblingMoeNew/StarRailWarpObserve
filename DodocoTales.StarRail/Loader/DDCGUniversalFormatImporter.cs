@@ -22,7 +22,7 @@ namespace DodocoTales.SR.Loader
                 var stream = File.Open(filepath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
                 StreamReader reader = new StreamReader(stream);
                 var buffer = await reader.ReadToEndAsync();
-                return JsonConvert.DeserializeObject<DDCGUniversalFormatLog>(buffer);
+                return EnsureToNewFormat(JsonConvert.DeserializeObject<DDCGUniversalFormatLog>(buffer));
             }
             catch (Exception)
             {
@@ -30,11 +30,38 @@ namespace DodocoTales.SR.Loader
             }
         }
 
-        public bool IsAcceptableFormat(DDCGUniversalFormatLog log)
-            => ((log?.Info?.LegacyStandardVersion != null && log?.Info.UID != null) || (log?.Info?.AnonymousExport == "true")) && log?.List != null;
+        public DDCGUniversalFormatLog EnsureToNewFormat(DDCGUniversalFormatLog log)
+        {
+            if (log.Info == null) return null;
 
-        public bool IsAcceptableLanguage(DDCGUniversalFormatLog log)
-             => log?.Info?.Language == "zh-cn";
+            if (log.StarRailSections == null)
+            {
+                if (log.List == null) return null;
+
+                log.StarRailSections = new List<DDCGUniversalFormatLogSRSection>
+                {
+                    new DDCGUniversalFormatLogSRSection
+                    {
+                        UID = log.Info.UID,
+                        Language = log.Info.Language,
+                        TimeZone = log.Info.TimeZone,
+                        GameBiz = log.Info.GameBiz,
+                        List = log.List
+                    }
+                };
+            }
+            return log;
+        }
+
+
+        public bool IsAcceptableFormat(DDCGUniversalFormatLog log)
+            => ((log?.Info?.LegacyStandardVersion != null && log?.Info.UID != null) || (log?.Info?.NewStandardVersion != null) || (log?.Info?.AnonymousExport == "true")) && log?.StarRailSections != null;
+
+        public bool IsAcceptableSection(DDCGUniversalFormatLogSRSection section)
+            => (section.UID != null) && (section?.List != null);
+
+        public bool IsAcceptableLanguage(DDCGUniversalFormatLogSRSection section)
+             => section?.Language == "zh-cn";
 
         public bool IsAnonymousFormat(DDCGUniversalFormatLog log)
                 => log?.Info?.AnonymousExport == "true";

@@ -95,24 +95,56 @@
                             IsReadOnly="True"
                             Text="{Binding ExportTime}" Cursor="IBeam"  IsEnabled="False"/>
 
-                    <Label FontSize="14" Grid.Row="6" Grid.Column="6" >语言:</Label>
-                    <ComboBox Grid.Row="6" Grid.Column="7"  Padding="5 0 25 0" BorderThickness="0 0 0 2" BorderBrush="#88F4D4E6" pu:ComboBoxHelper.HoverBackground="#1EFF0026" pu:ComboBoxHelper.SelectedBackground="#32FF0026" IsEnabled="False">
+                    
+                </Grid>
+            </Border>
+            <Border Margin="10 10 10 0" BorderBrush="#88888888" BorderThickness="1" CornerRadius="5" Padding="5">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition Height="5"/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="120"/>
+                        <ColumnDefinition Width="20"/>
+                        <ColumnDefinition Width="85"/>
+                        <ColumnDefinition Width="115"/>
+                        <ColumnDefinition Width="20"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="5"/>
+                    </Grid.ColumnDefinitions>
+                    <Label FontSize="14" >正在导入:</Label>
+                    <Label FontSize="14" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="4">
+                        <TextBlock>
+                            <TextBlock.Text>
+                                <MultiBinding StringFormat="{}第 {0} 项 / 共 {1} 项">
+                                    <Binding Path="CurrentSectionIdx"/>
+                                    <Binding Path="SectionCnt"/>
+                                </MultiBinding>
+                            </TextBlock.Text>
+                        </TextBlock></Label>
+                    <Label FontSize="14" Grid.Row="0" Grid.Column="6" >语言:</Label>
+                    <ComboBox Grid.Row="0" Grid.Column="7"  Padding="5 0 25 0" BorderThickness="0 0 0 2" BorderBrush="#88F4D4E6" pu:ComboBoxHelper.HoverBackground="#1EFF0026" pu:ComboBoxHelper.SelectedBackground="#32FF0026" IsEnabled="False">
                         <ComboBoxItem IsSelected="True">zh-cn</ComboBoxItem>
                         <ComboBoxItem>en-us</ComboBoxItem>
                     </ComboBox>
 
-                    <Label FontSize="14" Grid.Row="8" Grid.Column="0" HorizontalAlignment="Right">UID:</Label>
-                    <TextBox Grid.Row="8" Grid.Column="1"
+                    <Label FontSize="14" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right">UID:</Label>
+                    <TextBox Grid.Row="2" Grid.Column="1"
                             BorderBrush="#88F4D4E6"
                             BorderThickness="0 0 0 2"
                             pu:TextBoxHelper.FocusedBorderBrush="#FF008C"
                             pu:TextBoxHelper.FocusedShadowColor="#FF008C"
                             IsReadOnly="True" IsEnabled="False"
                             Text="{Binding SelectedUID}" Cursor="IBeam" />
-                    <Label FontSize="14" Grid.Row="8" Grid.Column="3" >客户端类型:</Label>
-                    <ComboBox Grid.Row="8" Grid.Column="4" Padding="5 0 25 0" BorderThickness="0 0 0 2" BorderBrush="#88F4D4E6" pu:ComboBoxHelper.HoverBackground="#1EFF0026" pu:ComboBoxHelper.SelectedBackground="#32FF0026" pu:ComboBoxHelper.Watermark="请选择类型" IsEnabled="{Binding IsNewUID}" ItemsSource="{Binding ClientTypeOptions}" DisplayMemberPath="Key" SelectedValuePath="Value" SelectedValue="{Binding SelectedClientType}"/>
-                    <Label FontSize="14" Grid.Row="8" Grid.Column="6">时区:</Label>
-                    <TextBox Grid.Row="8" Grid.Column="7"
+                    <Label FontSize="14" Grid.Row="2" Grid.Column="3" >客户端类型:</Label>
+                    <ComboBox Grid.Row="2" Grid.Column="4" Padding="5 0 25 0" BorderThickness="0 0 0 2" BorderBrush="#88F4D4E6" pu:ComboBoxHelper.HoverBackground="#1EFF0026" pu:ComboBoxHelper.SelectedBackground="#32FF0026" pu:ComboBoxHelper.Watermark="请选择类型" IsEnabled="{Binding IsNewUID}" ItemsSource="{Binding ClientTypeOptions}" DisplayMemberPath="Key" SelectedValuePath="Value" SelectedValue="{Binding SelectedClientType}"/>
+                    <Label FontSize="14" Grid.Row="2" Grid.Column="6">时区:</Label>
+                    <TextBox Grid.Row="2" Grid.Column="7"
                             BorderBrush="#88F4D4E6"
                             BorderThickness="0 0 0 2"
                             pu:TextBoxHelper.FocusedBorderBrush="#FF008C"
@@ -122,15 +154,18 @@
                 </Grid>
             </Border>
             <StackPanel Orientation="Vertical" Margin="15 2 10 0">
+                <TextBlock Foreground="#FF2AD16A" Visibility="{Binding Application.NUIGFPartnership, Converter={StaticResource VisByBoolCon}}">
+                    UIGF组织成员，受认证的 新版统一可交换抽卡记录标准 合作项目。
+                </TextBlock>
                 <TextBlock Foreground="#FF2A88D1" Visibility="{Binding Application.SRGFPartnership, Converter={StaticResource VisByBoolCon}}">
-                    UIGF组织成员，受认证的SRGF合作项目。
+                    UIGF组织成员，受认证的 星穹铁道抽卡记录标准 合作项目。
                 </TextBlock>
                 <TextBlock>
                     <TextBlock.Style>
                         <Style TargetType="TextBlock">
                             <Style.Triggers>
                                 <DataTrigger Binding="{Binding Application.ExporterType}" Value="Unknown">
-                                    <Setter Property="Text" Value="该工具并未被记录在Starwo的已知导出工具列表之中。"/>
+                                    <Setter Property="Text" Value="该工具并未被记录在已知导出工具列表之中。"/>
                                     <Setter Property="Foreground" Value="#FFD19B16"/>
                                 </DataTrigger>
                                 <DataTrigger Binding="{Binding Application.ExporterType}" Value="Untested">
@@ -142,7 +177,7 @@
                                     <Setter Property="Foreground" Value="#FF4EB40A"/>
                                 </DataTrigger>
                                 <DataTrigger Binding="{Binding Application.ExporterType}" Value="Blacklist">
-                                    <Setter Property="Text" Value="警告：来自于该工具的数据有存在可靠性问题的可能性，或是无法通过Starwo导入测试。&#x0a;Starwo不对合并造成的任何问题负责，且该部分数据将无法导出。"/>
+                                    <Setter Property="Text" Value="警告：来自于该工具的数据有存在可靠性问题的可能性，或是无法通过导入测试。&#x0a;Starwo不对合并造成的任何问题负责，且该部分数据将无法导出。"/>
                                     <Setter Property="Foreground" Value="#FFEF4C33"/>
                                 </DataTrigger>
                             </Style.Triggers>
