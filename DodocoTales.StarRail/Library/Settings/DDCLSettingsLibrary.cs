@@ -1,4 +1,5 @@
 ﻿using DodocoTales.SR.Common;
+using DodocoTales.SR.Library.Enums;
 using DodocoTales.SR.Library.Settings.Models;
 using Newtonsoft.Json;
 using System;
@@ -16,6 +17,8 @@ namespace DodocoTales.SR.Library.Settings
         public readonly string libPath = @"Library/Settings.json";
 
         public long LastUserUID { get { return model?.LastUserUID ?? -1; } set { model.LastUserUID = value; SaveSettings(); } }
+
+        public DDCLUnitMetadataSource MetadataSource { get { return model?.MetadataSource ?? DDCLUnitMetadataSource.None; } set { model.MetadataSource = value; SaveSettings(); } }
 
         public DDCLSettingsLibrary()
         {

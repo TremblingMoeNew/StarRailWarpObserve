@@ -21,6 +21,8 @@ namespace DodocoTales.SR.Library.MetadataLibrary
         public string BannerLibraryVersion { get { return model?.BannerLibraryVersion; } set { if (model == null) model = new DDCLMetadataVersion(); model.BannerLibraryVersion = value; SaveLibrary(); } }
         public string ExportersLibraryVersion { get { return model?.ExportersLibraryVersion; } set { if (model == null) model = new DDCLMetadataVersion(); model.ExportersLibraryVersion = value; SaveLibrary(); } }
 
+        public DateTime UnitLibLastUpdateAt { get { return model?.UnitLibLastUpdateAt ?? DateTime.MinValue; } set { if (model == null) model = new DDCLMetadataVersion(); model.UnitLibLastUpdateAt = value; SaveLibrary(); } }
+
         public bool FirstRunAfterUpdate { get; set; }
 
         public async Task Initialize()

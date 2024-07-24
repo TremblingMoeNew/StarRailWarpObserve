@@ -13,5 +13,8 @@ namespace DodocoTales.SR.Library.MetadataLibrary.Models
         public string BannerLibraryVersion { get; set; }
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         public string ExportersLibraryVersion { get; set; }
+
+        [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
+        public DateTime UnitLibLastUpdateAt { get; set; }
     }
 }
