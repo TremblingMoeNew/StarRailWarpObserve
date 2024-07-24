@@ -346,6 +346,15 @@ namespace DodocoTales.SR.Gui.ViewModels.Dialogs
 
         }
 
+        public bool Skip()
+        {
+            if (!LoadNextSection())
+            {
+                return true;
+            }
+            return false;
+        }
+
 
     }
 }

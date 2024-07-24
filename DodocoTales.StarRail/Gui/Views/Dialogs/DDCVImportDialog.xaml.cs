@@ -49,5 +49,13 @@ namespace DodocoTales.SR.Gui.Views.Dialogs
         {
             Close();
         }
+
+        private void SkipButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (VM.Skip())
+            {
+                Close();
+            }
+        }
     }
 }

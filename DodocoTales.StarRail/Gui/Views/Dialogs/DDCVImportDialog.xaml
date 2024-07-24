@@ -199,6 +199,17 @@
                 />
                 <Button  Height="30"
                 Width="80"
+                Content="跳过"
+                Margin="0 0 10 0"
+                pu:ButtonHelper.ClickStyle="Sink"
+                pu:ButtonHelper.ButtonStyle="Hollow"
+                BorderBrush="#FF7C3232"
+                Foreground="#FF890B0B"
+                pu:ButtonHelper.HoverBrush="#88FF8282"
+                pu:ButtonHelper.CornerRadius="5" Click="SkipButton_Click"
+                />
+                <Button  Height="30"
+                Width="80"
                 Content="取消"
                 Margin="0 0 10 0"
                 pu:ButtonHelper.ClickStyle="Sink"
