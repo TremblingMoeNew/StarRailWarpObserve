@@ -15,6 +15,6 @@ namespace DodocoTales.SR.Library.Settings.Models
 
         [DefaultValue(DDCLUnitMetadataSource.Hakush)]
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.Populate)]
-        public DDCLUnitMetadataSource MetadataSource { get; set; }
+        public DDCLUnitMetadataSource MetadataSource { get; set; } = DDCLUnitMetadataSource.Hakush;
     }
 }
