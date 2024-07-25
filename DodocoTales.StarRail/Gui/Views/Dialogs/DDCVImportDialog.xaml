@@ -128,10 +128,13 @@
                             </TextBlock.Text>
                         </TextBlock></Label>
                     <Label FontSize="14" Grid.Row="0" Grid.Column="6" >语言:</Label>
-                    <ComboBox Grid.Row="0" Grid.Column="7"  Padding="5 0 25 0" BorderThickness="0 0 0 2" BorderBrush="#88F4D4E6" pu:ComboBoxHelper.HoverBackground="#1EFF0026" pu:ComboBoxHelper.SelectedBackground="#32FF0026" IsEnabled="False">
-                        <ComboBoxItem IsSelected="True">zh-cn</ComboBoxItem>
-                        <ComboBoxItem>en-us</ComboBoxItem>
-                    </ComboBox>
+                    <TextBox Grid.Row="0" Grid.Column="7"  
+                             BorderBrush="#88F4D4E6"
+                            BorderThickness="0 0 0 2"
+                            pu:TextBoxHelper.FocusedBorderBrush="#FF008C"
+                            pu:TextBoxHelper.FocusedShadowColor="#FF008C"
+                            IsReadOnly="True" IsEnabled="False"
+                            Text="{Binding SelectedLanguage}"/>
 
                     <Label FontSize="14" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right">UID:</Label>
                     <TextBox Grid.Row="2" Grid.Column="1"

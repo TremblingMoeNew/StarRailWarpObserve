@@ -99,6 +99,13 @@ namespace DodocoTales.SR.Gui.ViewModels
             set => SetProperty(ref isWaiting, value);
         }
 
+        private bool isImportAvailable;
+        public bool IsImportAvailable
+        {
+            get => isImportAvailable;
+            set => SetProperty(ref isImportAvailable, value);
+        }
+
         private long currentUID;
         public long CurrentUID
         {

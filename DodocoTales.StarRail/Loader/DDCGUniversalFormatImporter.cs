@@ -83,29 +83,31 @@ namespace DodocoTales.SR.Loader
         {
             var item = new DDCLGachaLogItem()
             {
-                Name = UFItem.name,
                 Raw = new DDCLGachaLogItemRawData
                 {
-                    count = UFItem.count,
+                    count = UFItem.count??"1",
                     gacha_id = UFItem.gacha_id,
                     item_id = UFItem.item_id,
                 },
             };
+            var unitinfo = DDCL.UnitLib.GetUnitInfo(UFItem.item_id);
+            if (unitinfo == null)
+            {
+                return null;
+            }
+            item.Name = unitinfo.Name;
+            item.Rank = unitinfo.Rank;
+            item.UnitType = unitinfo.UnitType;
 
             try
             {
-                if (UFItem.id == null || UFItem.rank_type == null || UFItem.time == null) return null;
-                if (UFItem.item_type == null || UFItem.gacha_type == null) return null;
+                if (UFItem.id == null || UFItem.time == null) return null;
+                if (UFItem.gacha_type == null) return null;
 
                 item.ID = Convert.ToUInt64(UFItem.id);
-                item.Rank = Convert.ToUInt64(UFItem.rank_type);
                 item.Time = Convert.ToDateTime(UFItem.time);
-                item.UnitType = DDCL.ConvertToUnitType(UFItem.item_type);
                 item.Raw.gacha_type = Convert.ToUInt64(UFItem.gacha_type);
                 item.PoolType = JsonConvert.DeserializeObject<DDCCPoolType>(UFItem.gacha_type);
-
-                if (item.Rank < 3 || item.Rank > 5) return null;
-                if (item.UnitType == DDCCUnitType.Unknown) return null;
             }
             catch
             {

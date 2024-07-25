@@ -239,11 +239,6 @@ namespace DodocoTales.SR.Gui.ViewModels.Dialogs
                     Notice.Show($"跃迁记录项导入失败。\n第{CurrentSectionIdx}项的元数据残缺或格式错误，无法导入。", "跃迁记录导入", Panuon.UI.Silver.MessageBoxIcon.Error);
                     continue;
                 }
-                if (!DDCG.UFImporter.IsAcceptableLanguage(section))
-                {
-                    Notice.Show($"跃迁记录项导入失败。\n本工具仅支持zh-cn语言记录项，第{CurrentSectionIdx}项无法导入", "跃迁记录导入", Panuon.UI.Silver.MessageBoxIcon.Error);
-                    continue;
-                }
                 if (!LoadSectionMetadata(section))
                 {
                     Notice.Show($"跃迁记录项导入失败。\n第{CurrentSectionIdx}项的元数据残缺或格式错误，无法导入。", "跃迁记录导入", Panuon.UI.Silver.MessageBoxIcon.Error);

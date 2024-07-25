@@ -6,6 +6,7 @@ using DodocoTales.SR.Library.GameClient;
 using DodocoTales.SR.Library.MetadataLibrary;
 using DodocoTales.SR.Library.Settings;
 using DodocoTales.SR.Library.TrustedExporters;
+using DodocoTales.SR.Library.UnitLibrary;
 using DodocoTales.SR.Library.UserDataLibrary;
 using System;
 using System.Collections.Generic;
@@ -31,6 +32,8 @@ namespace DodocoTales.SR.Library
 
         public static DDCLTrustedExportersLibrary ExportersLib = new DDCLTrustedExportersLibrary();
 
+        public static DDCLUnitLibrary UnitLib = new DDCLUnitLibrary();
+        
         public static long ToUnixTimestamp(DateTime time)
             => (long)((time.Ticks - 621355968000000000) / 10000000);
 

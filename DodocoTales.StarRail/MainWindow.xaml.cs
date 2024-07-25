@@ -114,6 +114,11 @@ namespace DodocoTales
                 DDCV.ShowWindowDialog(new DDCVSettingsWindow().SwapToChangeLogScreen());
             }
             VM.IsInUpdate = !(versionchecked && bannerlibloaded);
+
+            if (!DDCG.UnitLibLoader.IsUpdateNeeded() || await DDCG.UnitLibLoader.UpdateUnitLibrary())
+            {
+                VM.IsImportAvailable = bannerlibloaded && await DDCL.UnitLib.LoadLibraryAsync();
+            }
         }
 
         private void MainPanel_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)

@@ -26,7 +26,7 @@ namespace DodocoTales.SR.Loader
                     items = await HakushLoader.UpdateUnitLibrary();
                     break;
                 default:
-                    return true ;
+                    return true;
             }
             if (items == null)
             {
@@ -56,8 +56,13 @@ namespace DodocoTales.SR.Loader
                 return false;
             }
             return true;
-           
+
         }
 
+
+        public bool IsUpdateNeeded()
+        {
+            return DDCL.UnitLib.Enabled() && (DDCL.MetaVersionLib.UnitLibLastUpdateAt < DateTime.Now.AddDays(-14));
+        }
     }
 }
