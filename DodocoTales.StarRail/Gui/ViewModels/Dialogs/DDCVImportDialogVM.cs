@@ -213,15 +213,14 @@ namespace DodocoTales.SR.Gui.ViewModels.Dialogs
                 if (IsNewUID)
                 {
                     SelectedClientType = DDCG.UFImporter.ConvertGameBizStringToGameClientType(section.GameBiz);
-                    TimeZone = Convert.ToInt32(section.TimeZone);
                 }
                 else
                 {
                     var userlog = DDCL.UserDataLib.GetUserLogByUid(SelectedUID);
                     SelectedClientType = userlog.ClientType;
-                    TimeZone = userlog.TimeZone;
                 }
-                
+                TimeZone = Convert.ToInt32(section.TimeZone);
+
             }
             catch { return false; }
             return true;

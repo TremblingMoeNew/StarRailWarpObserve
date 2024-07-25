@@ -26,7 +26,19 @@ namespace DodocoTales.SR.Loader
         }
         public void SetTimeZone(int timezone)
         {
+            if (UserLog.TimeZone != timezone)
+            {
+                AdjustTimeZone(UserLog.TimeZone, timezone);
+            }
             UserLog.TimeZone = timezone;
+        }
+
+        public void AdjustTimeZone(int old_tz, int new_tz)
+        {
+            foreach (var item in GachaLogSet)
+            {
+                item.Value.Time = item.Value.Time.AddHours(new_tz -  old_tz);
+            }
         }
 
         public ulong GetLastItemMihoyoIdByType(DDCCPoolType type)
