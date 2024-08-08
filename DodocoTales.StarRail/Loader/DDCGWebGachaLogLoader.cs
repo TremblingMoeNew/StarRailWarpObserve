@@ -31,8 +31,8 @@ namespace DodocoTales.SR.Loader
                     return null;
             }
         }
-        readonly string apipattern_cn = @"https://api-takumi.mihoyo.com/common/gacha_record/api/getGachaLog?{0}&gacha_type={1}&page={2}&size={4}&end_id={3}";
-        readonly string apipattern_global = @"https://api-os-takumi.mihoyo.com/common/gacha_record/api/getGachaLog?{0}&gacha_type={1}&page={2}&size={4}&end_id={3}";
+        readonly string apipattern_cn = @"https://public-operation-hkrpg.mihoyo.com/common/gacha_record/api/getGachaLog?{0}&gacha_type={1}&page={2}&size={4}&end_id={3}";
+        readonly string apipattern_global = @"https://public-operation-hkrpg-sg.hoyoverse.com/common/gacha_record/api/getGachaLog?{0}&gacha_type={1}&page={2}&size={4}&end_id={3}";
         int last_timezone;
 
 
